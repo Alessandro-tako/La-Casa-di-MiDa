@@ -1,0 +1,46 @@
+<x-layout>
+    <section class="container py-5">
+        <div class="row align-items-start">
+
+            {{-- Immagine principale --}}
+            <div class="col-md-7 text-center">
+                <div class="mb-4">
+                    <img id="mainImage" src="{{ asset('storage/images/pink-room/pink1.jpg') }}" class="main-image rounded shadow" alt="Pink Room">
+                </div>
+                <div class="d-flex flex-wrap justify-content-center gap-2">
+                    @for ($i = 1; $i <= 6; $i++)
+                        <img src="{{ asset("storage/images/pink-room/pink{$i}.jpg") }}" class="img-thumb" alt="Anteprima Pink {{ $i }}">
+                    @endfor
+                </div>
+            </div>
+
+            {{-- Descrizione --}}
+            <div class="col-md-5">
+                <h2 class="text-gold">Pink Room</h2>
+                <p class="text-muted">
+                    La Pink Room è pensata per chi cerca romanticismo e tranquillità. Dotata di un ampio letto matrimoniale king-size, può ospitare comodamente fino a 2 persone. L'ambiente è caldo, accogliente e curato nei minimi dettagli.
+                </p>
+                <ul class="list-unstyled text-muted">
+                    <li><i class="bi bi-person-fill me-2"></i>Ospiti: 1–2</li>
+                    <li><i class="bi bi-house-door-fill me-2"></i>Letto: Matrimoniale King Size</li>
+                    <li><i class="bi bi-wifi me-2"></i>Wi-Fi gratuito, bagno privato, pulizia giornaliera</li>
+                </ul>
+
+                <a href="{{ route('prenota') }}" class="btn btn-gold mt-3 rounded-pill">Prenota questa camera</a>
+            </div>
+
+        </div>
+    </section>
+
+    {{-- Script per cambio immagine --}}
+    <script>
+        const thumbnails = document.querySelectorAll('.img-thumb');
+        const mainImage = document.getElementById('mainImage');
+
+        thumbnails.forEach(thumb => {
+            thumb.addEventListener('click', () => {
+                mainImage.src = thumb.src;
+            });
+        });
+    </script>
+</x-layout>

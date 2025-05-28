@@ -1,0 +1,135 @@
+:root {
+    --color-white: #ffffff;
+    --color-black: #000000;
+    --color-gold: #d4af37;
+    --color-gold-hover: #b8962f;
+    --color-muted: #6c757d;
+}
+
+/* Stili generali */
+body {
+    background-color: var(--color-white);
+    color: var(--color-black);
+    font-family: 'Open Sans', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Playfair Display', serif;
+    color: var(--color-gold);
+}
+
+a {
+    color: var(--color-black);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--color-gold);
+}
+
+/* Pulsanti oro */
+.btn-gold {
+    background-color: var(--color-gold);
+    color: var(--color-white);
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-gold:hover {
+    background-color: var(--color-gold-hover);
+    color: var(--color-white);
+}
+
+/* Navbar */
+.navbar {
+    background-color: var(--color-white);
+}
+
+.nav-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--color-gold);
+}
+
+.navbar .nav-link {
+    color: var(--color-black);
+}
+
+.navbar .nav-link:hover {
+    color: var(--color-gold);
+}
+
+.navbar .nav-link.active {
+    color: var(--color-gold);
+    font-weight: 600;
+}
+
+/* Footer */
+footer {
+    background-color: var(--color-black);
+    color: var(--color-white);
+}
+
+footer a {
+    color: var(--color-white);
+}
+
+footer a:hover {
+    color: var(--color-gold);
+}
+
+/* Titoli in oro */
+.text-gold {
+    color: var(--color-gold) !important;
+}
+
+/* Altri elementi */
+.bg-cream {
+    background-color: #fefcf7;
+}
+
+.shadow-gold {
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+/* carosello */
+.carousel-inner .carousel-item img {
+    height: 400px !important;
+    object-fit: cover !important;
+    width: 100%;
+    border-radius: 12px;
+}
+
+/* Immagine principale della camera */
+#mainImage {
+    height: 400px;
+
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* Miniature immagini */
+.main-image {
+    height: 400px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* Miniature */
+.img-thumb {
+    height: 80px;
+    width: auto;
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: transform 0.2s ease;
+}
+
+.img-thumb:hover {
+    transform: scale(1.05);
+}
