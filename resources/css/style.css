@@ -13,12 +13,7 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
     font-family: 'Playfair Display', serif;
     color: var(--color-gold);
 }
@@ -68,7 +63,7 @@ a:hover {
     font-weight: 600;
 }
 
-.nav-logo{
+.nav-logo {
     max-height: 50px;
 }
 
@@ -100,35 +95,32 @@ footer a:hover {
     box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
 }
 
-/* carosello */
+/* Carosello immagini camere */
 .carousel-inner .carousel-item img {
-    height: 400px !important;
-    object-fit: cover !important;
+    height: auto;
+    max-height: 400px;
+    object-fit: contain;
     width: 100%;
     border-radius: 12px;
+    background-color: var(--color-white);
 }
 
-/* Immagine principale della camera */
+/* Immagine principale struttura o camera (non carousel) */
+.main-image,
 #mainImage {
-    height: 400px;
-
-    object-fit: cover;
-    border-radius: 12px;
-}
-
-/* Miniature immagini */
-.main-image {
-    height: 400px;
+    height: auto;
+    max-height: 400px;
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 12px;
+    background-color: #f8f9fa;
 }
 
 /* Miniature */
 .img-thumb {
     height: 80px;
     width: auto;
-    object-fit: cover;
+    object-fit: contain;
     cursor: pointer;
     border-radius: 6px;
     transition: transform 0.2s ease;
@@ -136,4 +128,9 @@ footer a:hover {
 
 .img-thumb:hover {
     transform: scale(1.05);
+}
+
+.img-thumb.active-thumb {
+    border: 2px solid var(--color-gold);
+    transform: scale(1.08);
 }

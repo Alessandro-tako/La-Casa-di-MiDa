@@ -40,22 +40,28 @@
                     <li><a href="{{ route('contatti') }}" class="link-light text-decoration-none">Contatti</a></li>
                 </ul>
             </div>
+
             {{-- Social --}}
             <div class="col-12 col-md-3 text-center text-md-start">
                 <h5 class="fw-bold font-serif mb-3 text-gold">Seguici</h5>
                 <div class="d-flex justify-content-center justify-content-md-start">
                     <a href="https://www.instagram.com/la_casa_di_mida/" target="_blank" rel="noopener"
-                        class="text-light fs-4 me-2" title="Instagram La Casa di MiDa">
+                        class="text-light fs-4 me-3" title="Instagram La Casa di MiDa">
                         <i class="bi bi-instagram"></i>
+                    </a>
+                    <a href="https://www.facebook.com/profile.php?id=61575152180746&locale=it_IT" target="_blank" rel="noopener"
+                        class="text-light fs-4" title="Facebook La Casa di MiDa">
+                        <i class="bi bi-facebook"></i>
                     </a>
                 </div>
             </div>
 
 
+
             <hr class="border-secondary my-4">
 
             <div class="text-center small">
-                <p class="mb-1">La Casa di MiDa - P.IVA: 01234567890</p>
+                <p class="mb-1">La Casa di MiDa - P.IVA: IT17800951000</p>
                 <p class="mb-1">&copy; 2025 - {{ now()->year }} Tutti i diritti riservati.</p>
                 <p class="mb-0">🔥 Powered by Takohr • il Forgiatore di Codice ⚒️</p>
             </div>

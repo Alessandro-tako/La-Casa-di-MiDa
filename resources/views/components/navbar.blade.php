@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg bg-white shadow-sm py-3" role="navigation">
     <div class="container">
         {{-- Logo + Nome struttura --}}
-        <a href="{{ route('home') }}" class="navbar-brand d-flex align-items-center text-gold fw-bold fs-4"
+        <a href="{{ route('home') }}" class="navbar-brand d-flex align-items-center text-gold fw-bold fs-4 nav-title"
             title="Torna alla Home">
             <img src="{{ asset('storage/images/loghi/logo-bianco-oro.jpg') }}" alt="Logo La Casa di MiDa"
                 class="nav-logo me-2">
