@@ -6,14 +6,19 @@
     --color-muted: #6c757d;
 }
 
-/* Stili generali */
+/* Corpo e tipografia */
 body {
     background-color: var(--color-white);
     color: var(--color-black);
     font-family: 'Open Sans', sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: 'Playfair Display', serif;
     color: var(--color-gold);
 }
@@ -27,7 +32,7 @@ a:hover {
     color: var(--color-gold);
 }
 
-/* Pulsanti oro */
+/* Pulsanti */
 .btn-gold {
     background-color: var(--color-gold);
     color: var(--color-white);
@@ -54,10 +59,7 @@ a:hover {
     color: var(--color-black);
 }
 
-.navbar .nav-link:hover {
-    color: var(--color-gold);
-}
-
+.navbar .nav-link:hover,
 .navbar .nav-link.active {
     color: var(--color-gold);
     font-weight: 600;
@@ -81,12 +83,11 @@ footer a:hover {
     color: var(--color-gold);
 }
 
-/* Titoli in oro */
+/* Altri elementi utili */
 .text-gold {
     color: var(--color-gold) !important;
 }
 
-/* Altri elementi */
 .bg-cream {
     background-color: #fefcf7;
 }
@@ -95,31 +96,20 @@ footer a:hover {
     box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
 }
 
-/* Carosello immagini camere */
-.carousel-inner .carousel-item img {
-    height: auto;
-    max-height: 400px;
-    object-fit: contain;
-    width: 100%;
-    border-radius: 12px;
-    background-color: var(--color-white);
-}
-
-/* Immagine principale struttura o camera (non carousel) */
+/* Immagini */
+.carousel-inner .carousel-item img,
 .main-image,
 #mainImage {
     height: auto;
     max-height: 400px;
-    width: 100%;
     object-fit: contain;
+    width: 100%;
     border-radius: 12px;
     background-color: #f8f9fa;
 }
 
-/* Miniature */
 .img-thumb {
     height: 80px;
-    width: auto;
     object-fit: contain;
     cursor: pointer;
     border-radius: 6px;
@@ -133,4 +123,100 @@ footer a:hover {
 .img-thumb.active-thumb {
     border: 2px solid var(--color-gold);
     transform: scale(1.08);
+}
+
+/* Input & Select oro */
+input.form-control,
+select.form-select {
+    border: 1px solid var(--color-gold);
+    background-color: var(--color-white);
+    color: var(--color-black);
+    border-radius: 0.5rem;
+    box-shadow: none;
+    transition: all 0.3s ease;
+}
+
+input.form-control::placeholder {
+    color: var(--color-muted);
+}
+
+/* Select con Choices.js */
+/* Contenitore interno */
+.choices__inner {
+    background-color: var(--color-white);
+    color: var(--color-black);
+    border: 1px solid var(--color-gold);
+    border-radius: 0.5rem !important;
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+    padding: 0.5rem 0.75rem;
+}
+
+/* Freccetta */
+.choices[data-type*='select-one']::after {
+    border-color: var(--color-gold) transparent transparent;
+}
+
+/* Elementi del dropdown */
+.choices__list--dropdown,
+.choices__list[aria-expanded] {
+    border: 1px solid var(--color-gold);
+    border-radius: 0.5rem;
+    background-color: var(--color-white);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+}
+
+/* Elementi attivi al passaggio del mouse */
+.choices__list--dropdown .choices__item--selectable.is-highlighted,
+.choices__item--selectable:hover {
+    background-color: var(--color-gold) !important;
+    color: var(--color-white);
+}
+
+/* Testo selezionato */
+.choices__item--selectable {
+    color: var(--color-black);
+}
+
+
+/* Flatpickr - calendario */
+.flatpickr-calendar {
+    font-family: 'Open Sans', sans-serif;
+    border: 1px solid var(--color-gold);
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.15);
+}
+
+.flatpickr-day.selected,
+.flatpickr-day.startRange,
+.flatpickr-day.endRange,
+.flatpickr-day.selected:hover {
+    background: var(--color-gold) !important;
+    border-color: var(--color-gold) !important;
+    color: var(--color-white) !important;
+}
+
+.flatpickr-day.today {
+    border: 1px solid var(--color-gold) !important;
+}
+
+.flatpickr-day:hover {
+    background: #fef8e6 !important;
+    color: var(--color-black);
+    border-color: var(--color-gold);
+}
+
+.flatpickr-day.disabled,
+.flatpickr-day.disabled:hover {
+    background: #eee !important;
+    color: #999 !important;
+    cursor: not-allowed;
+}
+
+.flatpickr-months .flatpickr-month,
+.flatpickr-current-month input.cur-year {
+    color: #333;
+}
+
+.flatpickr-weekday {
+    color: var(--color-gold);
+    font-weight: bold;
 }

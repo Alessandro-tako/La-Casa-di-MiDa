@@ -1,8 +1,4 @@
 <x-layout>
-    @section('title', 'Affittacamere a Roma - La Casa di MiDa')
-    @section('meta_description', 'Prenota il tuo soggiorno nel cuore di Roma. La Casa di MiDa ti accoglie con camere
-        eleganti e servizi esclusivi, a pochi minuti dal centro storico.')
-
         <!-- Hero -->
         <header class="text-center py-5 bg-white">
             <div class="container">
@@ -149,7 +145,4 @@
                 <i class="bi bi-whatsapp"></i>
             </a>
         </div>
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="{{ asset('js/scripts.js') }}"></script>
     </x-layout>

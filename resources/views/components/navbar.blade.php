@@ -14,7 +14,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        {{-- Link di navigazione --}}
+        {{-- Contenuto navbar --}}
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav align-items-center">
                 <li class="nav-item">
@@ -24,7 +24,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('cosaFare') }}"
-                        class="nav-link fw-semibold {{ request()->routeIs('cosa-fare-a-roma') ? 'active text-gold' : 'text-dark' }}"
+                        class="nav-link fw-semibold {{ request()->routeIs('cosaFare') ? 'active text-gold' : 'text-dark' }}"
                         title="Cosa fare a Roma">Cosa fare a Roma</a>
                 </li>
                 <li class="nav-item">
@@ -32,12 +32,42 @@
                         class="nav-link fw-semibold {{ request()->routeIs('contatti') ? 'active text-gold' : 'text-dark' }}"
                         title="Contattaci">Contatti</a>
                 </li>
-            </ul>
 
-            {{-- Pulsante prenotazione --}}
-            <div class="d-none d-lg-block ms-3">
-                <a href="#prenota" class="btn btn-gold rounded-pill px-4" title="Prenota la tua camera">Prenota ora</a>
-            </div>
+                <li class="nav-item d-block d-lg-none">
+                    <a href="{{ route('booking.create') }}" class="btn btn-gold rounded-pill px-4 text-center"
+                        title="Prenota ora">Prenota ora</a>
+                </li>
+
+                {{-- Prenotazione visibile sempre --}}
+                <li class="nav-item d-none d-lg-block ms-3">
+                    <a href="{{ route('booking.create') }}" class="btn btn-gold rounded-pill px-4"
+                        title="Prenota la tua camera">Prenota ora</a>
+                </li>
+
+                {{-- Dropdown autenticazione --}}
+                @auth
+                    <li class="nav-item dropdown ms-3">
+                        <a class="nav-link dropdown-toggle fw-semibold text-dark" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-circle me-1"></i> {{ Auth::user()->name }}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                            <li><a class="dropdown-item" href="{{ route('admin.prenotazioni') }}">Gestione Prenotazioni</a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <form action="{{ route('logout') }}" method="POST" class="px-3">
+                                    @csrf
+                                    <button type="submit" class="btn btn-link p-0 text-danger">Logout</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                @endauth
+            </ul>
         </div>
     </div>
 </nav>
