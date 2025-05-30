@@ -28,3 +28,7 @@ Route::get('/prenota', [BookingController::class, 'create'])->name('booking.crea
 Route::post('/prenota', [BookingController::class, 'store'])->name('booking.store');
 
 Route::get('/api/booked-dates/{room}', [\App\Http\Controllers\BookingController::class, 'getBookedDates']);
+
+// rotte mail
+Route::post('/prenota', [BookingController::class, 'store'])->name('booking.store');
+Route::post('/prenota', [BookingController::class, 'store'])->name('booking.store');

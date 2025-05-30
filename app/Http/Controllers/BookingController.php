@@ -5,20 +5,17 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\Booking;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\BookingConfirmationMail;
+use App\Mail\AdminBookingNotificationMail;
 
 class BookingController extends Controller
 {
-    /**
-     * Mostra la pagina di prenotazione.
-     */
     public function create()
     {
         return view('booking.create');
     }
 
-    /**
-     * Salva una nuova prenotazione.
-     */
     public function store(Request $request)
     {
         $data = $request->validate([
@@ -35,23 +32,20 @@ class BookingController extends Controller
             'guests'           => 'required|integer|min:1|max:3',
         ]);
 
-        // Impedisce prenotazioni con 0 notti
         $notti = Carbon::parse($data['check_in'])->diffInDays(Carbon::parse($data['check_out']));
         if ($notti < 1) {
             return back()->withErrors(['check_in' => 'La durata minima del soggiorno è di almeno una notte.'])->withInput();
         }
 
-        // Verifica sovrapposizione con prenotazioni esistenti
         $overlap = Booking::where('room_name', $data['room_name'])
             ->where(function ($query) use ($data) {
                 $query->whereBetween('check_in', [$data['check_in'], $data['check_out']])
                     ->orWhereBetween('check_out', [$data['check_in'], $data['check_out']])
                     ->orWhere(function ($query) use ($data) {
                         $query->where('check_in', '<=', $data['check_in'])
-                                ->where('check_out', '>=', $data['check_out']);
+                              ->where('check_out', '>=', $data['check_out']);
                     });
-            })
-            ->exists();
+            })->exists();
 
         if ($overlap) {
             return back()->withErrors([
@@ -59,11 +53,9 @@ class BookingController extends Controller
             ])->withInput();
         }
 
-        // Funzione per determinare la stagione
         function determinareStagione($date)
         {
-            $month = $date->month;
-            $day = $date->day;
+            $dataStr = $date->format('m-d');
 
             $alta = [
                 ['01-01', '01-06'], ['04-01', '04-10'], ['04-11', '04-30'],
@@ -76,22 +68,16 @@ class BookingController extends Controller
                 ['03-01', '03-31'], ['08-26', '08-31'], ['10-21', '10-31']
             ];
 
-            $bassa = [
-                ['01-07', '02-28'], ['11-04', '11-30'], ['12-01', '12-20']
-            ];
-
-            $dataStr = $date->format('m-d');
-
             foreach ($alta as [$start, $end]) {
                 if ($dataStr >= $start && $dataStr <= $end) return 'alta';
             }
             foreach ($media as [$start, $end]) {
                 if ($dataStr >= $start && $dataStr <= $end) return 'media';
             }
+
             return 'bassa';
         }
 
-        // Prezzi per camera e stagione
         $prezzi = [
             'Green Room' => ['bassa' => 125, 'media' => 160, 'alta' => 185],
             'Gray Room'  => ['bassa' => 125, 'media' => 160, 'alta' => 185],
@@ -106,10 +92,9 @@ class BookingController extends Controller
             $stagione = determinareStagione($date);
             $base = $prezzi[$data['room_name']][$stagione];
 
-            // Modifiche per numero ospiti
             if ($data['room_name'] === 'Pink Room') {
-                if ($data['guests'] === 1) $base *= 0.90; // -10%
-            } else { // Green o Gray
+                if ($data['guests'] === 1) $base *= 0.90;
+            } else {
                 if ($data['guests'] === 1) {
                     $base *= 0.90;
                 } elseif ($data['guests'] === 3) {
@@ -122,19 +107,20 @@ class BookingController extends Controller
 
         $data['price'] = round($totale, 2);
 
-        // Salvataggio nel database
-        Booking::create($data);
+        $booking = Booking::create($data);
+
+        // Invia la mail all'ospite
+        Mail::to($booking->guest_email)->send(new BookingConfirmationMail($booking));
+
+        // Invia la notifica all’admin
+        Mail::to('booking@lacasadimida.it')->send(new AdminBookingNotificationMail($booking));
 
         return redirect()->route('booking.create')->with('success', 'Prenotazione effettuata con successo!');
     }
 
-    /**
-     * Restituisce un array di date già prenotate per una camera.
-     */
     public function getBookedDates($room)
     {
         $bookings = Booking::where('room_name', $room)->get(['check_in', 'check_out']);
-
         $dates = [];
 
         foreach ($bookings as $booking) {

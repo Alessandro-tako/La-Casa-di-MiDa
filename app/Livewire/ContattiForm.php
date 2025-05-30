@@ -3,25 +3,31 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContattoUtenteMail;
 
 class ContattiForm extends Component
 {
-    public $nome, $email, $messaggio;
+    public $nome;
+    public $email;
+    public $messaggio;
 
     protected $rules = [
         'nome' => 'required|string|max:255',
         'email' => 'required|email',
-        'messaggio' => 'required|string|max:1000',
+        'messaggio' => 'required|string|min:10',
     ];
 
-    public function submit()
+    public function invia()
     {
         $this->validate();
 
-        // Puoi mandare una mail o salvarlo nel DB qui
+        Mail::to('info@lacasadimida.it')->send(
+            new ContattoUtenteMail($this->nome, $this->email, $this->messaggio)
+        );
 
-        session()->flash('success', 'Messaggio inviato con successo!');
-        $this->reset();
+        $this->reset(['nome', 'email', 'messaggio']);
+        session()->flash('success', 'Messaggio inviato con successo! Ti risponderemo al più presto.');
     }
 
     public function render()
