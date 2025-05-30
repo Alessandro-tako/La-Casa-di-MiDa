@@ -34,7 +34,7 @@
                     <li><i class="bi bi-wifi me-2"></i>Wi-Fi gratuito, bagno privato, pulizia giornaliera</li>
                 </ul>
 
-                <a href="{{ route('prenota') }}" class="btn btn-gold mt-3 rounded-pill">Prenota questa camera</a>
+                <a href="{{ route('booking.create', ['camera' => 'Green Room']) }}" class="btn btn-gold rounded-pill">Prenota questa stanza</a>
             </div>
 
 

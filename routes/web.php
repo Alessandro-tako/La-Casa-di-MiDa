@@ -10,6 +10,7 @@ Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/cosa-fare-a-roma', [PageController::class, 'cosaFare'])->name('cosaFare');
 Route::get('/contatti', [PageController::class, 'contatti'])->name('contatti');
 Route::get('/prenota', [PageController::class, 'prenota'])->name('prenota');
+Route::view('/termini-e-condizioni', 'termini')->name('termini');
 
 // rotte per le camere
 Route::get('/camere', [PageController::class, 'camere'])->name('camere.index');

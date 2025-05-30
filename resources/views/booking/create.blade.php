@@ -1,7 +1,7 @@
 <x-layout>
     <div class="container py-5">
         <div class="row justify-content-center">
-            <div class="col-12 col-md-8 col-lg-6">
+            <div class="col-12 col-md-8 col-lg-8">
                 <h2 class="text-gold mb-4 text-center">Prenota la tua camera</h2>
 
                 {{-- messaggio successo --}}
@@ -13,6 +13,8 @@
                                     {{ session('success') }}
                                 </div>
                             @endif
+
+
 
                         </div>
                     </div>
@@ -69,9 +71,15 @@
                     <div class="mb-3">
                         <label for="room_name" class="form-label">Camera</label>
                         <select name="room_name" id="room_name" class="form-select" required>
-                            <option value="Green Room">Green Room</option>
-                            <option value="Pink Room">Pink Room</option>
-                            <option value="Gray Room">Gray Room</option>
+                            <option value="Green Room"
+                                {{ old('room_name', $selectedRoom ?? '') == 'Green Room' ? 'selected' : '' }}>Green Room
+                            </option>
+                            <option value="Pink Room"
+                                {{ old('room_name', $selectedRoom ?? '') == 'Pink Room' ? 'selected' : '' }}>Pink Room
+                            </option>
+                            <option value="Gray Room"
+                                {{ old('room_name', $selectedRoom ?? '') == 'Gray Room' ? 'selected' : '' }}>Gray Room
+                            </option>
                         </select>
                     </div>
 
@@ -107,9 +115,38 @@
                             Totale: <span class="text-gold">—</span>
                         </div>
                     </div>
+                    {{-- accettazione clausole --}}
+                    <div class="form-check mt-4">
+                        <input class="form-check-input @error('accetta_condizioni') is-invalid @enderror"
+                            type="checkbox" id="accetta_condizioni" name="accetta_condizioni" value="1"
+                            required>
+
+                        <label class="form-check-label" for="accetta_condizioni">
+                            Dichiaro di aver letto e accettato le <a href="{{ route('termini') }}" target="_blank"
+                                class="text-gold text-decoration-underline">condizioni di prenotazione</a>.
+                        </label>
+                        @error('accetta_condizioni')
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                        @enderror
+                    </div>
+
 
                     <button type="submit" class="btn btn-gold rounded-pill w-100">Conferma Prenotazione</button>
                 </form>
+
+                <div class="mt-5 p-4 border rounded bg-light">
+                    <h5 class="text-gold">Condizioni di prenotazione</h5>
+                    <ul class="text-muted mb-0">
+                        <li>Il pagamento verrà effettuato in struttura salvo diverse indicazioni.</li>
+                        <li>In caso di cancellazione entro 5 giorni dall’arrivo, verrà addebitato il 20% del totale.
+                        </li>
+                        <li>In caso di no-show (assenza senza cancellazione), verrà addebitato il 100% dell’importo.
+                        </li>
+                        <li>Check-in dalle 14:00 alle 22:00, check-out entro le 10:00.</li>
+                        <li>I dati personali saranno trattati nel rispetto della normativa sulla privacy.</li>
+                    </ul>
+                </div>
+
             </div>
         </div>
     </div>

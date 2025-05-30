@@ -11,9 +11,10 @@ use App\Mail\AdminBookingNotificationMail;
 
 class BookingController extends Controller
 {
-    public function create()
+    public function create(Request $request)
     {
-        return view('booking.create');
+        $selectedRoom = $request->query('camera'); // es. 'Green Room'
+        return view('booking.create', compact('selectedRoom'));
     }
 
     public function store(Request $request)
@@ -30,6 +31,7 @@ class BookingController extends Controller
             'check_in'         => 'required|date|after_or_equal:today',
             'check_out'        => 'required|date|after:check_in',
             'guests'           => 'required|integer|min:1|max:3',
+            'accetta_condizioni' => 'accepted',
         ]);
 
         $notti = Carbon::parse($data['check_in'])->diffInDays(Carbon::parse($data['check_out']));
@@ -43,7 +45,7 @@ class BookingController extends Controller
                     ->orWhereBetween('check_out', [$data['check_in'], $data['check_out']])
                     ->orWhere(function ($query) use ($data) {
                         $query->where('check_in', '<=', $data['check_in'])
-                              ->where('check_out', '>=', $data['check_out']);
+                            ->where('check_out', '>=', $data['check_out']);
                     });
             })->exists();
 
