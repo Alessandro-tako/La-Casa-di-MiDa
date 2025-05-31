@@ -246,3 +246,18 @@ input.form-control::placeholder {
     color: #6c757d;
     pointer-events: none;
 }
+
+.flatpickr-day.checkin-selected {
+    background-color: var(--color-gold) !important;
+    color: var(--color-white) !important;
+    border-radius: 50% !important;
+    border: none !important;
+    box-sizing: border-box;
+    font-weight: bold;
+}
+
+/* Classe per evitare il click senza disabilitare Flatpickr */
+.flatpickr-day.not-clickable {
+    pointer-events: none;
+    cursor: default;
+}

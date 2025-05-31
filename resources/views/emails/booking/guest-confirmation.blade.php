@@ -37,7 +37,21 @@
 
     <p>Ti aspettiamo in <strong>Via Carlo Cattaneo 10, Roma</strong>.</p>
 
-    <p>Se hai bisogno di ulteriori informazioni non esitare a contattarci.</p>
+    <p>Per maggiori dettagli ti invitiamo a consultare i 
+        <a href="{{ url('/termini-e-condizioni') }}" target="_blank" style="color: #bfa046; text-decoration: underline;">
+            termini e condizioni della prenotazione
+        </a>.
+    </p>
+
+    <hr style="margin: 30px 0; border: none; border-top: 1px solid #ccc;">
+
+    <p style="font-size: 0.9em; color: #666;">
+        Questa è una mail generata automaticamente. Se hai domande o necessiti di assistenza, puoi scriverci a 
+        <a href="mailto:info@lacasadimida.it" style="color: #bfa046;">info@lacasadimida.it</a>
+        oppure utilizzare il 
+        <a href="{{ url('/contatti') }}" style="color: #bfa046; text-decoration: underline;">modulo contatti</a> 
+        presente sul nostro sito.
+    </p>
 
     <p style="margin-top: 30px;">Cordiali saluti,<br><strong>La Casa di MiDa</strong></p>
 

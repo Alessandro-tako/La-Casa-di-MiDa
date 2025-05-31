@@ -13,7 +13,7 @@ class BookingController extends Controller
 {
     public function create(Request $request)
     {
-        $selectedRoom = $request->query('camera'); // es. 'Green Room'
+        $selectedRoom = $request->query('camera');
         return view('booking.create', compact('selectedRoom'));
     }
 
@@ -34,19 +34,36 @@ class BookingController extends Controller
             'accetta_condizioni' => 'accepted',
         ]);
 
+        $data = $request->validate([
+    'guest_first_name' => 'required|string|max:255',
+    'guest_last_name'  => 'required|string|max:255',
+    'guest_email'      => 'required|email|max:255',
+    'guest_address_street' => 'required|string|max:255',
+    'guest_address_city'   => 'required|string|max:255',
+    'guest_address_country'=> 'required|string|max:255',
+    'guest_address_zip'    => 'required|string|max:20',
+    'room_name'        => 'required|in:Green Room,Pink Room,Gray Room',
+    'check_in'         => 'required|date_format:d-m-Y|after_or_equal:today',
+    'check_out'        => 'required|date_format:d-m-Y|after:check_in',
+    'guests'           => 'required|integer|min:1|max:3',
+    'accetta_condizioni' => 'accepted',
+]);
+
+    // 🔁 Converti le date per il DB
+    $data['check_in'] = Carbon::createFromFormat('d-m-Y', $data['check_in'])->format('Y-m-d');
+    $data['check_out'] = Carbon::createFromFormat('d-m-Y', $data['check_out'])->format('Y-m-d');
+
+
         $notti = Carbon::parse($data['check_in'])->diffInDays(Carbon::parse($data['check_out']));
         if ($notti < 1) {
             return back()->withErrors(['check_in' => 'La durata minima del soggiorno è di almeno una notte.'])->withInput();
         }
 
+        // Logica di overlap aggiornata
         $overlap = Booking::where('room_name', $data['room_name'])
             ->where(function ($query) use ($data) {
-                $query->whereBetween('check_in', [$data['check_in'], $data['check_out']])
-                    ->orWhereBetween('check_out', [$data['check_in'], $data['check_out']])
-                    ->orWhere(function ($query) use ($data) {
-                        $query->where('check_in', '<=', $data['check_in'])
-                            ->where('check_out', '>=', $data['check_out']);
-                    });
+                $query->where('check_in', '<', $data['check_out'])
+                    ->where('check_out', '>', $data['check_in']);
             })->exists();
 
         if ($overlap) {
@@ -111,10 +128,7 @@ class BookingController extends Controller
 
         $booking = Booking::create($data);
 
-        // Invia la mail all'ospite
         Mail::to($booking->guest_email)->send(new BookingConfirmationMail($booking));
-
-        // Invia la notifica all’admin
         Mail::to('booking@lacasadimida.it')->send(new AdminBookingNotificationMail($booking));
 
         return redirect()->route('booking.create')->with('success', 'Prenotazione effettuata con successo!');

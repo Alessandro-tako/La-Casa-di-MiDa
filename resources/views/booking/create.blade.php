@@ -14,6 +14,15 @@
                                 </div>
                             @endif
 
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul class="mb-0">
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
 
 
                         </div>
@@ -138,6 +147,7 @@
                     <h5 class="text-gold">Condizioni di prenotazione</h5>
                     <ul class="text-muted mb-0">
                         <li>Il pagamento verrà effettuato in struttura salvo diverse indicazioni.</li>
+                        <li>All’arrivo dovranno essere versati anche <strong>2€ a notte a persona</strong> per la tassa di soggiorno.</li>
                         <li>In caso di cancellazione entro 5 giorni dall’arrivo, verrà addebitato il 20% del totale.
                         </li>
                         <li>In caso di no-show (assenza senza cancellazione), verrà addebitato il 100% dell’importo.
