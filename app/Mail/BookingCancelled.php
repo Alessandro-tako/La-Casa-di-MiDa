@@ -9,7 +9,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 
-class BookingConfirmationMail extends Mailable
+class BookingCancelled extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -23,14 +23,14 @@ class BookingConfirmationMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Richiesta prenotazione - La Casa di MiDa',
+            subject: 'Prenotazione Annullata - La Casa di MiDa',
         );
     }
 
     public function content(): Content
     {
         return new Content(
-            view: 'emails.booking.guest-confirmation',
+            view: 'emails.booking.guest-cancelled',
             with: ['booking' => $this->booking],
         );
     }

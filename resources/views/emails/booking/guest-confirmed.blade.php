@@ -2,17 +2,15 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Prenotazione in attesa di conferma</title>
+    <title>Conferma Prenotazione</title>
 </head>
 <body style="font-family: Arial, sans-serif; background-color: #ffffff; color: #000000; padding: 20px;">
 
-    <h2 style="color: #bfa046;">Prenotazione ricevuta</h2>
+    <h2 style="color: #bfa046;">Prenotazione confermata!</h2>
 
     <p>Caro {{ $booking->guest_first_name }} {{ $booking->guest_last_name }},</p>
 
-    <p>Abbiamo ricevuto la tua richiesta di prenotazione presso <strong>La Casa di MiDa</strong>. La prenotazione è attualmente <strong>in attesa di conferma</strong> da parte dello staff.</p>
-
-    <p>Di seguito trovi il riepilogo della richiesta:</p>
+    <p>Siamo lieti di confermare la tua prenotazione presso <strong>La Casa di MiDa</strong>. Di seguito trovi il riepilogo:</p>
 
     <table cellpadding="6" cellspacing="0" border="0" style="margin-top: 10px; margin-bottom: 20px;">
         <tr><td><strong>Camera:</strong></td><td>{{ $booking->room_name }}</td></tr>
@@ -22,7 +20,7 @@
         <tr><td><strong>Prezzo totale:</strong></td><td style="color: #bfa046; font-weight: bold;">€ {{ number_format($booking->price, 2, ',', '.') }}</td></tr>
     </table>
 
-    <p>Ti confermeremo via email appena la prenotazione sarà stata approvata.</p>
+    <p>Ti aspettiamo in <strong>Via Carlo Cattaneo 10, Roma</strong>.</p>
 
     <p>Per maggiori dettagli ti invitiamo a consultare i
         <a href="{{ url('/termini-e-condizioni') }}" target="_blank" style="color: #bfa046; text-decoration: underline;">

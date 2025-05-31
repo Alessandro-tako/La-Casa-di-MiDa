@@ -5,23 +5,31 @@
         <h5 class="text-gold">Condizioni generali</h5>
         <ul class="text-muted">
             <li>Il pagamento verrà effettuato in struttura salvo diverse indicazioni.</li>
-            <li>All’arrivo dovranno essere versati anche <strong>2€ a notte a persona</strong> per la tassa di soggiorno.</li>
-            <li>In caso di cancellazione entro 5 giorni dall’arrivo, verrà addebitato il 20% del totale.</li>
-            <li>In caso di no-show (assenza senza cancellazione), verrà addebitato il 100% dell’importo.</li>
+            <li>È richiesta una <strong>carta di credito a garanzia</strong> della prenotazione, che potrà essere
+                utilizzata solo in caso di cancellazione tardiva o mancata presentazione.</li>
+            <li>All’arrivo dovranno essere versati anche <strong>2€ a notte a persona</strong> per la tassa di
+                soggiorno.</li>
+            <li>In caso di cancellazione entro 5 giorni dall’arrivo, verrà addebitato il <strong>20%</strong> del
+                totale.</li>
+            <li>In caso di no-show (assenza senza cancellazione), verrà addebitato il <strong>100%</strong>
+                dell’importo.</li>
             <li>Check-in dalle 14:00 alle 22:00, check-out entro le 10:00.</li>
             <li>I dati personali saranno trattati nel rispetto della normativa sulla privacy.</li>
         </ul>
+
 
         <hr class="my-5">
 
         <h5 class="text-gold">Politica dei Prezzi</h5>
         <p class="text-muted">
-            Le tariffe delle camere variano in base alla stagionalità e al numero di ospiti. I prezzi si intendono a notte.
+            Le tariffe delle camere variano in base alla stagionalità e al numero di ospiti. I prezzi si intendono a
+            notte.
         </p>
 
         <h6 class="text-gold mt-4">Stagioni</h6>
         <ul class="text-muted">
-            <li><strong>Alta stagione:</strong> Natale, Capodanno, Pasqua, primavera (aprile-maggio), estate (giugno-luglio-agosto), eventi speciali.</li>
+            <li><strong>Alta stagione:</strong> Natale, Capodanno, Pasqua, primavera (aprile-maggio), estate
+                (giugno-luglio-agosto), eventi speciali.</li>
             <li><strong>Media stagione:</strong> Marzo, fine agosto, fine ottobre.</li>
             <li><strong>Bassa stagione:</strong> Tutti gli altri periodi.</li>
         </ul>

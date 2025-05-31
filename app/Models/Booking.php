@@ -22,6 +22,7 @@ protected $fillable = [
     'check_out',
     'guests',
     'price',
+    'payment_method',
     ];
 
 }

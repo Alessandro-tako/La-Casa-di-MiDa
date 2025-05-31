@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use Stripe\Stripe;
+use Stripe\SetupIntent;
 use App\Models\Booking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\BookingConfirmed;
+use App\Mail\BookingCancelled;
 use App\Mail\BookingConfirmationMail;
 use App\Mail\AdminBookingNotificationMail;
 
@@ -14,52 +18,42 @@ class BookingController extends Controller
     public function create(Request $request)
     {
         $selectedRoom = $request->query('camera');
-        return view('booking.create', compact('selectedRoom'));
+
+        Stripe::setApiKey(config('services.stripe.secret'));
+        $intent = SetupIntent::create();
+
+        return view('booking.create', [
+            'selectedRoom' => $selectedRoom,
+            'intent' => $intent
+        ]);
     }
 
     public function store(Request $request)
     {
         $data = $request->validate([
-            'guest_first_name' => 'required|string|max:255',
-            'guest_last_name'  => 'required|string|max:255',
-            'guest_email'      => 'required|email|max:255',
-            'guest_address_street' => 'required|string|max:255',
-            'guest_address_city'   => 'required|string|max:255',
-            'guest_address_country'=> 'required|string|max:255',
-            'guest_address_zip'    => 'required|string|max:20',
-            'room_name'        => 'required|in:Green Room,Pink Room,Gray Room',
-            'check_in'         => 'required|date|after_or_equal:today',
-            'check_out'        => 'required|date|after:check_in',
-            'guests'           => 'required|integer|min:1|max:3',
-            'accetta_condizioni' => 'accepted',
+            'guest_first_name'       => 'required|string|max:255',
+            'guest_last_name'        => 'required|string|max:255',
+            'guest_email'            => 'required|email|max:255',
+            'guest_address_street'   => 'required|string|max:255',
+            'guest_address_city'     => 'required|string|max:255',
+            'guest_address_country'  => 'required|string|max:255',
+            'guest_address_zip'      => 'required|string|max:20',
+            'room_name'              => 'required|in:Green Room,Pink Room,Gray Room',
+            'check_in'               => 'required|date_format:d-m-Y|after_or_equal:today',
+            'check_out'              => 'required|date_format:d-m-Y|after:check_in',
+            'guests'                 => 'required|integer|min:1|max:3',
+            'accetta_condizioni'     => 'accepted',
+            'payment_method'         => 'required|string',
         ]);
 
-        $data = $request->validate([
-    'guest_first_name' => 'required|string|max:255',
-    'guest_last_name'  => 'required|string|max:255',
-    'guest_email'      => 'required|email|max:255',
-    'guest_address_street' => 'required|string|max:255',
-    'guest_address_city'   => 'required|string|max:255',
-    'guest_address_country'=> 'required|string|max:255',
-    'guest_address_zip'    => 'required|string|max:20',
-    'room_name'        => 'required|in:Green Room,Pink Room,Gray Room',
-    'check_in'         => 'required|date_format:d-m-Y|after_or_equal:today',
-    'check_out'        => 'required|date_format:d-m-Y|after:check_in',
-    'guests'           => 'required|integer|min:1|max:3',
-    'accetta_condizioni' => 'accepted',
-]);
-
-    // 🔁 Converti le date per il DB
-    $data['check_in'] = Carbon::createFromFormat('d-m-Y', $data['check_in'])->format('Y-m-d');
-    $data['check_out'] = Carbon::createFromFormat('d-m-Y', $data['check_out'])->format('Y-m-d');
-
+        $data['check_in'] = Carbon::createFromFormat('d-m-Y', $data['check_in'])->format('Y-m-d');
+        $data['check_out'] = Carbon::createFromFormat('d-m-Y', $data['check_out'])->format('Y-m-d');
 
         $notti = Carbon::parse($data['check_in'])->diffInDays(Carbon::parse($data['check_out']));
         if ($notti < 1) {
             return back()->withErrors(['check_in' => 'La durata minima del soggiorno è di almeno una notte.'])->withInput();
         }
 
-        // Logica di overlap aggiornata
         $overlap = Booking::where('room_name', $data['room_name'])
             ->where(function ($query) use ($data) {
                 $query->where('check_in', '<', $data['check_out'])
@@ -125,10 +119,15 @@ class BookingController extends Controller
         }
 
         $data['price'] = round($totale, 2);
+        $data['payment_method'] = $request->input('payment_method');
+        $data['status'] = 'in_attesa';
 
         $booking = Booking::create($data);
 
+        // Invio email all'ospite (in attesa)
         Mail::to($booking->guest_email)->send(new BookingConfirmationMail($booking));
+
+        // Notifica all'amministratore
         Mail::to('booking@lacasadimida.it')->send(new AdminBookingNotificationMail($booking));
 
         return redirect()->route('booking.create')->with('success', 'Prenotazione effettuata con successo!');

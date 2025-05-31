@@ -22,7 +22,12 @@ Route::get('/camere/gray-room', [PageController::class, 'grey'])->name('camere.g
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
     Route::get('/prenotazioni', [AdminController::class, 'prenotazioni'])->name('prenotazioni');
+    Route::post('/prenotazioni/{booking}/conferma', [AdminController::class, 'conferma'])->name('prenotazioni.conferma');
+    Route::post('/prenotazioni/{booking}/annulla', [AdminController::class, 'annulla'])->name('prenotazioni.annulla');
+    Route::patch('/prenotazioni/{prenotazione}', [AdminController::class, 'updatePrenotazione'])
+        ->name('prenotazioni.update');
 });
+
 
 // Rotte per la prenotazione
 Route::get('/prenota', [BookingController::class, 'create'])->name('booking.create');

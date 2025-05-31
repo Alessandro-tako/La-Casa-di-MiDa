@@ -261,3 +261,7 @@ input.form-control::placeholder {
     pointer-events: none;
     cursor: default;
 }
+/* loader ppagamenti */
+#loading-overlay {
+    z-index: 1050;
+}

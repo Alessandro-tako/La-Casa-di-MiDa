@@ -1,6 +1,4 @@
-<div class="container py-5">
-    <h2 class="text-gold mb-4 text-center">Contattaci</h2>
-
+<div class="container py-2">
     @if (session()->has('success'))
         <div class="alert alert-success text-center">
             {{ session('success') }}
