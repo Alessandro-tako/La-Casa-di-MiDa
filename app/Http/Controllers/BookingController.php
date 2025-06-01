@@ -135,7 +135,10 @@ class BookingController extends Controller
 
     public function getBookedDates($room)
     {
-        $bookings = Booking::where('room_name', $room)->get(['check_in', 'check_out']);
+        $bookings = Booking::where('room_name', $room)
+            ->where('status', '!=', 'annullata')
+            ->get(['check_in', 'check_out']);
+
         $dates = [];
 
         foreach ($bookings as $booking) {

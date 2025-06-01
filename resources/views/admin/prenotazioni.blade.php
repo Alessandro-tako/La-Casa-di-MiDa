@@ -48,22 +48,30 @@
                                     <span class="badge bg-{{ $badgeClass }}">{{ ucfirst($status) }}</span>
                                 </td>
                                 <td class="text-center">
-                                    @if($prenotazione->status === 'in_attesa')
-                                        <form action="{{ route('admin.prenotazioni.update', $prenotazione) }}" method="POST" class="d-inline">
-                                            @csrf
-                                            @method('PATCH')
-                                            <input type="hidden" name="action" value="conferma">
-                                            <button class="btn btn-sm btn-success">Conferma</button>
-                                        </form>
+                                    {{-- Azioni disponibili sempre tranne se annullata --}}
+                                    @if($prenotazione->status !== 'annullata')
+                                        {{-- Conferma solo se è in attesa --}}
+                                        @if($prenotazione->status === 'in_attesa')
+                                            <form action="{{ route('admin.prenotazioni.update', $prenotazione) }}" method="POST" class="d-inline">
+                                                @csrf
+                                                @method('PATCH')
+                                                <input type="hidden" name="action" value="conferma">
+                                                <button class="btn btn-sm btn-success">Conferma</button>
+                                            </form>
+                                        @endif
 
-                                        <form action="{{ route('admin.prenotazioni.update', $prenotazione) }}" method="POST" class="d-inline">
+                                        {{-- Pulsante modifica date --}}
+                                        <a href="{{ route('admin.prenotazioni.edit', $prenotazione) }}" class="btn btn-sm btn-warning d-inline">Modifica</a>
+
+                                        {{-- Pulsante annulla --}}
+                                        <form action="{{ route('admin.prenotazioni.update', $prenotazione) }}" method="POST" class="d-inline" onsubmit="return confirm('Sei sicuro di voler annullare questa prenotazione?');">
                                             @csrf
                                             @method('PATCH')
                                             <input type="hidden" name="action" value="annulla">
                                             <button class="btn btn-sm btn-danger">Annulla</button>
                                         </form>
                                     @else
-                                        <em>Nessuna azione</em>
+                                        <em>Annullata</em>
                                     @endif
                                 </td>
                             </tr>

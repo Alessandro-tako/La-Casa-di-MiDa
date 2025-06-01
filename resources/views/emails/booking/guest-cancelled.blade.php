@@ -4,26 +4,32 @@
     <meta charset="UTF-8">
     <title>Prenotazione Annullata</title>
 </head>
-<body style="font-family: Arial, sans-serif; line-height: 1.6;">
-    <h2 style="color:#bfa046;">Prenotazione Annullata</h2>
+<body style="background-color:#f9f9f9; padding:40px 20px; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color:#333;">
 
-    <p>Ciao {{ $booking->guest_first_name }} {{ $booking->guest_last_name }},</p>
+    <div style="max-width:600px; margin:0 auto; background:#ffffff; padding:30px; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.05);">
+        <h2 style="color:#bfa046; text-align:center; margin-bottom:30px;">Prenotazione Annullata</h2>
 
-    <p>La tua prenotazione per la <strong>{{ $booking->room_name }}</strong> dal
-        <strong>{{ \Carbon\Carbon::parse($booking->check_in)->format('d/m/Y') }}</strong> al
-        <strong>{{ \Carbon\Carbon::parse($booking->check_out)->format('d/m/Y') }}</strong> è stata <strong>annullata</strong>.
-    </p>
+        <p>Ciao <strong>{{ $booking->guest_first_name }} {{ $booking->guest_last_name }}</strong>,</p>
 
-    <p>Se pensi che si tratti di un errore o desideri prenotare nuove date, non esitare a contattarci.</p>
+        <p>Ti informiamo che la tua prenotazione per la <strong>{{ $booking->room_name }}</strong> dal
+            <strong>{{ \Carbon\Carbon::parse($booking->check_in)->format('d/m/Y') }}</strong> al
+            <strong>{{ \Carbon\Carbon::parse($booking->check_out)->format('d/m/Y') }}</strong> è stata
+            <span style="color:#c0392b; font-weight:bold;">annullata</span>.
+        </p>
 
-    <p>Per assistenza puoi:</p>
-    <ul>
-        <li>Scriverci a <a href="mailto:info@lacasadimida.it">info@lacasadimida.it</a></li>
-        <li>Usare il <a href="{{ route('contatti') }}">modulo contatti del sito</a></li>
-    </ul>
+        <p>Se si tratta di un errore o desideri effettuare una nuova prenotazione, puoi contattarci in qualsiasi momento:</p>
 
-    <p>Grazie per aver considerato <strong>La Casa di MiDa</strong>.</p>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+            <li>Scrivendo a <a href="mailto:info@lacasadimida.it" style="color:#bfa046;">info@lacasadimida.it</a></li>
+            <li>Compilando il <a href="{{ route('contatti') }}" style="color:#bfa046;">modulo contatti</a> sul nostro sito</li>
+        </ul>
 
-    <p style="margin-top:30px;">Cordiali saluti,<br>La Casa di MiDa</p>
+        <p>Grazie per aver scelto <strong>La Casa di MiDa</strong>. Speriamo di poterti accogliere in futuro.</p>
+
+        <p style="margin-top:40px;">Cordiali saluti,<br>
+            <strong>Lo staff di La Casa di MiDa</strong>
+        </p>
+    </div>
+
 </body>
 </html>
