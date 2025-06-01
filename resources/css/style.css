@@ -125,6 +125,13 @@ footer a:hover {
     transform: scale(1.08);
 }
 
+.img-luogo {
+    max-height: 320px;
+    width: 100%;
+    object-fit: cover;
+}
+
+
 /* Input & Select oro */
 input.form-control,
 select.form-select {
