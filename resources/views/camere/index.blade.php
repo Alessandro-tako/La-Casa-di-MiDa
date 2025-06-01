@@ -124,47 +124,5 @@
             </div>
         </div>
 
-        {{-- Sezione struttura con anteprime dinamiche --}}
-        <div class="row justify-content-center mb-5">
-            <div class="col-md-10 text-center">
-                <h2 class="text-gold mb-4">La Struttura</h2>
-                <p class="text-muted">
-                    Scopri i dettagli della nostra struttura: ambienti accoglienti, spazi curati e una zona comune dove
-                    puoi sorseggiare un caffè, leggere un libro o condividere momenti piacevoli con gli altri ospiti.
-                </p>
-
-                {{-- Immagine principale --}}
-                <div class="mb-4">
-                    <img id="mainStrutturaImage" src="{{ asset('storage/images/struttura/struttura1.jpg') }}"
-                        class="main-image shadow" alt="Foto principale struttura">
-                </div>
-
-                {{-- Miniature dinamiche --}}
-                <div class="d-flex justify-content-center gap-2 flex-wrap" id="strutturaThumbnails">
-                    @for ($i = 1; $i <= 11; $i++)
-                        <img src="{{ asset('storage/images/struttura/struttura' . $i . '.jpg') }}"
-                            class="img-thumb shadow-sm {{ $i === 1 ? 'active-thumb' : '' }}"
-                            alt="Miniatura struttura {{ $i }}">
-                    @endfor
-                </div>
-            </div>
-        </div>
-
     </section>
-
-    {{-- JS per selezione thumbnail attiva --}}
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const thumbnails = document.querySelectorAll('#strutturaThumbnails .img-thumb');
-            const mainImage = document.getElementById('mainStrutturaImage');
-
-            thumbnails.forEach(thumb => {
-                thumb.addEventListener('click', function() {
-                    mainImage.src = this.src;
-                    thumbnails.forEach(t => t.classList.remove('active-thumb'));
-                    this.classList.add('active-thumb');
-                });
-            });
-        });
-    </script>
 </x-layout>

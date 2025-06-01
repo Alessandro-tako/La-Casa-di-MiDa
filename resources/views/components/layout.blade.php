@@ -27,6 +27,8 @@
 
     <!-- Livewire Scripts -->
     @livewireScripts
-</body>
 
+    <!-- Script aggiuntivi -->
+    @stack('scripts')
+</body>
 </html>

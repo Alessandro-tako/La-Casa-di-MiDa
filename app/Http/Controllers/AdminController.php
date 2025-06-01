@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\Booking;
 use Carbon\CarbonPeriod;
+use App\Mail\BookingUpdated;
 use Illuminate\Http\Request;
 use App\Mail\BookingCancelled;
 use App\Mail\BookingConfirmed;
@@ -21,8 +22,28 @@ class AdminController extends Controller
             'annullate' => Booking::where('status', 'annullata')->count(),
         ];
 
-        return view('admin.dashboard', compact('totali'));
+
+    $prenotazioni = Booking::where('status', 'confermata')->get()->map(function ($booking) {
+        return [
+            'title' => $booking->room_name,
+            'start' => Carbon::parse($booking->check_in)->format('Y-m-d') . 'T14:00:00',
+            'end' => Carbon::parse($booking->check_out)->format('Y-m-d') . 'T10:00:00',
+            'allDay' => false, //  Attenzione: serve false per gestire gli orari
+            'color' => match ($booking->room_name) {
+                'Pink Room' => '#e83e8c',
+                'Green Room' => '#28a745',
+                'Gray Room' => '#6c757d',
+                default => '#007bff'
+            },
+        ];
+    });
+
+
+
+
+        return view('admin.dashboard', compact('totali', 'prenotazioni'));
     }
+
 
     public function prenotazioni()
     {
@@ -88,7 +109,7 @@ class AdminController extends Controller
             ->where('status', '!=', 'annullata')
             ->where(function ($query) use ($checkIn, $checkOut) {
                 $query->where('check_in', '<', $checkOut->format('Y-m-d'))
-                      ->where('check_out', '>', $checkIn->format('Y-m-d'));
+                    ->where('check_out', '>', $checkIn->format('Y-m-d'));
             })->exists();
 
         if ($overlap) {
@@ -153,7 +174,8 @@ class AdminController extends Controller
             'guests' => $request->guests,
             'price' => round($totale, 2),
         ]);
-
+        
+        Mail::to($prenotazione->guest_email)->send(new BookingUpdated($prenotazione));
         return redirect()->route('admin.prenotazioni')->with('success', 'Prenotazione aggiornata con successo.');
     }
 }

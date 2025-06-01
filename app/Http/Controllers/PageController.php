@@ -45,4 +45,9 @@ class PageController extends Controller
     {
         return view('prenota');
     }
+
+    public function bio(){
+        
+        return view('bio');
+    }
 }

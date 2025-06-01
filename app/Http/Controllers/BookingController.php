@@ -55,10 +55,12 @@ class BookingController extends Controller
         }
 
         $overlap = Booking::where('room_name', $data['room_name'])
-            ->where(function ($query) use ($data) {
-                $query->where('check_in', '<', $data['check_out'])
-                    ->where('check_out', '>', $data['check_in']);
-            })->exists();
+        ->where('status', '!=', 'annullata')
+        ->where(function ($query) use ($data) {
+            $query->where('check_in', '<', $data['check_out'])
+                ->where('check_out', '>', $data['check_in']);
+        })->exists();
+
 
         if ($overlap) {
             return back()->withErrors([
