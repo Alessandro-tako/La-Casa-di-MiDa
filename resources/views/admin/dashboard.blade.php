@@ -68,17 +68,6 @@
         </div>
     </div>
 
-    {{-- STILI CALENDARIO --}}
-    <style>
-        #calendar {
-            min-height: 600px;
-            background: #fff;
-            border-radius: 10px;
-            padding: 1rem;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-    </style>
-
     {{-- FULLCALENDAR SCRIPT --}}
     @push('scripts')
         <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
@@ -99,7 +88,7 @@
                     },
                     eventContent: function(arg) {
                         return {
-                            html: `<div class="fw-semibold text-white">${arg.event.title}</div>`
+                            html: `<div class="fw-semibold text-white room-line"></div>`
                         };
                     }
                 });

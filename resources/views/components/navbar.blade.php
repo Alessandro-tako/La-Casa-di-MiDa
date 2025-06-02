@@ -63,10 +63,17 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                            <li><a class="dropdown-item" href="{{ route('admin.prenotazioni') }}">Gestione Prenotazioni</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
+
+                            <li class="position-relative">
+                                <a class="dropdown-item d-flex justify-content-between align-items-center"
+                                    href="{{ route('admin.prenotazioni') }}">
+                                    Gestione Prenotazioni
+                                    @livewire('admin.notifiche-prenotazioni')
+                                </a>
                             </li>
+
+                            <li><hr class="dropdown-divider"></li>
+
                             <li>
                                 <form action="{{ route('logout') }}" method="POST" class="px-3">
                                     @csrf

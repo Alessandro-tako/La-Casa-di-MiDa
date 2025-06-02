@@ -69,6 +69,25 @@ a:hover {
     max-height: 50px;
 }
 
+/* animazione campanella notifica */
+@keyframes goldPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.6);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 215, 0, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 215, 0, 0);
+    }
+}
+
+.campanella-attiva {
+    animation: goldPulse 1.5s infinite;
+    border-radius: 50%;
+}
+
+
 /* Footer */
 footer {
     background-color: var(--color-black);
@@ -268,7 +287,47 @@ input.form-control::placeholder {
     pointer-events: none;
     cursor: default;
 }
+
 /* loader ppagamenti */
 #loading-overlay {
     z-index: 1050;
+}
+
+/* stile calendario dashboard */
+#calendar {
+    min-height: 600px;
+    background: #fff;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+    /* abilita lo scroll orizzontale se serve */
+}
+
+.fc {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.room-line {
+    height: 15px;
+}
+
+/* Ottimizzazione per mobile */
+@media (max-width: 576px) {
+    .fc .fc-daygrid-day-frame {
+        padding: 2px;
+    }
+
+    .fc .fc-toolbar-title {
+        font-size: 1rem;
+    }
+
+    .fc .fc-daygrid-day-number {
+        font-size: 0.75rem;
+    }
+
+    .fc .fc-event-title {
+        font-size: 0.7rem;
+    }
 }
