@@ -11,7 +11,7 @@
     </header>
 
     <!-- Carosello -->
-    <section class="container text-center my-5">
+    {{-- <section class="container text-center my-5">
         <div id="carouselCamere" class="carousel slide shadow rounded" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -36,17 +36,7 @@
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
-    </section>
-
-    <!-- Scopri Roma -->
-    <section class="container my-5 text-center">
-        <h2 class="text-gold mb-4">{{ __('ui.discover_eternal_city') }}</h2>
-        <p class="text-muted">{{ __('ui.rome_section_subtitle') }}</p>
-        <a href="{{ route('cosaFare') }}" title="{{ __('ui.discover_eternal_city') }}">
-            <img src="{{ asset('storage/images/cosa-fare-roma.png') }}" class="img-fluid rounded shadow"
-                alt="Cosa fare a Roma">
-        </a>
-    </section>
+    </section> --}}
 
     <!-- Camere -->
     <section class="py-5 bg-white">
@@ -85,8 +75,7 @@
                     </div>
                 </div>
             </div>
-            <a href="{{ route('camere.index') }}" class="btn btn-gold mt-4"
-                title="{{ __('ui.discover_all_rooms') }}">
+            <a href="{{ route('camere.index') }}" class="btn btn-gold mt-4" title="{{ __('ui.discover_all_rooms') }}">
                 {{ __('ui.discover_all_rooms') }}
             </a>
         </div>
@@ -103,26 +92,60 @@
                     <p>{{ __('ui.wifi') }}</p>
                 </div>
                 <div class="col">
-                    <img src="{{ asset('storage/icons/assistenza-icon.png') }}" alt="Assistenza" width="64" height="64">
+                    <img src="{{ asset('storage/icons/assistenza-icon.png') }}" alt="Assistenza" width="64"
+                        height="64">
                     <p>{{ __('ui.assistance') }}</p>
                 </div>
                 <div class="col">
-                    <img src="{{ asset('storage/icons/caffe-icon.png') }}" alt="Caffè" width="64" height="64">
+                    <img src="{{ asset('storage/icons/caffe-icon.png') }}" alt="Caffè" width="64"
+                        height="64">
                     <p>{{ __('ui.coffee') }}</p>
                 </div>
                 <div class="col">
-                    <img src="{{ asset('storage/icons/pulizia-icon.png') }}" alt="Pulizia" width="64" height="64">
+                    <img src="{{ asset('storage/icons/pulizia-icon.png') }}" alt="Pulizia" width="64"
+                        height="64">
                     <p>{{ __('ui.cleaning') }}</p>
                 </div>
                 <div class="col">
-                    <img src="{{ asset('storage/icons/trasferimenti-icon.png') }}" alt="Trasferimenti" width="64" height="64">
+                    <img src="{{ asset('storage/icons/trasferimenti-icon.png') }}" alt="Trasferimenti" width="64"
+                        height="64">
                     <p>{{ __('ui.transfers') }}</p>
                 </div>
                 <div class="col">
-                    <img src="{{ asset('storage/icons/vasca-doccia-icon.png') }}" alt="Bagno privato" width="64" height="64">
+                    <img src="{{ asset('storage/icons/vasca-doccia-icon.png') }}" alt="Bagno privato" width="64"
+                        height="64">
                     <p>{{ __('ui.private_bathroom') }}</p>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Scopri Roma -->
+    <section class="container my-5">
+        <div class="row justify-content-center text-center">
+            <h2>{{ __('ui.discover_eternal_city') }}</h2>
+            <p>{{ __('ui.rome_section_subtitle') }}</p>
+            {{-- Colonna centrale con immagine cliccabile e testi --}}
+            <div class="col-md-10 col-lg-8 position-relative">
+                <a href="{{ route('cosaFare') }}" class="d-block text-decoration-none position-relative">
+                    {{-- Immagine --}}
+                    <img src="{{ asset('storage/images/cosa-fare-roma.png') }}" alt="Panorama di Roma"
+                        class="img-fluid rounded shadow w-100" style="object-fit: cover; max-height: 500px;">
+
+                    {{-- Overlay --}}
+                    <div class="position-absolute top-0 start-0 w-100 h-100 rounded"
+                        style="background-color: rgba(0, 0, 0, 0.4); z-index: 1;"></div>
+
+                    {{-- Testo centrato sopra l'immagine --}}
+                    <div class="position-absolute top-50 start-50 translate-middle text-center text-white px-3"
+                        style="z-index: 2;">
+                        <h3>{{ __('ui.just_steps_from_center_title') }}</h3>
+                        <p>{{ __('ui.just_steps_from_center_subtitle') }}</p>
+
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
 </x-layout>

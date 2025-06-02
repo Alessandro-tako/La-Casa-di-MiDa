@@ -10,6 +10,8 @@ return [
     // Discover Rome
     'discover_eternal_city' => 'Scopri la Città Eterna',
     'rome_section_subtitle' => "Passeggia tra le meraviglie storiche di Roma a pochi minuti dalla nostra guesthouse.",
+    'just_steps_from_center_title' => 'A DUE PASSI DAL CENTRO DI ROMA',
+    'just_steps_from_center_subtitle' => 'SCOPRI LE MERAVIGLIE DELLA CITTÀ ETERNA',
 
     // Rooms
     'our_rooms' => 'Le Nostre Camere',

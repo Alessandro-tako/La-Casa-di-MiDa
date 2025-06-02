@@ -10,6 +10,9 @@ return [
     // Discover Rome
     'discover_eternal_city' => 'Descubre la Ciudad Eterna',
     'rome_section_subtitle' => "Pasea entre las maravillas históricas de Roma a pocos minutos de nuestra casa de huéspedes.",
+    'just_steps_from_center_title' => 'A SOLO PASOS DEL CENTRO DE ROMA',
+    'just_steps_from_center_subtitle' => 'DESCUBRE LAS MARAVILLAS DE LA CIUDAD ETERNA',
+
 
     // Rooms
     'our_rooms' => 'Nuestras Habitaciones',

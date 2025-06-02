@@ -10,6 +10,8 @@ return [
     // Discover Rome
     'discover_eternal_city' => 'Discover the Eternal City',
     'rome_section_subtitle' => "Stroll through Rome's historical wonders just minutes from our guesthouse.",
+    'just_steps_from_center_title' => 'JUST STEPS FROM THE HEART OF ROME',
+    'just_steps_from_center_subtitle' => 'DISCOVER THE WONDERS OF THE ETERNAL CITY',
 
     // Rooms
     'our_rooms' => 'Our Rooms',

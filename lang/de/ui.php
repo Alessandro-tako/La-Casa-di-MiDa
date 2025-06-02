@@ -10,6 +10,9 @@ return [
     // Discover Rome
     'discover_eternal_city' => 'Entdecken Sie die Ewige Stadt',
     'rome_section_subtitle' => "Spazieren Sie durch Roms historische Wunder, nur wenige Minuten von unserem Gästehaus entfernt.",
+    'just_steps_from_center_title' => 'NUR WENIGE SCHRITTE VOM ZENTRUM ROMS ENTFERNT',
+    'just_steps_from_center_subtitle' => 'ENTDECKEN SIE DIE WUNDER DER EWIGEN STADT',
+
 
     // Rooms
     'our_rooms' => 'Unsere Zimmer',

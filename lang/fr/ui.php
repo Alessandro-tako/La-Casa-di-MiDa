@@ -10,6 +10,9 @@ return [
     // Discover Rome
     'discover_eternal_city' => 'Découvrez la Ville Éternelle',
     'rome_section_subtitle' => "Promenez-vous parmi les merveilles historiques de Rome à quelques minutes de notre maison d'hôtes.",
+    'just_steps_from_center_title' => 'À DEUX PAS DU CENTRE DE ROME',
+    'just_steps_from_center_subtitle' => 'DÉCOUVREZ LES MERVEILLES DE LA VILLE ÉTERNELLE',
+
 
     // Rooms
     'our_rooms' => 'Nos Chambres',
