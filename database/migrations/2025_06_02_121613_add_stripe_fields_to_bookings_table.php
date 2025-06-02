@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('bookings', function (Blueprint $table) {
-            $table->unsignedTinyInteger('guests')->after('check_out');
+            $table->string('stripe_payment_method')->nullable()->after('payment_method');
+            $table->string('stripe_customer_id')->nullable()->after('stripe_payment_method');
         });
     }
 
@@ -22,7 +23,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('bookings', function (Blueprint $table) {
-            //
+            $table->dropColumn(['stripe_payment_method', 'stripe_customer_id']);
         });
     }
 };

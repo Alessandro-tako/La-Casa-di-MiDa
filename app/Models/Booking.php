@@ -23,6 +23,11 @@ protected $fillable = [
     'guests',
     'price',
     'payment_method',
-    ];
+    'penale_addebitata',
+    'penale_ricevuta_url',
+    'stripe_payment_method',
+    'stripe_customer_id',
+
+];
 
 }

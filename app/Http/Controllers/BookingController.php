@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use Stripe\Stripe;
 use Stripe\SetupIntent;
+use Stripe\Customer;
 use App\Models\Booking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -54,13 +55,14 @@ class BookingController extends Controller
             return back()->withErrors(['check_in' => 'La durata minima del soggiorno è di almeno una notte.'])->withInput();
         }
 
+        // Controllo sovrapposizione
         $overlap = Booking::where('room_name', $data['room_name'])
-        ->where('status', '!=', 'annullata')
-        ->where(function ($query) use ($data) {
-            $query->where('check_in', '<', $data['check_out'])
-                ->where('check_out', '>', $data['check_in']);
-        })->exists();
-
+            ->where('status', '!=', 'annullata')
+            ->where(function ($query) use ($data) {
+                $query->where('check_in', '<', $data['check_out'])
+                    ->where('check_out', '>', $data['check_in']);
+            })
+            ->exists();
 
         if ($overlap) {
             return back()->withErrors([
@@ -68,6 +70,7 @@ class BookingController extends Controller
             ])->withInput();
         }
 
+        // Calcolo del prezzo
         function determinareStagione($date)
         {
             $dataStr = $date->format('m-d');
@@ -121,15 +124,26 @@ class BookingController extends Controller
         }
 
         $data['price'] = round($totale, 2);
-        $data['payment_method'] = $request->input('payment_method');
+
+        // Stripe
+        Stripe::setApiKey(config('services.stripe.secret'));
+
+        $customer = Customer::create([
+            'email' => $data['guest_email'],
+            'name' => $data['guest_first_name'] . ' ' . $data['guest_last_name'],
+            'payment_method' => $request->input('payment_method'),
+        ]);
+
+        $data['stripe_payment_method'] = $request->input('payment_method');
+        $data['stripe_customer_id'] = $customer->id;
         $data['status'] = 'in_attesa';
 
         $booking = Booking::create($data);
 
-        // Invio email all'ospite (in attesa)
+        // Email cliente
         Mail::to($booking->guest_email)->send(new BookingConfirmationMail($booking));
 
-        // Notifica all'amministratore
+        // Email admin
         Mail::to('booking@lacasadimida.it')->send(new AdminBookingNotificationMail($booking));
 
         return redirect()->route('booking.create')->with('success', 'Prenotazione effettuata con successo!');
