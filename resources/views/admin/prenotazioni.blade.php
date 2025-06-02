@@ -9,8 +9,7 @@
         {{-- Barra di ricerca --}}
         <form method="GET" action="{{ route('admin.prenotazioni') }}" class="mb-4 d-flex justify-content-center">
             <input type="text" name="search" class="form-control w-50 me-2"
-                placeholder="Cerca per nome, email, camera..."
-                value="{{ request('search') }}">
+                placeholder="Cerca per nome, email, camera..." value="{{ request('search') }}">
             <button class="btn btn-outline-dark" type="submit">Cerca</button>
         </form>
 
@@ -21,15 +20,37 @@
                 <table class="table table-hover align-middle">
                     <thead class="table-light">
                         <tr>
-                            <th>#</th>
+                            <th>
+                                <a
+                                    href="{{ route('admin.prenotazioni', array_merge(request()->only('search'), ['sort' => request('sort') === 'id_asc' ? 'id_desc' : 'id_asc'])) }}">
+                                    #
+                                    @if (request('sort') === 'id_asc')
+                                        ▲
+                                    @elseif (request('sort') === 'id_desc')
+                                        ▼
+                                    @endif
+                                </a>
+                            </th>
                             <th>Cliente</th>
                             <th>Camera</th>
-                            <th>Date</th>
+                            <th>
+                                <a
+                                    href="{{ route('admin.prenotazioni', array_merge(request()->only('search'), ['sort' => request('sort') === 'checkin_asc' ? 'checkin_desc' : 'checkin_asc'])) }}">
+                                    Date
+                                    @if (request('sort') === 'checkin_asc')
+                                        ▲
+                                    @elseif (request('sort') === 'checkin_desc')
+                                        ▼
+                                    @endif
+                                </a>
+                            </th>
                             <th>Ospiti</th>
                             <th>Stato</th>
                             <th class="text-center">Azioni</th>
                         </tr>
                     </thead>
+
+
                     <tbody>
                         @foreach ($prenotazioni as $prenotazione)
                             @php
@@ -83,7 +104,9 @@
                                                 <span class="badge bg-secondary">Soggiorno concluso</span>
                                             @else
                                                 @if ($status === 'in_attesa')
-                                                    <form action="{{ route('admin.prenotazioni.update', $prenotazione) }}" method="POST">
+                                                    <form
+                                                        action="{{ route('admin.prenotazioni.update', $prenotazione) }}"
+                                                        method="POST">
                                                         @csrf
                                                         @method('PATCH')
                                                         <input type="hidden" name="action" value="conferma">
@@ -105,17 +128,22 @@
                                             @endif
                                         @else
                                             @if (!$prenotazione->penale_addebitata && $prenotazione->stripe_customer_id && $prenotazione->stripe_payment_method)
-                                                <form action="{{ route('admin.penale.addebita', $prenotazione) }}" method="POST"
+                                                <form action="{{ route('admin.penale.addebita', $prenotazione) }}"
+                                                    method="POST"
                                                     onsubmit="return confirm('Vuoi davvero addebitare una penale a questa prenotazione annullata?');">
                                                     @csrf
                                                     <div class="d-flex flex-column align-items-center">
-                                                        <select name="penale_percentuale" class="form-select form-select-sm mb-1" required>
-                                                            <option value="" disabled selected>Seleziona penale</option>
+                                                        <select name="penale_percentuale"
+                                                            class="form-select form-select-sm mb-1" required>
+                                                            <option value="" disabled selected>Seleziona penale
+                                                            </option>
                                                             <option value="0">Nessuna penale</option>
-                                                            <option value="20">Penale 20% (cancellazione tardiva)</option>
+                                                            <option value="20">Penale 20% (cancellazione tardiva)
+                                                            </option>
                                                             <option value="100">Penale 100% (no-show)</option>
                                                         </select>
-                                                        <button class="btn btn-sm btn-outline-dark">Addebita penale</button>
+                                                        <button class="btn btn-sm btn-outline-dark">Addebita
+                                                            penale</button>
                                                     </div>
                                                 </form>
                                             @elseif(!$prenotazione->stripe_customer_id || !$prenotazione->stripe_payment_method)

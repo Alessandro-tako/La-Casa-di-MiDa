@@ -46,15 +46,38 @@ class AdminController extends Controller
 
 
     public function prenotazioni(Request $request)
-    {
-        $query = $request->input('search');
+{
+    $query = Booking::query();
 
-        $prenotazioni = $query
-            ? Booking::search($query)->get()
-            : Booking::orderBy('created_at', 'desc')->get();
-
-        return view('admin.prenotazioni', compact('prenotazioni', 'query'));
+    if ($request->filled('search')) {
+        $query = Booking::search($request->search);
     }
+
+    // Ordinamento
+    switch ($request->input('sort')) {
+        case 'id_asc':
+            $query = $query->orderBy('id', 'asc');
+            break;
+        case 'id_desc':
+            $query = $query->orderBy('id', 'desc');
+            break;
+        case 'checkin_asc':
+            $query = $query->orderBy('check_in', 'asc');
+            break;
+        case 'checkin_desc':
+            $query = $query->orderBy('check_in', 'desc');
+            break;
+        default:
+            $query = $query->latest(); // di default: data creazione
+    }
+
+    $prenotazioni = $query instanceof \Laravel\Scout\Builder
+        ? $query->get()
+        : $query->get();
+
+    return view('admin.prenotazioni', compact('prenotazioni'));
+}
+
 
     public function updatePrenotazione(Request $request, Booking $prenotazione)
     {
