@@ -2,7 +2,7 @@
     <div class="container">
         {{-- Logo + Nome struttura --}}
         <a href="{{ route('home') }}" class="navbar-brand d-flex align-items-center text-gold fw-bold fs-4 nav-title"
-            title="Torna alla Home">
+            title="{{ __('ui.back_to_home') }}">
             <img src="{{ asset('storage/images/loghi/logo-bianco-oro.jpg') }}" alt="Logo La Casa di MiDa"
                 class="nav-logo me-2">
             La Casa di MiDa
@@ -10,7 +10,7 @@
 
         {{-- Toggler per dispositivi mobili --}}
         <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Mostra navigazione">
+            aria-controls="navbarNav" aria-expanded="false" aria-label="{{ __('ui.toggle_nav') }}">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -20,41 +20,41 @@
                 <li class="nav-item">
                     <a href="{{ route('camere.index') }}"
                         class="nav-link fw-semibold {{ request()->routeIs('camere.index') ? 'active text-gold' : 'text-dark' }}"
-                        title="Le nostre camere">Camere</a>
+                        title="{{ __('ui.rooms_title') }}">{{ __('ui.rooms') }}</a>
                 </li>
 
                 <li class="nav-item">
                     <a href="{{ route('bio') }}"
                         class="nav-link fw-semibold {{ request()->routeIs('bio') ? 'active text-gold' : 'text-dark' }}"
-                        title="Chi siamo">La Struttura</a>
+                        title="{{ __('ui.structure_title') }}">{{ __('ui.structure') }}</a>
                 </li>
 
                 <li class="nav-item">
                     <a href="{{ route('cosaFare') }}"
                         class="nav-link fw-semibold {{ request()->routeIs('cosaFare') ? 'active text-gold' : 'text-dark' }}"
-                        title="Cosa fare a Roma">Cosa fare a Roma</a>
+                        title="{{ __('ui.thingstodo_title') }}">{{ __('ui.thingstodo') }}</a>
                 </li>
 
                 <li class="nav-item">
                     <a href="{{ route('contatti') }}"
                         class="nav-link fw-semibold {{ request()->routeIs('contatti') ? 'active text-gold' : 'text-dark' }}"
-                        title="Contattaci">Contatti</a>
+                        title="{{ __('ui.contact_title') }}">{{ __('ui.contact') }}</a>
                 </li>
 
                 {{-- Bottone Prenota solo se non autenticato --}}
                 @guest
                     <li class="nav-item d-block d-lg-none">
                         <a href="{{ route('booking.create') }}" class="btn btn-gold rounded-pill px-4 text-center"
-                            title="Prenota ora">Prenota ora</a>
+                            title="{{ __('ui.book_now_title') }}">{{ __('ui.book_now') }}</a>
                     </li>
 
                     <li class="nav-item d-none d-lg-block ms-3">
                         <a href="{{ route('booking.create') }}" class="btn btn-gold rounded-pill px-4"
-                            title="Prenota la tua camera">Prenota ora</a>
+                            title="{{ __('ui.book_now_title') }}">{{ __('ui.book_now') }}</a>
                     </li>
                 @endguest
 
-                {{-- Dropdown autenticazione --}}
+                {{-- Dropdown autenticazione (solo per admin, non tradotto) --}}
                 @auth
                     <li class="nav-item dropdown ms-3">
                         <a class="nav-link dropdown-toggle fw-semibold text-dark" href="#" role="button"
@@ -72,7 +72,9 @@
                                 </a>
                             </li>
 
-                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
 
                             <li>
                                 <form action="{{ route('logout') }}" method="POST" class="px-3">

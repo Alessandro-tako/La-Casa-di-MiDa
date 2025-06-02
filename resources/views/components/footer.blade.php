@@ -11,7 +11,7 @@
 
             {{-- Contatti --}}
             <div class="col-12 col-md-4 text-center text-md-start">
-                <h5 class="fw-bold font-serif mb-3 text-gold">Contatti</h5>
+                <h5 class="fw-bold font-serif mb-3 text-gold">{{ __('ui.contact') }}</h5>
                 <ul class="list-unstyled small">
                     <li class="mb-2">
                         <i class="bi bi-geo-alt-fill me-2"></i>
@@ -31,47 +31,55 @@
 
             {{-- Link utili --}}
             <div class="col-12 col-md-3 text-center text-md-start">
-                <h5 class="fw-bold font-serif mb-3 text-gold">Link utili</h5>
+                <h5 class="fw-bold font-serif mb-3 text-gold">{{ __('ui.useful_links') }}</h5>
                 <ul class="list-unstyled small">
-                    <li><a href="{{ route('home') }}" class="link-light text-decoration-none">Home</a></li>
-                    <li><a href="{{ route('camere.index') }}" class="link-light text-decoration-none">Camere</a></li>
-                    <li><a href="{{ route('cosaFare') }}" class="link-light text-decoration-none">Cosa fare a Roma</a>
+                    <li><a href="{{ route('home') }}" class="link-light text-decoration-none">{{ __('ui.home') }}</a>
                     </li>
-                    <li><a href="{{ route('contatti') }}" class="link-light text-decoration-none">Contatti</a></li>
+                    <li><a href="{{ route('camere.index') }}"
+                            class="link-light text-decoration-none">{{ __('ui.rooms') }}</a></li>
+                    <li><a href="{{ route('bio') }}"
+                            class="link-light text-decoration-none">{{ __('ui.structure') }}</a></li>
+                    <li><a href="{{ route('cosaFare') }}"
+                            class="link-light text-decoration-none">{{ __('ui.thingstodo') }}</a></li>
+                    <li><a href="{{ route('contatti') }}"
+                            class="link-light text-decoration-none">{{ __('ui.contact') }}</a></li>
+                    <li><a href="{{ route('termini') }}"
+                            class="link-light text-decoration-none">{{ __('ui.terms') }}</a></li>
                 </ul>
             </div>
 
             {{-- Social --}}
             <div class="col-12 col-md-3 text-center text-md-start">
-                <h5 class="fw-bold font-serif mb-3 text-gold">Seguici</h5>
+                <h5 class="fw-bold font-serif mb-3 text-gold">{{ __('ui.follow_us') }}</h5>
                 <div class="d-flex justify-content-center justify-content-md-start">
                     <a href="https://www.instagram.com/la_casa_di_mida/" target="_blank" rel="noopener"
                         class="text-light fs-4 me-3" title="Instagram La Casa di MiDa">
                         <i class="bi bi-instagram"></i>
                     </a>
-                    <a href="https://www.facebook.com/profile.php?id=61575152180746&locale=it_IT" target="_blank" rel="noopener"
-                        class="text-light fs-4" title="Facebook La Casa di MiDa">
+                    <a href="https://www.facebook.com/profile.php?id=61575152180746&locale=it_IT" target="_blank"
+                        rel="noopener" class="text-light fs-4" title="Facebook La Casa di MiDa">
                         <i class="bi bi-facebook"></i>
                     </a>
                 </div>
             </div>
 
-
-
             <hr class="border-secondary my-4">
 
             <div class="text-center small">
                 <p class="mb-1">La Casa di MiDa - P.IVA: IT17800951000</p>
-                <p class="mb-1">&copy; 2025 - {{ now()->year }} Tutti i diritti riservati.</p>
+                <p class="mb-1">&copy; 2025 - {{ now()->year }} {{ __('ui.all_rights_reserved') }}</p>
                 <p class="mb-0">🔥 Powered by Takohr • il Forgiatore di Codice ⚒️</p>
             </div>
 
             {{-- Iubenda --}}
             <div class="text-center mt-3">
                 <a href="https://www.iubenda.com/privacy-policy/12345678"
-                    class="iubenda-black iubenda-noiframe iubenda-embed" title="Privacy Policy">Privacy Policy</a> |
+                    class="iubenda-black iubenda-noiframe iubenda-embed"
+                    title="Privacy Policy">{{ __('ui.privacy_policy') }}</a> |
                 <a href="https://www.iubenda.com/privacy-policy/12345678/cookie-policy"
-                    class="iubenda-black iubenda-noiframe iubenda-embed" title="Cookie Policy">Cookie Policy</a>
+                    class="iubenda-black iubenda-noiframe iubenda-embed"
+                    title="Cookie Policy">{{ __('ui.cookie_policy') }}</a>
             </div>
         </div>
+    </div>
 </footer>

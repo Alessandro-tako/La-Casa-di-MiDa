@@ -1,65 +1,52 @@
 <x-layout>
     <div class="container py-5">
-        <h1 class="text-gold mb-4">Termini e Condizioni</h1>
+        <h1 class="text-gold mb-4">{{ __('ui.terms_conditions') }}</h1>
 
-        <h5 class="text-gold">Condizioni generali</h5>
+        <h5 class="text-gold">{{ __('ui.general_conditions') }}</h5>
         <ul class="text-muted">
-            <li>Il pagamento verrà effettuato in struttura salvo diverse indicazioni.</li>
-            <li>È richiesta una <strong>carta di credito a garanzia</strong> della prenotazione, che potrà essere
-                utilizzata solo in caso di cancellazione tardiva o mancata presentazione.</li>
-            <li>All’arrivo dovranno essere versati anche <strong>2€ a notte a persona</strong> per la tassa di
-                soggiorno.</li>
-            <li>In caso di cancellazione entro 5 giorni dall’arrivo, verrà addebitato il <strong>20%</strong> del
-                totale.</li>
-            <li>In caso di no-show (assenza senza cancellazione), verrà addebitato il <strong>100%</strong>
-                dell’importo.</li>
-            <li>Check-in dalle 14:00 alle 22:00, check-out entro le 10:00.</li>
-            <li>I dati personali saranno trattati nel rispetto della normativa sulla privacy.</li>
+            @foreach(__('ui.general_conditions_list') as $condition)
+                <li>{!! $condition !!}</li>
+            @endforeach
         </ul>
-
 
         <hr class="my-5">
 
-        <h5 class="text-gold">Politica dei Prezzi</h5>
-        <p class="text-muted">
-            Le tariffe delle camere variano in base alla stagionalità e al numero di ospiti. I prezzi si intendono a
-            notte.
-        </p>
+        <h5 class="text-gold">{{ __('ui.pricing_policy') }}</h5>
+        <p class="text-muted">{{ __('ui.pricing_policy_text') }}</p>
 
-        <h6 class="text-gold mt-4">Stagioni</h6>
+        <h6 class="text-gold mt-4">{{ __('ui.seasons') }}</h6>
         <ul class="text-muted">
-            <li><strong>Alta stagione:</strong> Natale, Capodanno, Pasqua, primavera (aprile-maggio), estate
-                (giugno-luglio-agosto), eventi speciali.</li>
-            <li><strong>Media stagione:</strong> Marzo, fine agosto, fine ottobre.</li>
-            <li><strong>Bassa stagione:</strong> Tutti gli altri periodi.</li>
+            @foreach(__('ui.seasons_list') as $season)
+                <li>{!! $season !!}</li>
+            @endforeach
         </ul>
 
-        <h6 class="text-gold mt-4">Prezzi base per camera (per 2 ospiti)</h6>
+        <h6 class="text-gold mt-4">{{ __('ui.base_prices') }}</h6>
         <div class="table-responsive">
             <table class="table table-bordered table-sm">
                 <thead class="table-light">
                     <tr>
-                        <th>Camera</th>
-                        <th>Bassa</th>
-                        <th>Media</th>
-                        <th>Alta</th>
+                        <th>{{ __('ui.room') }}</th>
+                        <th>{{ __('ui.low') }}</th>
+                        <th>{{ __('ui.mid') }}</th>
+                        <th>{{ __('ui.high') }}</th>
                     </tr>
                 </thead>
                 <tbody class="text-muted">
                     <tr>
-                        <td>Green Room</td>
+                        <td>{{ __('ui.green_room') }}</td>
                         <td>€125</td>
                         <td>€160</td>
                         <td>€185</td>
                     </tr>
                     <tr>
-                        <td>Gray Room</td>
+                        <td>{{ __('ui.gray_room') }}</td>
                         <td>€125</td>
                         <td>€160</td>
                         <td>€185</td>
                     </tr>
                     <tr>
-                        <td>Pink Room</td>
+                        <td>{{ __('ui.pink_room') }}</td>
                         <td>€115</td>
                         <td>€150</td>
                         <td>€175</td>
@@ -68,10 +55,11 @@
             </table>
         </div>
 
-        <h6 class="text-gold mt-4">Sconti e Supplementi</h6>
+        <h6 class="text-gold mt-4">{{ __('ui.discounts_supplements') }}</h6>
         <ul class="text-muted">
-            <li><strong>Sconto ospite singolo:</strong> -10% sulla tariffa base.</li>
-            <li><strong>Terzo letto (solo Green e Gray Room):</strong> supplemento di €50 a notte.</li>
+            @foreach(__('ui.discounts_list') as $discount)
+                <li>{!! $discount !!}</li>
+            @endforeach
         </ul>
     </div>
 </x-layout>

@@ -18,22 +18,19 @@
 
             {{-- Descrizione --}}
             <div class="col-md-5">
-                <h2 class="text-gold">Pink Room</h2>
+                <h2 class="text-gold">{{ __('ui.pink_room') }}</h2>
                 <p class="text-muted">
-                    La Pink Room è una coccola di romanticismo e stile. Caratterizzata da tonalità rosa cipria, arredi
-                    minimal e una testiera in legno dal design originale, crea un’atmosfera intima e rilassante. L’ampio
-                    letto matrimoniale king-size e la luce naturale che inonda la stanza la rendono perfetta per coppie
-                    o viaggiatori in cerca di tranquillità e charme.
+                    {{ __('ui.pink_room_full_desc') }}
                 </p>
-
                 <ul class="list-unstyled text-muted">
-                    <li><i class="bi bi-person-fill me-2"></i>Ospiti: 1–2</li>
-                    <li><i class="bi bi-house-door-fill me-2"></i>Letto: Matrimoniale King Size</li>
-                    <li><i class="bi bi-wifi me-2"></i>Wi-Fi gratuito, bagno privato, pulizia giornaliera</li>
+                    <li><i class="bi bi-person-fill me-2"></i>{{ __('ui.pink_room_guests') }}</li>
+                    <li><i class="bi bi-house-door-fill me-2"></i>{{ __('ui.pink_room_beds') }}</li>
+                    <li><i class="bi bi-wifi me-2"></i>{{ __('ui.pink_room_services') }}</li>
                 </ul>
 
-                <a href="{{ route('booking.create', ['camera' => 'Pink Room']) }}" class="btn btn-gold rounded-pill">Prenota questa stanza</a>
-
+                <a href="{{ route('booking.create', ['camera' => 'Pink Room']) }}" class="btn btn-gold rounded-pill">
+                    {{ __('ui.book_this_room') }}
+                </a>
             </div>
 
         </div>

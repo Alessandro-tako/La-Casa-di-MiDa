@@ -3,7 +3,6 @@
         <div class="row align-items-start">
 
             {{-- Immagine principale --}}
-            {{-- Immagine principale --}}
             <div class="col-md-7 text-center">
                 <div class="mb-4">
                     <img id="mainImage" src="{{ asset('storage/images/green-room/green1.jpg') }}"
@@ -11,33 +10,29 @@
                 </div>
                 <div class="d-flex flex-wrap justify-content-center gap-2">
                     @for ($i = 1; $i <= 12; $i++)
-                        <img src="{{ asset("storage/images/green-room/green{$i}.jpg") }}" class="img-thumb"
-                            alt="Anteprima Green {{ $i }}">
+                        <img src="{{ asset("storage/images/green-room/green{$i}.jpg") }}"
+                            class="img-thumb" alt="Green Room Thumbnail {{ $i }}">
                     @endfor
                 </div>
             </div>
 
-
             {{-- Descrizione --}}
             <div class="col-md-5">
-                <h2 class="text-gold">Green Room</h2>
+                <h2 class="text-gold">{{ __('ui.green_room') }}</h2>
                 <p class="text-muted">
-                    La Green Room unisce eleganza e serenità in uno spazio curato nei dettagli, arricchito da una parete
-                    decorativa ispirata alla natura. L’ambiente, luminoso e accogliente, offre una configurazione
-                    flessibile: letto matrimoniale king-size o due letti singoli separati, con la possibilità di
-                    aggiungere un terzo letto temporaneo. Perfetta per chi cerca comfort e bellezza in ogni dettaglio.
+                    {{ __('ui.green_room_full_desc') }}
                 </p>
                 <ul class="list-unstyled text-muted">
-                    <li><i class="bi bi-person-fill me-2"></i>Ospiti: 1–3</li>
-                    <li><i class="bi bi-house-door-fill me-2"></i>Letti: matrimoniale king-size oppure 2 singoli + 1
-                        letto temporaneo</li>
-                    <li><i class="bi bi-wifi me-2"></i>Wi-Fi gratuito, bagno privato, pulizia giornaliera</li>
+                    <li><i class="bi bi-person-fill me-2"></i>{{ __('ui.green_room_guests') }}</li>
+                    <li><i class="bi bi-house-door-fill me-2"></i>{{ __('ui.green_room_beds') }}</li>
+                    <li><i class="bi bi-wifi me-2"></i>{{ __('ui.green_room_services') }}</li>
                 </ul>
 
-                <a href="{{ route('booking.create', ['camera' => 'Green Room']) }}" class="btn btn-gold rounded-pill">Prenota questa stanza</a>
+                <a href="{{ route('booking.create', ['camera' => 'Green Room']) }}"
+                    class="btn btn-gold rounded-pill">
+                    {{ __('ui.book_this_room') }}
+                </a>
             </div>
-
-
 
         </div>
     </section>

@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\AdminController;
@@ -36,3 +37,16 @@ Route::post('/prenota', [BookingController::class, 'store'])->name('booking.stor
 
 // API per ottenere le date già prenotate
 Route::get('/api/booked-dates/{room}', [BookingController::class, 'getBookedDates']);
+
+// rotte delle lingue 
+
+Route::post('/locale', function (Request $request) {
+    $locale = $request->input('locale');
+
+    if (in_array($locale, ['it', 'en', 'fr', 'de', 'es'])) {
+        session(['locale' => $locale]);
+        app()->setLocale($locale);
+    }
+
+    return redirect()->back();
+})->name('locale.set');
