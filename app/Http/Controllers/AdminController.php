@@ -45,10 +45,15 @@ class AdminController extends Controller
     }
 
 
-    public function prenotazioni()
+    public function prenotazioni(Request $request)
     {
-        $prenotazioni = Booking::orderBy('created_at', 'desc')->get();
-        return view('admin.prenotazioni', compact('prenotazioni'));
+        $query = $request->input('search');
+
+        $prenotazioni = $query
+            ? Booking::search($query)->get()
+            : Booking::orderBy('created_at', 'desc')->get();
+
+        return view('admin.prenotazioni', compact('prenotazioni', 'query'));
     }
 
     public function updatePrenotazione(Request $request, Booking $prenotazione)

@@ -6,6 +6,14 @@
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
 
+        {{-- Barra di ricerca --}}
+        <form method="GET" action="{{ route('admin.prenotazioni') }}" class="mb-4 d-flex justify-content-center">
+            <input type="text" name="search" class="form-control w-50 me-2"
+                placeholder="Cerca per nome, email, camera..."
+                value="{{ request('search') }}">
+            <button class="btn btn-outline-dark" type="submit">Cerca</button>
+        </form>
+
         @if ($prenotazioni->isEmpty())
             <p class="text-center">Nessuna prenotazione disponibile al momento.</p>
         @else
@@ -70,14 +78,12 @@
                                 </td>
                                 <td class="text-center">
                                     <div class="d-flex flex-wrap justify-content-center gap-1">
-
                                         @if ($status !== 'annullata')
                                             @if ($soggiorno === 'concluso')
                                                 <span class="badge bg-secondary">Soggiorno concluso</span>
                                             @else
                                                 @if ($status === 'in_attesa')
-                                                    <form action="{{ route('admin.prenotazioni.update', $prenotazione) }}"
-                                                        method="POST">
+                                                    <form action="{{ route('admin.prenotazioni.update', $prenotazione) }}" method="POST">
                                                         @csrf
                                                         @method('PATCH')
                                                         <input type="hidden" name="action" value="conferma">
@@ -99,13 +105,11 @@
                                             @endif
                                         @else
                                             @if (!$prenotazione->penale_addebitata && $prenotazione->stripe_customer_id && $prenotazione->stripe_payment_method)
-                                                <form action="{{ route('admin.penale.addebita', $prenotazione) }}"
-                                                    method="POST"
+                                                <form action="{{ route('admin.penale.addebita', $prenotazione) }}" method="POST"
                                                     onsubmit="return confirm('Vuoi davvero addebitare una penale a questa prenotazione annullata?');">
                                                     @csrf
                                                     <div class="d-flex flex-column align-items-center">
-                                                        <select name="penale_percentuale"
-                                                            class="form-select form-select-sm mb-1" required>
+                                                        <select name="penale_percentuale" class="form-select form-select-sm mb-1" required>
                                                             <option value="" disabled selected>Seleziona penale</option>
                                                             <option value="0">Nessuna penale</option>
                                                             <option value="20">Penale 20% (cancellazione tardiva)</option>
@@ -120,7 +124,6 @@
                                                 <span class="badge bg-dark">Penale applicata</span>
                                             @endif
                                         @endif
-
                                     </div>
                                 </td>
                             </tr>
