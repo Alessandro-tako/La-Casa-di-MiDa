@@ -141,4 +141,24 @@
         </article>
 
     </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mainImage = document.getElementById('mainStrutturaImage');
+            const thumbnails = document.querySelectorAll('#strutturaThumbnails img');
+
+            thumbnails.forEach(thumbnail => {
+                thumbnail.addEventListener('click', function() {
+                    // Cambia l'immagine principale
+                    mainImage.src = this.src;
+
+                    // Rimuovi la classe 'active-thumb' da tutte le miniature
+                    thumbnails.forEach(img => img.classList.remove('active-thumb'));
+
+                    // Aggiungi la classe alla miniatura selezionata
+                    this.classList.add('active-thumb');
+                });
+            });
+        });
+    </script>
 </x-layout>
