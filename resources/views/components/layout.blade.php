@@ -1,58 +1,76 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@yield('title', 'La Casa di MiDa')</title>
 
-    <!-- Google Fonts -->
+    {{-- SEO Base --}}
+    <title>@yield('title', 'La Casa di MiDa - Affittacamere a Roma Termini')</title>
+    <meta name="description" content="@yield('description', 'Scopri La Casa di MiDa, affittacamere nel cuore di Roma. Camere eleganti a due passi da Termini e dal Colosseo.')">
+    <meta name="keywords" content="@yield('keywords', 'affittacamere Roma, camere a Roma Termini, B&B Colosseo, alloggi Roma centro')">
+    <meta name="author" content="La Casa di MiDa">
+    <meta name="robots" content="index, follow">
+
+    {{-- Open Graph --}}
+    <meta property="og:title" content="@yield('og_title', 'La Casa di MiDa')" />
+    <meta property="og:description" content="@yield('og_description', 'Camere eleganti e accoglienti a Roma, a pochi passi dalla stazione Termini.')" />
+    <meta property="og:image" content="@yield('og_image', asset('storage/images/roma-header.png'))" />
+    <meta property="og:url" content="{{ url()->current() }}" />
+    <meta property="og:type" content="website" />
+
+    {{-- Twitter Card --}}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="@yield('twitter_title', 'La Casa di MiDa')" />
+    <meta name="twitter:description" content="@yield('twitter_description', 'Soggiorna a Roma in camere accoglienti, a due passi dal Colosseo.')" />
+    <meta name="twitter:image" content="@yield('twitter_image', asset('storage/images/roma-header.png'))" />
+
+    {{-- Canonical URL --}}
+    <link rel="canonical" href="{{ url()->current() }}">
+
+    {{-- Favicon --}}
+    <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+
+    {{-- Fonts --}}
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Playfair+Display:wght@600&display=swap"
         rel="stylesheet">
 
-    <!-- Vite Assets -->
+    {{-- Vite Assets --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    <!-- Livewire Styles -->
+    {{-- Livewire Styles --}}
     @livewireStyles
 </head>
 
 <body>
-    <x-navbar />
+    {{-- HEADER --}}
+    <header>
+        <x-navbar />
+    </header>
 
-    <main class="py-4">
+    {{-- MAIN CONTENT --}}
+    <main class="py-4" role="main">
         {{ $slot }}
 
-        <!-- Lingua -->
-        <div class="position-fixed bottom-0 start-0 m-3 z-3">
-            <form action="{{ route('locale.set') }}" method="POST" class="bg-white px-3 py-2 rounded shadow-sm border">
-                @csrf
-                <select name="locale" onchange="this.form.submit()"
-                    class="form-select form-select-sm border-0 bg-white">
-                    <option value="it" @if (app()->getLocale() == 'it') selected @endif>IT</option>
-                    <option value="en" @if (app()->getLocale() == 'en') selected @endif>EN</option>
-                    <option value="fr" @if (app()->getLocale() == 'fr') selected @endif>FR</option>
-                    <option value="de" @if (app()->getLocale() == 'de') selected @endif>DE</option>
-                    <option value="es" @if (app()->getLocale() == 'es') selected @endif>ES</option>
-                </select>
-            </form>
-        </div>
-
-        <!-- WhatsApp -->
-        <div class="position-fixed bottom-0 end-0 m-3 z-3">
+        {{-- Pulsante WhatsApp Accessibile --}}
+        <div class="position-fixed bottom-0 end-0 m-3 z-3" aria-label="Contattaci su WhatsApp">
             <a href="https://wa.me/393000000000" class="btn btn-success btn-lg rounded-circle shadow" target="_blank"
-                title="Contattaci su WhatsApp">
-                <i class="bi bi-whatsapp"></i>
+                rel="noopener noreferrer" title="Contattaci su WhatsApp">
+                <i class="bi bi-whatsapp" aria-hidden="true"></i>
+                <span class="visually-hidden">Contattaci su WhatsApp</span>
             </a>
         </div>
     </main>
 
-    <x-footer />
+    {{-- FOOTER --}}
+    <footer>
+        <x-footer />
+    </footer>
 
-    <!-- Livewire Scripts -->
+    {{-- Livewire Scripts --}}
     @livewireScripts
 
-    <!-- Script aggiuntivi -->
+    {{-- JS Stack --}}
     @stack('scripts')
 </body>
 

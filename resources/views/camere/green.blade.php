@@ -2,26 +2,25 @@
     <section class="container py-5">
         <div class="row align-items-start">
 
-            {{-- Immagine principale --}}
+            {{-- Galleria Immagini --}}
             <div class="col-md-7 text-center">
-                <div class="mb-4">
+                <figure class="mb-4">
                     <img id="mainImage" src="{{ asset('storage/images/green-room/green1.jpg') }}"
-                        class="main-image rounded shadow" alt="Green Room">
-                </div>
-                <div class="d-flex flex-wrap justify-content-center gap-2">
+                        class="main-image rounded shadow img-fluid" alt="Vista principale della Green Room">
+                </figure>
+                <div class="d-flex flex-wrap justify-content-center gap-2" aria-label="Galleria immagini Green Room">
                     @for ($i = 1; $i <= 12; $i++)
-                        <img src="{{ asset("storage/images/green-room/green{$i}.jpg") }}"
-                            class="img-thumb" alt="Green Room Thumbnail {{ $i }}">
+                        <img src="{{ asset("storage/images/green-room/green{$i}.jpg") }}" class="img-thumb rounded"
+                            style="width: 80px; cursor: pointer;" alt="Miniatura Green Room {{ $i }}"
+                            loading="lazy">
                     @endfor
                 </div>
             </div>
 
-            {{-- Descrizione --}}
+            {{-- Descrizione camera --}}
             <div class="col-md-5">
-                <h2 class="text-gold">{{ __('ui.green_room') }}</h2>
-                <p class="text-muted">
-                    {{ __('ui.green_room_full_desc') }}
-                </p>
+                <h1 class="text-gold h3">{{ __('ui.green_room') }}</h1>
+                <p class="text-muted">{{ __('ui.green_room_full_desc') }}</p>
                 <ul class="list-unstyled text-muted">
                     <li><i class="bi bi-person-fill me-2"></i>{{ __('ui.green_room_guests') }}</li>
                     <li><i class="bi bi-house-door-fill me-2"></i>{{ __('ui.green_room_beds') }}</li>
@@ -29,7 +28,7 @@
                 </ul>
 
                 <a href="{{ route('booking.create', ['camera' => 'Green Room']) }}"
-                    class="btn btn-gold rounded-pill">
+                    class="btn btn-gold rounded-pill mt-3" title="{{ __('ui.book_this_room') }}">
                     {{ __('ui.book_this_room') }}
                 </a>
             </div>
@@ -39,12 +38,15 @@
 
     {{-- Script cambio immagine --}}
     <script>
-        const thumbnails = document.querySelectorAll('.img-thumb');
-        const mainImage = document.getElementById('mainImage');
+        document.addEventListener('DOMContentLoaded', () => {
+            const thumbnails = document.querySelectorAll('.img-thumb');
+            const mainImage = document.getElementById('mainImage');
 
-        thumbnails.forEach(thumb => {
-            thumb.addEventListener('click', () => {
-                mainImage.src = thumb.src;
+            thumbnails.forEach(thumb => {
+                thumb.addEventListener('click', () => {
+                    mainImage.src = thumb.src;
+                    mainImage.alt = thumb.alt.replace('Miniatura', 'Vista');
+                });
             });
         });
     </script>

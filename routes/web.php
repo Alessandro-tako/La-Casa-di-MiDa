@@ -19,7 +19,7 @@ Route::view('/termini-e-condizioni', 'termini')->name('termini');
 Route::get('/camere', [PageController::class, 'camere'])->name('camere.index');
 Route::get('/camere/pink-room', [PageController::class, 'pink'])->name('camere.pink');
 Route::get('/camere/green-room', [PageController::class, 'green'])->name('camere.green');
-Route::get('/camere/gray-room', [PageController::class, 'grey'])->name('camere.grey');
+Route::get('/camere/grey-room', [PageController::class, 'grey'])->name('camere.grey');
 
 // Rotte per l'amministrazione (protette da auth)
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {

@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
     <meta charset="UTF-8">
     <title>Prenotazione in attesa di conferma</title>
 </head>
-<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f9f9f9; color: #333; padding: 40px 20px;">
 
-    <div style="max-width: 600px; margin: 0 auto; background-color: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.05);">
+<body
+    style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f9f9f9; color: #333; padding: 40px 20px;">
+
+    <div
+        style="max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.05);">
+
+        {{-- Logo --}}
+        <div style="text-align: center; margin-bottom: 30px;">
+            <img src="{{ asset('storage/images/loghi/logo-bianco-oro.jpg') }}" alt="Logo La Casa di MiDa" style="max-height: 80px;">
+        </div>
+
         <h2 style="color: #bfa046; text-align: center;">Prenotazione ricevuta</h2>
 
         <p>Caro <strong>{{ $booking->guest_first_name }} {{ $booking->guest_last_name }}</strong>,</p>
@@ -16,7 +26,7 @@
 
         <p>Ecco il riepilogo della tua richiesta:</p>
 
-        <table cellpadding="6" cellspacing="0" border="0" style="margin: 20px 0; width: 100%;">
+        <table cellpadding="6" cellspacing="0" border="0" style="margin: 20px 0; width: 100%; font-size: 16px;">
             <tr>
                 <td style="width: 40%;"><strong>Camera:</strong></td>
                 <td>{{ $booking->room_name }}</td>
@@ -42,7 +52,8 @@
         <p>Ti invieremo una seconda email appena la prenotazione sarà approvata.</p>
 
         <p>Nel frattempo, puoi consultare i
-            <a href="{{ url('/termini-e-condizioni') }}" target="_blank" style="color: #bfa046; text-decoration: underline;">
+            <a href="{{ url('/termini-e-condizioni') }}" target="_blank"
+                style="color: #bfa046; text-decoration: underline;">
                 termini e condizioni della prenotazione
             </a>.
         </p>
@@ -52,13 +63,16 @@
         <h4 style="color: #bfa046;">Modifica o cancellazione</h4>
         <p>Questa è una mail generata automaticamente.</p>
         <p>Per modificare o annullare la tua prenotazione:</p>
-        <ul style="line-height: 1.8; padding-left: 20px;">
+        <ul style="line-height: 1.8; padding-left: 20px; font-size: 16px;">
             <li>Scrivici a <a href="mailto:info@lacasadimida.it" style="color: #bfa046;">info@lacasadimida.it</a></li>
-            <li>Oppure compila il <a href="{{ url('/contatti') }}" style="color: #bfa046; text-decoration: underline;">modulo contatti</a> sul nostro sito</li>
+            <li>Oppure compila il <a href="{{ url('/contatti') }}"
+                    style="color: #bfa046; text-decoration: underline;">modulo contatti</a> sul nostro sito</li>
         </ul>
 
-        <p style="margin-top: 30px;">Cordiali saluti,<br><strong>Lo staff di La Casa di MiDa</strong></p>
+        <p style="margin-top: 30px; font-size: 16px;">Cordiali saluti,<br><strong>Lo staff di La Casa di MiDa</strong>
+        </p>
     </div>
 
 </body>
+
 </html>

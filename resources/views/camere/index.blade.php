@@ -1,10 +1,10 @@
 <x-layout>
     <section class="container py-5">
         {{-- Titolo sezione camere --}}
-        <div class="text-center mb-5">
+        <header class="text-center mb-5">
             <h1 class="text-gold">{{ __('ui.our_rooms') }}</h1>
             <p class="text-muted">{{ __('ui.our_rooms_subtitle') }}</p>
-        </div>
+        </header>
 
         {{-- Green Room --}}
         <div class="row align-items-center mb-5">
@@ -14,25 +14,29 @@
                         @for ($i = 1; $i <= 3; $i++)
                             <div class="carousel-item {{ $i === 1 ? 'active' : '' }}">
                                 <img src="{{ asset("storage/images/green-room/green{$i}.jpg") }}"
-                                    class="d-block w-100 rounded" alt="Green Room {{ $i }}">
+                                    class="d-block w-100 rounded" alt="Foto Green Room {{ $i }}">
                             </div>
                         @endfor
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselGreen"
                         data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon"></span>
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Precedente</span>
                     </button>
                     <button class="carousel-control-next" type="button" data-bs-target="#carouselGreen"
                         data-bs-slide="next">
-                        <span class="carousel-control-next-icon"></span>
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Successivo</span>
                     </button>
                 </div>
             </div>
             <div class="col-md-6">
-                <h2 class="text-gold">{{ __('ui.green_room') }}</h2>
+                <h2 class="text-gold h3">{{ __('ui.green_room') }}</h2>
                 <p class="text-muted">{{ __('ui.green_room_desc') }}</p>
-                <a href="{{ route('camere.green') }}"
-                    class="btn btn-gold mt-3 rounded-pill">{{ __('ui.learn_more') }}</a>
+                <a href="{{ route('camere.green') }}" class="btn btn-gold mt-3 rounded-pill"
+                    title="{{ __('ui.green_room') }}">
+                    {{ __('ui.learn_more') }}
+                </a>
             </div>
         </div>
 
@@ -44,25 +48,29 @@
                         @for ($i = 1; $i <= 3; $i++)
                             <div class="carousel-item {{ $i === 1 ? 'active' : '' }}">
                                 <img src="{{ asset("storage/images/pink-room/pink{$i}.jpg") }}"
-                                    class="d-block w-100 rounded" alt="Pink Room {{ $i }}">
+                                    class="d-block w-100 rounded" alt="Foto Pink Room {{ $i }}">
                             </div>
                         @endfor
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselPink"
                         data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon"></span>
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Precedente</span>
                     </button>
                     <button class="carousel-control-next" type="button" data-bs-target="#carouselPink"
                         data-bs-slide="next">
-                        <span class="carousel-control-next-icon"></span>
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Successivo</span>
                     </button>
                 </div>
             </div>
             <div class="col-md-6">
-                <h2 class="text-gold">{{ __('ui.pink_room') }}</h2>
+                <h2 class="text-gold h3">{{ __('ui.pink_room') }}</h2>
                 <p class="text-muted">{{ __('ui.pink_room_desc') }}</p>
-                <a href="{{ route('camere.pink') }}"
-                    class="btn btn-gold mt-3 rounded-pill">{{ __('ui.learn_more') }}</a>
+                <a href="{{ route('camere.pink') }}" class="btn btn-gold mt-3 rounded-pill"
+                    title="{{ __('ui.pink_room') }}">
+                    {{ __('ui.learn_more') }}
+                </a>
             </div>
         </div>
 
@@ -74,25 +82,29 @@
                         @for ($i = 1; $i <= 3; $i++)
                             <div class="carousel-item {{ $i === 1 ? 'active' : '' }}">
                                 <img src="{{ asset("storage/images/gray-room/gray{$i}.jpg") }}"
-                                    class="d-block w-100 rounded" alt="Gray Room {{ $i }}">
+                                    class="d-block w-100 rounded" alt="Foto Gray Room {{ $i }}">
                             </div>
                         @endfor
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselGray"
                         data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon"></span>
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Precedente</span>
                     </button>
                     <button class="carousel-control-next" type="button" data-bs-target="#carouselGray"
                         data-bs-slide="next">
-                        <span class="carousel-control-next-icon"></span>
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Successivo</span>
                     </button>
                 </div>
             </div>
             <div class="col-md-6">
-                <h2 class="text-gold">{{ __('ui.gray_room') }}</h2>
+                <h2 class="text-gold h3">{{ __('ui.gray_room') }}</h2>
                 <p class="text-muted">{{ __('ui.gray_room_desc') }}</p>
-                <a href="{{ route('camere.grey') }}"
-                    class="btn btn-gold mt-3 rounded-pill">{{ __('ui.learn_more') }}</a>
+                <a href="{{ route('camere.grey') }}" class="btn btn-gold mt-3 rounded-pill"
+                    title="{{ __('ui.gray_room') }}">
+                    {{ __('ui.learn_more') }}
+                </a>
             </div>
         </div>
     </section>

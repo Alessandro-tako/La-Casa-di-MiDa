@@ -277,7 +277,7 @@ return [
     'rooms_title' => 'Our Rooms',
     'structure' => 'The Property',
     'structure_title' => 'About Us',
-    'thingstodo' => 'Things to Do',
+    'thingstodo' => 'Things to Do in Rome',
     'thingstodo_title' => 'What to do in Rome',
     'contact' => 'Contact',
     'contact_title' => 'Contact Us',

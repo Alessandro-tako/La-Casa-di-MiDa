@@ -4,35 +4,27 @@
             <div class="col-12 col-md-8 col-lg-8">
                 <h2 class="text-gold mb-4 text-center">{{ __('ui.book_your_room') }}</h2>
 
-                {{-- messaggio successo --}}
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            @if (session('success'))
-                                <div class="alert alert-success">
-                                    {{ session('success') }}
-                                </div>
-                            @endif
+                {{-- Messaggi --}}
+                @if (session('success'))
+                    <div class="alert alert-success">{{ session('success') }}</div>
+                @endif
 
-                            @if ($errors->any())
-                                <div class="alert alert-danger">
-                                    <ul class="mb-0">
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif
-                        </div>
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
                     </div>
-                </div>
+                @endif
 
-                {{-- inizio form --}}
+                {{-- Form di prenotazione --}}
                 <form action="{{ route('booking.store') }}" method="POST" id="booking-form">
                     @csrf
 
-                    {{-- Nome e Cognome --}}
-                    <div class="mb-3 row">
+                    {{-- Info anagrafiche --}}
+                    <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="guest_first_name" class="form-label">{{ __('ui.first_name') }}</label>
                             <input type="text" name="guest_first_name" id="guest_first_name" class="form-control"
@@ -45,19 +37,19 @@
                         </div>
                     </div>
 
-                    {{-- Email --}}
                     <div class="mb-3">
                         <label for="guest_email" class="form-label">{{ __('ui.email') }}</label>
                         <input type="email" name="guest_email" id="guest_email" class="form-control" required>
                     </div>
 
-                    {{-- Indirizzo di residenza --}}
+                    {{-- Indirizzo --}}
                     <div class="mb-3">
                         <label for="guest_address_street" class="form-label">{{ __('ui.street') }}</label>
                         <input type="text" name="guest_address_street" id="guest_address_street" class="form-control"
                             required>
                     </div>
-                    <div class="mb-3 row">
+
+                    <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="guest_address_city" class="form-label">{{ __('ui.city') }}</label>
                             <input type="text" name="guest_address_city" id="guest_address_city" class="form-control"
@@ -73,17 +65,51 @@
                             <select name="guest_address_country" id="guest_address_country" class="form-select"
                                 required>
                                 <option value="">{{ __('ui.select_country') }}</option>
+                                <option value="AR">Argentina</option>
+                                <option value="AU">Australia</option>
+                                <option value="AT">Österreich (Austria)</option>
+                                <option value="BE">Belgique / België (Belgio)</option>
+                                <option value="BR">Brasil (Brasile)</option>
+                                <option value="CA">Canada</option>
+                                <option value="CN">中国 (Cina)</option>
+                                <option value="CO">Colombia</option>
+                                <option value="CZ">Česká republika (Repubblica Ceca)</option>
+                                <option value="DE">Deutschland (Germania)</option>
+                                <option value="DK">Danmark (Danimarca)</option>
+                                <option value="ES">España (Spagna)</option>
+                                <option value="FI">Suomi (Finlandia)</option>
+                                <option value="FR">France (Francia)</option>
+                                <option value="GB">United Kingdom (Regno Unito)</option>
+                                <option value="GR">Ελλάδα (Grecia)</option>
+                                <option value="HU">Magyarország (Ungheria)</option>
+                                <option value="IE">Éire (Irlanda)</option>
+                                <option value="IL">ישראל (Israele)</option>
+                                <option value="IN">भारत (India)</option>
                                 <option value="IT">Italia</option>
-                                <option value="FR">France</option>
-                                <option value="DE">Germany</option>
-                                <option value="ES">Spain</option>
-                                <option value="US">United States</option>
-                                <option value="GB">United Kingdom</option>
+                                <option value="JP">日本 (Giappone)</option>
+                                <option value="KR">대한민국 (Corea del Sud)</option>
+                                <option value="MX">México</option>
+                                <option value="NL">Nederland (Paesi Bassi)</option>
+                                <option value="NO">Norge (Norvegia)</option>
+                                <option value="NZ">New Zealand</option>
+                                <option value="PL">Polska (Polonia)</option>
+                                <option value="PT">Portugal (Portogallo)</option>
+                                <option value="RO">România</option>
+                                <option value="RU">Россия (Russia)</option>
+                                <option value="SE">Sverige (Svezia)</option>
+                                <option value="SG">Singapore</option>
+                                <option value="SK">Slovensko (Slovacchia)</option>
+                                <option value="TH">ประเทศไทย (Thailandia)</option>
+                                <option value="TR">Türkiye (Turchia)</option>
+                                <option value="UA">Україна (Ucraina)</option>
+                                <option value="US">United States (Stati Uniti)</option>
+                                <option value="ZA">South Africa (Sudafrica)</option>
                             </select>
+
                         </div>
                     </div>
 
-                    {{-- Selezione Camera --}}
+                    {{-- Camera e ospiti --}}
                     <div class="mb-3">
                         <label for="room_name" class="form-label">{{ __('ui.room') }}</label>
                         <select name="room_name" id="room_name" class="form-select" required>
@@ -99,7 +125,6 @@
                         </select>
                     </div>
 
-                    {{-- Numero ospiti --}}
                     <div class="mb-3">
                         <label for="guests" class="form-label">{{ __('ui.guests') }}</label>
                         <select name="guests" id="guests" class="form-select" required>
@@ -111,10 +136,11 @@
                     </div>
 
                     {{-- Date --}}
-                    <div class="mb-3 row">
+                    <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="check_in" class="form-label">{{ __('ui.checkin') }}</label>
-                            <input type="text" name="check_in" id="check_in" class="form-control" required disabled>
+                            <input type="text" name="check_in" id="check_in" class="form-control" required
+                                disabled>
                         </div>
                         <div class="col-md-6">
                             <label for="check_out" class="form-label">{{ __('ui.checkout') }}</label>
@@ -123,10 +149,9 @@
                         </div>
                     </div>
 
-                    {{-- Dati carta di credito --}}
+                    {{-- Dati Carta --}}
                     <div class="mb-3">
-                        <label for="card_holder_name" class="form-label">{{ __('ui.card_holder') }}
-                            <small class="text-muted">{{ __('ui.card_holder_hint') }}</small></label>
+                        <label for="card_holder_name" class="form-label">{{ __('ui.card_holder') }}</label>
                         <input type="text" id="card_holder_name" class="form-control"
                             placeholder="{{ __('ui.card_holder_placeholder') }}">
                     </div>
@@ -135,10 +160,9 @@
                         <label for="card-element" class="form-label">{{ __('ui.card_data') }}</label>
                         <div id="card-element" class="form-control p-3 rounded" style="height:auto;"></div>
                         <div id="card-errors" class="text-danger mt-2"></div>
-                        <small class="text-muted">{{ __('ui.card_note') }}</small>
                     </div>
 
-                    {{-- Prezzo Totale --}}
+                    {{-- Prezzo --}}
                     <div class="mb-3">
                         <label class="form-label">{{ __('ui.total_price') }}</label>
                         <div id="price_display" class="fs-5 fw-semibold">
@@ -146,37 +170,32 @@
                         </div>
                     </div>
 
-                    {{-- accettazione clausole --}}
-                    <div class="form-check mt-4">
-                        <input class="form-check-input @error('accetta_condizioni') is-invalid @enderror"
-                            type="checkbox" id="accetta_condizioni" name="accetta_condizioni" value="1"
-                            required>
+                    {{-- Termini --}}
+                    <div class="form-check mb-4">
+                        <input class="form-check-input" type="checkbox" id="accetta_condizioni"
+                            name="accetta_condizioni" value="1" required>
                         <label class="form-check-label" for="accetta_condizioni">
                             {{ __('ui.terms') }}
                             <a href="{{ route('termini') }}" target="_blank"
-                                class="text-gold text-decoration-underline">
-                                {{ __('ui.terms_link') }}
-                            </a>
+                                class="text-gold text-decoration-underline">{{ __('ui.terms_link') }}</a>
                             {{ __('ui.terms_note') }}
                         </label>
-                        @error('accetta_condizioni')
-                            <div class="invalid-feedback d-block">{{ $message }}</div>
-                        @enderror
                     </div>
 
-                    <div id="loading-overlay"
-                        class="d-none position-fixed top-0 start-0 w-100 h-100 bg-white bg-opacity-75 z-3 d-flex justify-content-center align-items-center">
-                        <div class="text-center">
-                            <div class="spinner-border text-gold mb-3" style="width: 3rem; height: 3rem;"
-                                role="status"></div>
-                            <p class="text-muted">{{ __('ui.processing') }}</p>
-                        </div>
-                    </div>
                     <input type="hidden" name="payment_method" id="payment_method">
-
                     <button type="submit"
-                        class="btn btn-gold rounded-pill w-100">{{ __('ui.confirm_booking') }}</button>
+                        class="btn btn-gold w-100 rounded-pill">{{ __('ui.confirm_booking') }}</button>
                 </form>
+
+                {{-- Overlay di caricamento --}}
+                <div id="loading-overlay"
+                    class="d-none position-fixed top-0 start-0 w-100 h-100 bg-white bg-opacity-75 z-3 d-flex justify-content-center align-items-center">
+                    <div class="text-center">
+                        <div class="spinner-border text-gold mb-3" style="width: 3rem; height: 3rem;" role="status">
+                        </div>
+                        <p class="text-muted">{{ __('ui.processing') }}</p>
+                    </div>
+                </div>
 
                 {{-- Condizioni --}}
                 <div class="mt-5 p-4 border rounded bg-light">
@@ -194,7 +213,7 @@
         </div>
     </div>
 
-    {{-- Flatpickr + Stripe --}}
+    {{-- Script Stripe --}}
     @vite(['resources/js/booking.js'])
     <script src="https://js.stripe.com/v3/"></script>
     <script>
@@ -212,10 +231,8 @@
             e.preventDefault();
             document.getElementById('loading-overlay').classList.remove('d-none');
 
-            const cardHolderInput = document.getElementById('card_holder_name');
-            const cardHolderName = cardHolderInput.value.trim() !== '' ? cardHolderInput.value.trim() :
-                document.getElementById('guest_first_name').value + ' ' + document.getElementById(
-                    'guest_last_name').value;
+            const cardHolderName = document.getElementById('card_holder_name').value.trim() ||
+                `${document.getElementById('guest_first_name').value} ${document.getElementById('guest_last_name').value}`;
 
             const {
                 setupIntent,
@@ -232,7 +249,7 @@
                                 city: document.getElementById('guest_address_city').value,
                                 postal_code: document.getElementById('guest_address_zip').value,
                                 country: document.getElementById('guest_address_country').value
-                                .toUpperCase()
+                                    .toUpperCase()
                             }
                         }
                     }

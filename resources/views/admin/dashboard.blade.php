@@ -1,82 +1,90 @@
 <x-layout>
+    @section('title', 'Dashboard Amministratore | La Casa di MiDa')
+
     <div class="container py-5">
-        <h2 class="text-gold mb-4">Dashboard Amministratore</h2>
+        <h1 class="text-gold mb-4">Dashboard Amministratore</h1>
 
-        {{-- STATISTICHE --}}
-        <div class="row g-3">
-            <div class="col-md-3">
-                <div class="card text-center shadow-sm border-0">
-                    <div class="card-body">
-                        <h5 class="card-title">Totali</h5>
-                        <p class="display-6">{{ $totali['tutte'] }}</p>
+        {{-- STATISTICHE PRENOTAZIONI --}}
+        <section aria-labelledby="statistiche">
+            <h2 id="statistiche" class="visually-hidden">Statistiche prenotazioni</h2>
+            <div class="row g-3">
+                <div class="col-md-3">
+                    <div class="card text-center shadow-sm border-0">
+                        <div class="card-body">
+                            <h3 class="card-title fs-6">Totali</h3>
+                            <p class="display-6">{{ $totali['tutte'] }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-center shadow-sm border-0">
+                        <div class="card-body">
+                            <h3 class="card-title fs-6">In attesa</h3>
+                            <p class="display-6 text-warning">{{ $totali['in_attesa'] }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-center shadow-sm border-0">
+                        <div class="card-body">
+                            <h3 class="card-title fs-6">Confermate</h3>
+                            <p class="display-6 text-success">{{ $totali['confermate'] }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-center shadow-sm border-0">
+                        <div class="card-body">
+                            <h3 class="card-title fs-6">Annullate</h3>
+                            <p class="display-6 text-danger">{{ $totali['annullate'] }}</p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="card text-center shadow-sm border-0">
-                    <div class="card-body">
-                        <h5 class="card-title">In attesa</h5>
-                        <p class="display-6 text-warning">{{ $totali['in_attesa'] }}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card text-center shadow-sm border-0">
-                    <div class="card-body">
-                        <h5 class="card-title">Confermate</h5>
-                        <p class="display-6 text-success">{{ $totali['confermate'] }}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card text-center shadow-sm border-0">
-                    <div class="card-body">
-                        <h5 class="card-title">Annullate</h5>
-                        <p class="display-6 text-danger">{{ $totali['annullate'] }}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </section>
 
-        {{-- CALENDARIO --}}
-        <div class="my-5">
+        {{-- CALENDARIO PRENOTAZIONI --}}
+        <section class="my-5" aria-labelledby="calendario-title">
             <div class="d-flex justify-content-between align-items-center mb-3">
-                <h4 class="text-gold">Calendario Prenotazioni</h4>
-                <select id="filtro-camera" class="form-select w-auto">
+                <h2 id="calendario-title" class="text-gold">Calendario Prenotazioni</h2>
+                <label for="filtro-camera" class="visually-hidden">Filtra per camera</label>
+                <select id="filtro-camera" class="form-select w-auto" aria-label="Filtra per camera">
                     <option value="">Tutte le camere</option>
                     <option value="Pink Room">Pink Room</option>
                     <option value="Green Room">Green Room</option>
                     <option value="Gray Room">Gray Room</option>
                 </select>
             </div>
-            <div id="calendar"></div>
-        </div>
+            <div id="calendar" aria-describedby="LegendaCalendario"></div>
+        </section>
 
         {{-- LEGENDA COLORI --}}
-        <div class="mb-5">
+        <section class="mb-5" id="LegendaCalendario" aria-label="Legenda camere">
+            <h2 class="visually-hidden">Legenda colori camere</h2>
             <div class="d-flex gap-3 align-items-center small">
                 <span><span class="badge" style="background:#e83e8c;">&nbsp;</span> Pink Room</span>
                 <span><span class="badge" style="background:#28a745;">&nbsp;</span> Green Room</span>
                 <span><span class="badge" style="background:#6c757d;">&nbsp;</span> Gray Room</span>
             </div>
-        </div>
+        </section>
 
-        {{-- LINK A GESTIONE PRENOTAZIONI --}}
+        {{-- LINK GESTIONE --}}
         <div class="mt-4 text-end">
-            <a href="{{ route('admin.prenotazioni') }}" class="btn btn-gold rounded-pill">Vai a gestione
-                prenotazioni</a>
+            <a href="{{ route('admin.prenotazioni') }}" class="btn btn-gold rounded-pill"
+                aria-label="Vai alla gestione prenotazioni">Vai a gestione prenotazioni</a>
         </div>
     </div>
 
-    {{-- FULLCALENDAR SCRIPT --}}
+    {{-- FULLCALENDAR --}}
     @push('scripts')
         <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                let calendarEl = document.getElementById('calendar');
-                let allEvents = @json($prenotazioni);
-                let calendar = new FullCalendar.Calendar(calendarEl, {
-                    locale: 'it', // italiano
+                const calendarEl = document.getElementById('calendar');
+                const allEvents = @json($prenotazioni);
+
+                const calendar = new FullCalendar.Calendar(calendarEl, {
+                    locale: 'it',
                     initialView: 'dayGridMonth',
                     height: 'auto',
                     eventDisplay: 'block',
@@ -88,22 +96,19 @@
                     },
                     eventContent: function(arg) {
                         return {
-                            html: `<div class="fw-semibold text-white room-line"></div>`
+                            html: `<div class="fw-semibold text-white">${arg.event.title}</div>`
                         };
                     }
                 });
 
                 calendar.render();
 
-                // Filtro per camera
+                // Filtro camere
                 document.getElementById('filtro-camera').addEventListener('change', function() {
-                    let filtro = this.value;
+                    const filtro = this.value;
                     calendar.removeAllEvents();
-                    if (filtro === '') {
-                        calendar.addEventSource(allEvents);
-                    } else {
-                        calendar.addEventSource(allEvents.filter(e => e.title === filtro));
-                    }
+                    const filtrati = filtro === '' ? allEvents : allEvents.filter(e => e.title === filtro);
+                    calendar.addEventSource(filtrati);
                 });
             });
         </script>
