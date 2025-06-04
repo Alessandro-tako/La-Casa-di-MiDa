@@ -6,6 +6,8 @@ return [
     'in_the_heart_of_rome' => 'En el Corazón de Roma',
     'hero_subtitle' => "Tu refugio en el corazón de Roma. Elegancia, confort y hospitalidad a dos pasos del centro histórico.",
     'book_now' => 'Reservar Ahora',
+    'explore_the_guesthouse' => 'Descubre la casa de huéspedes',
+
 
     // Discover Rome
     'discover_eternal_city' => 'Descubre la Ciudad Eterna',
@@ -221,12 +223,12 @@ return [
     'green_room_services' => 'Wi-Fi gratuito, baño privado, limpieza diaria',
     'book_this_room' => 'Reservar esta habitación',
 
-    // Gray room
-    'gray_room' => 'Habitación Gris',
-    'gray_room_full_desc' => 'Elegante y luminosa, la Habitación Gris acoge a los huéspedes con una atmósfera moderna y relajante. La pared de piedra retroiluminada añade carácter, mientras que la amplia ventana llena la habitación de luz natural. La configuración de las camas es flexible: cama matrimonial king size o dos camas individuales, con posibilidad de una tercera cama temporal. Ideal para familias o pequeños grupos.',
-    'gray_room_guests' => 'Huéspedes: 1–3',
-    'gray_room_beds' => 'Camas: matrimonial king size o 2 individuales + 1 cama adicional',
-    'gray_room_services' => 'Wi-Fi gratuito, baño privado, limpieza diaria',
+    // Grey room
+    'grey_room' => 'Habitación Gris',
+    'grey_room_full_desc' => 'Elegante y luminosa, la Habitación Gris acoge a los huéspedes en un ambiente moderno y relajante. La pared de piedra retroiluminada aporta carácter, mientras que la gran ventana llena la estancia de luz natural. La configuración de camas es flexible: cama doble o dos individuales, con opción a una tercera cama temporal. Ideal para familias o pequeños grupos.',
+    'grey_room_guests' => 'Huéspedes: 1–3',
+    'grey_room_beds' => 'Camas: Cama doble o 2 individuales + 1 cama adicional',
+    'grey_room_services' => 'Wi-Fi gratuito, baño privado, limpieza diaria',
     'book_this_room' => 'Reservar esta habitación',
 
     // Pink room
@@ -270,6 +272,9 @@ return [
     'checkin_time' => 'Check-in de 14:00 a 22:00, check-out antes de las 10:00.',
     'privacy_note' => 'Los datos personales serán tratados conforme a las normativas de privacidad.',
     'processing' => 'Estamos procesando tu reserva, espera...',
+    'beds_notice' => 'En la Habitación Verde y la Habitación Gris, las camas están configuradas por defecto como una cama doble tamaño king. Si prefieres camas separadas o tienes solicitudes especiales, por favor contáctanos a través del formulario de contacto. Haremos todo lo posible para encontrar la mejor solución para tu estancia.',
+    'important_note' => 'Nota importante:',
+
 
     // Navbar
     'back_to_home' => 'Volver al Inicio',

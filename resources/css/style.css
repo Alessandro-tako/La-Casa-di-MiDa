@@ -74,9 +74,11 @@ a:hover {
     0% {
         box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.6);
     }
+
     70% {
         box-shadow: 0 0 0 10px rgba(255, 215, 0, 0);
     }
+
     100% {
         box-shadow: 0 0 0 0 rgba(255, 215, 0, 0);
     }
@@ -330,4 +332,11 @@ input.form-control::placeholder {
     .fc .fc-event-title {
         font-size: 0.7rem;
     }
+}
+
+/* paginatore */
+.pagination .page-item.active .page-link {
+    background-color: #bfa046 !important;
+    border-color: #bfa046 !important;
+    color: #fff !important;
 }

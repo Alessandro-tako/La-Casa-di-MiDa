@@ -14,7 +14,8 @@
 
         {{-- Logo --}}
         <div style="text-align: center; margin-bottom: 30px;">
-            <img src="{{ asset('storage/images/loghi/logo-bianco-oro.jpg') }}" alt="Logo La Casa di MiDa" style="max-height: 80px;">
+            <img src="{{ asset('storage/images/loghi/logo-bianco-oro.jpg') }}" alt="Logo La Casa di MiDa"
+                style="max-height: 80px;">
         </div>
 
         <h2 style="color: #bfa046; text-align: center;">📬 Nuova prenotazione ricevuta!</h2>

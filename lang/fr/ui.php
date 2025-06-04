@@ -6,6 +6,8 @@ return [
     'in_the_heart_of_rome' => 'Au Cœur de Rome',
     'hero_subtitle' => "Votre refuge au cœur de Rome. Élégance, confort et hospitalité à deux pas du centre historique.",
     'book_now' => 'Réserver Maintenant',
+    'explore_the_guesthouse' => 'Découvrez la maison d’hôtes',
+
 
     // Discover Rome
     'discover_eternal_city' => 'Découvrez la Ville Éternelle',
@@ -221,12 +223,12 @@ return [
     'green_room_services' => 'Wi-Fi gratuit, salle de bain privée, ménage quotidien',
     'book_this_room' => 'Réserver cette chambre',
 
-    // Gray room
-    'gray_room' => 'Chambre Grise',
-    'gray_room_full_desc' => 'Élégante et lumineuse, la Chambre Grise accueille les invités avec une atmosphère moderne et relaxante. Le mur en pierre rétroéclairé ajoute du caractère, tandis que la grande fenêtre remplit la pièce de lumière naturelle. La configuration des lits est flexible : lit double king size ou deux lits simples, avec possibilité d\'un troisième lit temporaire. Idéale pour les familles ou petits groupes.',
-    'gray_room_guests' => 'Invités : 1–3',
-    'gray_room_beds' => 'Lits : double king size ou 2 simples + 1 lit supplémentaire',
-    'gray_room_services' => 'Wi-Fi gratuit, salle de bain privée, ménage quotidien',
+    // Grey room
+    'grey_room' => 'Chambre Grise',
+    'grey_room_full_desc' => 'Élégante et lumineuse, la Chambre Grise accueille les invités dans une atmosphère moderne et relaxante. Le mur en pierre rétroéclairé ajoute du caractère, tandis que la grande fenêtre inonde la pièce de lumière naturelle. Configuration flexible : lit double ou deux lits simples, avec possibilité d’un troisième lit temporaire. Idéale pour les familles ou petits groupes.',
+    'grey_room_guests' => 'Hôtes : 1–3',
+    'grey_room_beds' => 'Lits : Lit double ou 2 lits simples + 1 lit supplémentaire',
+    'grey_room_services' => 'Wi-Fi gratuit, salle de bain privée, ménage quotidien',
     'book_this_room' => 'Réserver cette chambre',
 
     // Pink room
@@ -270,6 +272,8 @@ return [
     'checkin_time' => 'Enregistrement de 14h00 à 22h00, départ avant 10h00.',
     'privacy_note' => 'Les données personnelles seront traitées conformément aux réglementations sur la vie privée.',
     'processing' => 'Nous traitons votre réservation, veuillez patienter...',
+    'beds_notice' => 'Dans la Chambre Verte et la Chambre Grise, les lits sont configurés par défaut comme un lit double king-size. Si vous préférez des lits séparés ou avez des demandes particulières, veuillez nous contacter via le formulaire de contact. Nous ferons de notre mieux pour trouver la meilleure solution pour votre séjour.',
+    'important_note' => 'Remarque importante :',
 
     // Navbar
     'back_to_home' => 'Retour à l\'Accueil',

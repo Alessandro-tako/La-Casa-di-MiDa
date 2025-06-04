@@ -6,6 +6,7 @@ return [
     'in_the_heart_of_rome' => 'In the Heart of Rome',
     'hero_subtitle' => "Your retreat in the heart of Rome. Elegance, comfort and hospitality a stone's throw from the historic center.",
     'book_now' => 'Book Now',
+    'Explore the Guesthouse' => 'Explore the Guesthouse',
 
     // Discover Rome
     'discover_eternal_city' => 'Discover the Eternal City',
@@ -220,13 +221,14 @@ return [
     'green_room_services' => 'Free Wi-Fi, private bathroom, daily cleaning',
     'book_this_room' => 'Book this room',
 
-    // Gray room
-    'gray_room' => 'Gray Room',
-    'gray_room_full_desc' => 'Elegant and bright, the Gray Room welcomes guests with a modern and relaxing atmosphere. The backlit stone wall adds character, while the large window fills the room with natural light. Bed configuration is flexible: king-size bed or two single beds, with the option of a temporary third bed. Ideal for families or small groups.',
-    'gray_room_guests' => 'Guests: 1–3',
-    'gray_room_beds' => 'Beds: king-size or 2 singles + 1 extra bed',
-    'gray_room_services' => 'Free Wi-Fi, private bathroom, daily cleaning',
+    // Grey room
+    'grey_room' => 'Grey Room',
+    'grey_room_full_desc' => 'Elegant and bright, the Grey Room welcomes guests with a modern and relaxing atmosphere. The backlit stone wall adds character, while the large window fills the room with natural light. Bed configuration is flexible: king-size bed or two single beds, with the option of a temporary third bed. Ideal for families or small groups.',
+    'grey_room_guests' => 'Guests: 1–3',
+    'grey_room_beds' => 'Beds: king-size or 2 singles + 1 extra bed',
+    'grey_room_services' => 'Free Wi-Fi, private bathroom, daily cleaning',
     'book_this_room' => 'Book this room',
+
 
     // Pink room
     'pink_room' => 'Pink Room',
@@ -269,6 +271,9 @@ return [
     'checkin_time' => 'Check-in from 2:00 PM to 10:00 PM, check-out by 10:00 AM.',
     'privacy_note' => 'Personal data will be handled in accordance with privacy regulations.',
     'processing' => 'We are processing your booking, please wait...',
+    'beds_notice' => 'In the Green Room and Gray Room, beds are configured by default as a king-size double bed. If you prefer separate beds or have special requests, please contact us through the contact form. We will do our best to find the best solution for your stay.',
+    'important_note' => 'Important note:',
+
 
     // Navbar
     'back_to_home' => 'Back to Home',

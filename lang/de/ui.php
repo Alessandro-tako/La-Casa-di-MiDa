@@ -6,6 +6,7 @@ return [
     'in_the_heart_of_rome' => 'Im Herzen Roms',
     'hero_subtitle' => "Ihr Rückzugsort im Herzen Roms. Eleganz, Komfort und Gastfreundschaft nur einen Steinwurf vom historischen Zentrum entfernt.",
     'book_now' => 'Jetzt Buchen',
+    'explore_the_guesthouse' => 'Entdecken Sie die Unterkunft',
 
     // Discover Rome
     'discover_eternal_city' => 'Entdecken Sie die Ewige Stadt',
@@ -221,13 +222,14 @@ return [
     'green_room_services' => 'Kostenloses WLAN, privates Bad, tägliche Reinigung',
     'book_this_room' => 'Dieses Zimmer buchen',
 
-    // Gray room
-    'gray_room' => 'Graues Zimmer',
-    'gray_room_full_desc' => 'Elegant und hell, empfängt das Graue Zimmer die Gäste mit einer modernen und entspannenden Atmosphäre. Die hinterleuchtete Steinwand verleiht Charakter, während das große Fenster den Raum mit natürlichem Licht erfüllt. Die Bettenkonfiguration ist flexibel: Doppelbett oder zwei Einzelbetten, mit der Möglichkeit eines temporären dritten Bettes. Ideal für Familien oder kleine Gruppen.',
-    'gray_room_guests' => 'Gäste: 1–3',
-    'gray_room_beds' => 'Betten: Doppelbett oder 2 Einzelbetten + 1 Zusatzbett',
-    'gray_room_services' => 'Kostenloses WLAN, privates Bad, tägliche Reinigung',
+    // Grey room
+    'grey_room' => 'Graues Zimmer',
+    'grey_room_full_desc' => 'Elegant und hell, empfängt das Graue Zimmer die Gäste mit einer modernen und entspannenden Atmosphäre. Die hinterleuchtete Steinwand verleiht Charakter, während das große Fenster den Raum mit natürlichem Licht erfüllt. Die Bettenkonfiguration ist flexibel: Doppelbett oder zwei Einzelbetten, mit der Möglichkeit eines temporären dritten Bettes. Ideal für Familien oder kleine Gruppen.',
+    'grey_room_guests' => 'Gäste: 1–3',
+    'grey_room_beds' => 'Betten: Doppelbett oder 2 Einzelbetten + 1 Zusatzbett',
+    'grey_room_services' => 'Kostenloses WLAN, privates Bad, tägliche Reinigung',
     'book_this_room' => 'Dieses Zimmer buchen',
+
 
     // Pink room
     'pink_room' => 'Rosa Zimmer',
@@ -270,6 +272,8 @@ return [
     'checkin_time' => 'Check-in von 14:00 bis 22:00 Uhr, Check-out bis 10:00 Uhr.',
     'privacy_note' => 'Personendaten werden gemäß den Datenschutzbestimmungen behandelt.',
     'processing' => 'Wir bearbeiten Ihre Buchung, bitte warten...',
+    'beds_notice' => 'Im Grünen Zimmer und im Grauen Zimmer sind die Betten standardmäßig als Kingsize-Doppelbett konfiguriert. Wenn Sie separate Betten bevorzugen oder besondere Wünsche haben, kontaktieren Sie uns bitte über das Kontaktformular. Wir werden unser Bestes tun, um die beste Lösung für Ihren Aufenthalt zu finden.',
+    'important_note' => 'Wichtiger Hinweis:',
 
     // Navbar
     'back_to_home' => 'Zurück zur Startseite',

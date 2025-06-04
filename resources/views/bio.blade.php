@@ -138,12 +138,12 @@
 
     {{-- Script per galleria interattiva --}}
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const mainImage = document.getElementById('mainStrutturaImage');
             const thumbnails = document.querySelectorAll('#strutturaThumbnails img');
 
             thumbnails.forEach(thumbnail => {
-                thumbnail.addEventListener('click', function () {
+                thumbnail.addEventListener('click', function() {
                     mainImage.src = this.src;
                     thumbnails.forEach(img => img.classList.remove('active-thumb'));
                     this.classList.add('active-thumb');

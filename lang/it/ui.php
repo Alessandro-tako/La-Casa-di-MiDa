@@ -6,6 +6,8 @@ return [
     'in_the_heart_of_rome' => 'Nel Cuore di Roma',
     'hero_subtitle' => "Il tuo rifugio nel cuore di Roma. Eleganza, comfort e ospitalità a due passi dal centro storico.",
     'book_now' => 'Prenota Ora',
+    'explore_the_guesthouse' => 'Scopri la struttura',
+
 
     // Discover Rome
     'discover_eternal_city' => 'Scopri la Città Eterna',
@@ -220,16 +222,17 @@ return [
     'green_room_services' => 'Wi-Fi gratuito, bagno privato, pulizia giornaliera',
     'book_this_room' => 'Prenota questa camera',
 
-    // Gray room
-    'gray_room' => 'Camera Grigia',
-    'gray_room_full_desc' => 'Elegante e luminosa, la Camera Grigia accoglie gli ospiti con un\'atmosfera moderna e rilassante. La parete in pietra retroilluminata aggiunge carattere, mentre l\'ampia finestra riempie la stanza di luce naturale. La configurazione dei letti è flessibile: letto matrimoniale king size o due letti singoli, con possibilità di un terzo letto temporaneo. Ideale per famiglie o piccoli gruppi.',
-    'gray_room_guests' => 'Ospiti: 1–3',
-    'gray_room_beds' => 'Letti: matrimoniale king size o 2 singoli + 1 letto aggiuntivo',
-    'gray_room_services' => 'Wi-Fi gratuito, bagno privato, pulizia giornaliera',
-    'book_this_room' => 'Prenota questa camera',
+    // Grey room
+    'grey_room' => 'Camera Grigia',
+    'grey_room_full_desc' => 'Elegante e luminosa, la Camera Grigia accoglie gli ospiti in un\'atmosfera moderna e rilassante. La parete in pietra retroilluminata dona carattere, mentre l\'ampia finestra illumina naturalmente l\'ambiente. La configurazione dei letti è flessibile: letto matrimoniale o due letti singoli, con possibilità di terzo letto temporaneo. Ideale per famiglie o piccoli gruppi.',
+    'grey_room_guests' => 'Ospiti: 1–3',
+    'grey_room_beds' => 'Letti: Matrimoniale o 2 letti singoli + 1 letto aggiuntivo',
+    'grey_room_services' => 'Wi-Fi gratuito, bagno privato, pulizia giornaliera',
+    'book_this_room' => 'Prenota questa stanza',
+
 
     // Pink room
-    'pink_room' => 'Pink room',
+    'pink_room' => 'Camera Rosa',
     'pink_room_full_desc' => 'La Camera Rosa è un accogliente mix di romanticismo e stile. Con toni rosa tenui, arredi minimalisti e una testiera in legno su misura, crea un\'atmosfera calda e rilassante. L\'ampio letto matrimoniale king size e l\'illuminazione naturale la rendono perfetta per coppie o viaggiatori in cerca di fascino e tranquillità.',
     'pink_room_guests' => 'Ospiti: 1–2',
     'pink_room_beds' => 'Letto: Matrimoniale king size',
@@ -269,6 +272,9 @@ return [
     'checkin_time' => 'Check-in dalle 14:00 alle 22:00, check-out entro le 10:00.',
     'privacy_note' => 'I dati personali verranno trattati in conformità alle normative sulla privacy.',
     'processing' => 'Stiamo elaborando la tua prenotazione, attendi...',
+    'beds_notice' => 'Nella Green Room e nella Gray Room, i letti sono configurati di default come matrimoniale king-size. Se preferisci letti separati o hai richieste particolari, ti invitiamo a contattarci tramite il form contatti. Faremo il possibile per trovare la soluzione migliore per il tuo soggiorno.',
+    'important_note' => 'Nota importante:',
+
 
     // Navbar
     'back_to_home' => 'Torna alla Home',

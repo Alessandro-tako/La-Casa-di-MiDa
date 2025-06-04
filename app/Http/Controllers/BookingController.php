@@ -39,7 +39,7 @@ class BookingController extends Controller
             'guest_address_city'     => 'required|string|max:255',
             'guest_address_country'  => 'required|string|max:255',
             'guest_address_zip'      => 'required|string|max:20',
-            'room_name'              => 'required|in:Green Room,Pink Room,Gray Room',
+            'room_name'              => 'required|in:Green Room,Pink Room,Grey Room',
             'check_in'               => 'required|date_format:d-m-Y|after_or_equal:today',
             'check_out'              => 'required|date_format:d-m-Y|after:check_in',
             'guests'                 => 'required|integer|min:1|max:3',
@@ -55,12 +55,11 @@ class BookingController extends Controller
             return back()->withErrors(['check_in' => 'La durata minima del soggiorno è di almeno una notte.'])->withInput();
         }
 
-        // Controllo sovrapposizione
         $overlap = Booking::where('room_name', $data['room_name'])
             ->where('status', '!=', 'annullata')
             ->where(function ($query) use ($data) {
                 $query->where('check_in', '<', $data['check_out'])
-                    ->where('check_out', '>', $data['check_in']);
+                      ->where('check_out', '>', $data['check_in']);
             })
             ->exists();
 
@@ -98,7 +97,7 @@ class BookingController extends Controller
 
         $prezzi = [
             'Green Room' => ['bassa' => 125, 'media' => 160, 'alta' => 185],
-            'Gray Room'  => ['bassa' => 125, 'media' => 160, 'alta' => 185],
+            'Grey Room'  => ['bassa' => 125, 'media' => 160, 'alta' => 185],
             'Pink Room'  => ['bassa' => 115, 'media' => 150, 'alta' => 175],
         ];
 

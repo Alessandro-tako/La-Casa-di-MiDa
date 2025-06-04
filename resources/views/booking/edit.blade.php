@@ -37,7 +37,7 @@
                         Room</option>
                     <option value="Pink Room" {{ $prenotazione->room_name == 'Pink Room' ? 'selected' : '' }}>Pink Room
                     </option>
-                    <option value="Gray Room" {{ $prenotazione->room_name == 'Gray Room' ? 'selected' : '' }}>Gray Room
+                    <option value="Grey Room" {{ $prenotazione->room_name == 'Grey Room' ? 'selected' : '' }}>Grey Room
                     </option>
                 </select>
             </div>

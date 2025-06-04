@@ -14,7 +14,8 @@
 
         {{-- Logo --}}
         <div style="text-align: center; margin-bottom: 20px;">
-            <img src="{{ asset('storage/images/loghi/logo-bianco-oro.jpg') }}" alt="Logo La Casa di MiDa" style="max-height: 80px;">
+            <img src="{{ asset('storage/images/loghi/logo-bianco-oro.jpg') }}" alt="Logo La Casa di MiDa"
+                style="max-height: 80px;">
         </div>
 
         <h2 style="color: #bfa046; margin-bottom: 30px;">Messaggio ricevuto dal sito La Casa di MiDa</h2>

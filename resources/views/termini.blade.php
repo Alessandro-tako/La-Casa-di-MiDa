@@ -8,7 +8,7 @@
         <section class="mb-5" aria-labelledby="general-conditions">
             <h2 id="general-conditions" class="h5 text-gold">{{ __('ui.general_conditions') }}</h2>
             <ul class="text-muted">
-                @foreach(__('ui.general_conditions_list') as $condition)
+                @foreach (__('ui.general_conditions_list') as $condition)
                     <li>{!! $condition !!}</li>
                 @endforeach
             </ul>
@@ -24,7 +24,7 @@
             {{-- Stagionalità --}}
             <h3 class="h6 text-gold mt-4">{{ __('ui.seasons') }}</h3>
             <ul class="text-muted">
-                @foreach(__('ui.seasons_list') as $season)
+                @foreach (__('ui.seasons_list') as $season)
                     <li>{!! $season !!}</li>
                 @endforeach
             </ul>
@@ -49,7 +49,7 @@
                             <td>€185</td>
                         </tr>
                         <tr>
-                            <td>{{ __('ui.gray_room') }}</td>
+                            <td>{{ __('ui.grey_room') }}</td>
                             <td>€125</td>
                             <td>€160</td>
                             <td>€185</td>
@@ -69,7 +69,7 @@
         <section aria-labelledby="discounts">
             <h2 id="discounts" class="h5 text-gold mt-4">{{ __('ui.discounts_supplements') }}</h2>
             <ul class="text-muted">
-                @foreach(__('ui.discounts_list') as $discount)
+                @foreach (__('ui.discounts_list') as $discount)
                     <li>{!! $discount !!}</li>
                 @endforeach
             </ul>

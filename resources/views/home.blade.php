@@ -4,8 +4,8 @@
         <div class="container">
             <h1 class="display-4 text-gold">{{ __('ui.in_the_heart_of_rome') }}</h1>
             <p class="lead text-muted px-3">{{ __('ui.hero_subtitle') }}</p>
-            <a href="#booking" class="btn btn-gold rounded-pill px-4" title="{{ __('ui.book_now') }}">
-                {{ __('ui.book_now') }}
+            <a href="{{ route('bio') }}" class="btn btn-gold rounded-pill px-4" title="{{ __('ui.book_now') }}">
+                {{ __('ui.explore_the_guesthouse') }}
             </a>
         </div>
     </header>
@@ -41,8 +41,8 @@
                         <img src="{{ asset('storage/images/gray-room/gray4.jpg') }}" class="card-img-top"
                             alt="Camera Gray Room moderna e accogliente a Roma">
                         <div class="card-body">
-                            <h3 class="card-title text-gold h5">{{ __('ui.gray_room') }}</h3>
-                            <p class="card-text text-muted">{{ __('ui.gray_room_desc') }}</p>
+                            <h3 class="card-title text-gold h5">{{ __('ui.grey_room') }}</h3>
+                            <p class="card-text text-muted">{{ __('ui.grey_room_desc') }}</p>
                         </div>
                     </article>
                 </div>
@@ -59,17 +59,11 @@
             <h2 id="servicesSection" class="text-gold mb-3">{{ __('ui.comfort_home_title') }}</h2>
             <p class="text-muted mb-5">{{ __('ui.comfort_home_desc') }}</p>
             <div class="row row-cols-2 row-cols-md-3 g-4">
-                @foreach([
-                    ['wifi-icon.png', 'wifi'],
-                    ['assistenza-icon.png', 'assistance'],
-                    ['caffe-icon.png', 'coffee'],
-                    ['pulizia-icon.png', 'cleaning'],
-                    ['trasferimenti-icon.png', 'transfers'],
-                    ['vasca-doccia-icon.png', 'private_bathroom'],
-                ] as [$icon, $label])
+                @foreach ([['wifi-icon.png', 'wifi'], ['assistenza-icon.png', 'assistance'], ['caffe-icon.png', 'coffee'], ['pulizia-icon.png', 'cleaning'], ['trasferimenti-icon.png', 'transfers'], ['vasca-doccia-icon.png', 'private_bathroom']] as [$icon, $label])
                     <div class="col">
-                        <img src="{{ asset("storage/icons/$icon") }}" alt="{{ __('ui.'.$label) }}" width="64" height="64" loading="lazy">
-                        <p class="mt-2">{{ __('ui.'.$label) }}</p>
+                        <img src="{{ asset("storage/icons/$icon") }}" alt="{{ __('ui.' . $label) }}" width="64"
+                            height="64" loading="lazy">
+                        <p class="mt-2">{{ __('ui.' . $label) }}</p>
                     </div>
                 @endforeach
             </div>
@@ -82,9 +76,11 @@
             <h2 id="discoverRomeSection" class="text-gold">{{ __('ui.discover_eternal_city') }}</h2>
             <p class="text-muted">{{ __('ui.rome_section_subtitle') }}</p>
             <div class="col-md-10 col-lg-8 position-relative">
-                <a href="{{ route('cosaFare') }}" class="d-block text-decoration-none position-relative" title="{{ __('ui.just_steps_from_center_title') }}">
+                <a href="{{ route('cosaFare') }}" class="d-block text-decoration-none position-relative"
+                    title="{{ __('ui.just_steps_from_center_title') }}">
                     <img src="{{ asset('storage/images/cosa-fare-roma.png') }}" alt="Roma storica vista panoramica"
-                        class="img-fluid rounded shadow w-100" style="object-fit: cover; max-height: 500px;" loading="lazy">
+                        class="img-fluid rounded shadow w-100" style="object-fit: cover; max-height: 500px;"
+                        loading="lazy">
 
                     <div class="position-absolute top-0 start-0 w-100 h-100 rounded"
                         style="background-color: rgba(0, 0, 0, 0.4); z-index: 1;"></div>

@@ -22,62 +22,116 @@ class AdminController extends Controller
             'annullate' => Booking::where('status', 'annullata')->count(),
         ];
 
-
-    $prenotazioni = Booking::where('status', 'confermata')->get()->map(function ($booking) {
-        return [
-            'title' => $booking->room_name,
-            'start' => Carbon::parse($booking->check_in)->format('Y-m-d') . 'T14:00:00',
-            'end' => Carbon::parse($booking->check_out)->format('Y-m-d') . 'T10:00:00',
-            'allDay' => false, //  Attenzione: serve false per gestire gli orari
-            'color' => match ($booking->room_name) {
-                'Pink Room' => '#e83e8c',
-                'Green Room' => '#28a745',
-                'Gray Room' => '#6c757d',
-                default => '#007bff'
-            },
-        ];
-    });
-
-
-
+        $prenotazioni = Booking::where('status', 'confermata')->get()->map(function ($booking) {
+            return [
+                'title' => $booking->room_name,
+                'start' => Carbon::parse($booking->check_in)->format('Y-m-d') . 'T14:00:00',
+                'end' => Carbon::parse($booking->check_out)->format('Y-m-d') . 'T10:00:00',
+                'allDay' => false,
+                'color' => match ($booking->room_name) {
+                    'Pink Room' => '#e83e8c',
+                    'Green Room' => '#28a745',
+                    'Grey Room' => '#6c757d',
+                    default => '#007bff'
+                },
+            ];
+        });
 
         return view('admin.dashboard', compact('totali', 'prenotazioni'));
     }
 
-
     public function prenotazioni(Request $request)
-{
-    $query = Booking::query();
+    {
+        $query = Booking::query();
 
-    if ($request->filled('search')) {
-        $query = Booking::search($request->search);
+        if ($request->filled('search')) {
+            $results = Booking::search($request->search)->get();
+
+            if ($request->filled('sort')) {
+                $results = match ($request->input('sort')) {
+                    'id_asc' => $results->sortBy('id'),
+                    'id_desc' => $results->sortByDesc('id'),
+                    'checkin_asc' => $results->sortBy('check_in'),
+                    'checkin_desc' => $results->sortByDesc('check_in'),
+                    default => $results,
+                };
+            }
+
+            $results->transform(function ($booking) {
+                $today = now();
+                $checkin = Carbon::parse($booking->check_in);
+                $checkout = Carbon::parse($booking->check_out);
+
+                if ($booking->status !== 'confermata') {
+                    $booking->soggiorno = null;
+                } elseif ($today->between($checkin, $checkout->copy()->subDay())) {
+                    $booking->soggiorno = 'in_corso';
+                } elseif ($today->gte($checkout)) {
+                    $booking->soggiorno = 'concluso';
+                } elseif ($today->lt($checkin)) {
+                    $booking->soggiorno = 'in_arrivo';
+                } else {
+                    $booking->soggiorno = null;
+                }
+
+                return $booking;
+            });
+
+            $page = $request->input('page', 1);
+            $perPage = 10;
+
+            $paginated = new \Illuminate\Pagination\LengthAwarePaginator(
+                $results->forPage($page, $perPage),
+                $results->count(),
+                $perPage,
+                $page,
+                ['path' => $request->url(), 'query' => $request->query()]
+            );
+
+            return view('admin.prenotazioni', ['prenotazioni' => $paginated]);
+        }
+
+        switch ($request->input('sort')) {
+            case 'id_asc':
+                $query = $query->orderBy('id', 'asc');
+                break;
+            case 'id_desc':
+                $query = $query->orderBy('id', 'desc');
+                break;
+            case 'checkin_asc':
+                $query = $query->orderBy('check_in', 'asc');
+                break;
+            case 'checkin_desc':
+                $query = $query->orderBy('check_in', 'desc');
+                break;
+            default:
+                $query = $query->latest();
+        }
+
+        $prenotazioni = $query->paginate(10);
+
+        $prenotazioni->getCollection()->transform(function ($booking) {
+            $today = now();
+            $checkin = Carbon::parse($booking->check_in);
+            $checkout = Carbon::parse($booking->check_out);
+
+            if ($booking->status !== 'confermata') {
+                $booking->soggiorno = null;
+            } elseif ($today->gte($checkin) && $today->lt($checkout)) {
+                $booking->soggiorno = 'in_corso';
+            } elseif ($today->gte($checkout)) {
+                $booking->soggiorno = 'concluso';
+            } elseif ($today->lt($checkin)) {
+                $booking->soggiorno = 'in_arrivo';
+            } else {
+                $booking->soggiorno = null;
+            }
+
+            return $booking;
+        });
+
+        return view('admin.prenotazioni', compact('prenotazioni'));
     }
-
-    // Ordinamento
-    switch ($request->input('sort')) {
-        case 'id_asc':
-            $query = $query->orderBy('id', 'asc');
-            break;
-        case 'id_desc':
-            $query = $query->orderBy('id', 'desc');
-            break;
-        case 'checkin_asc':
-            $query = $query->orderBy('check_in', 'asc');
-            break;
-        case 'checkin_desc':
-            $query = $query->orderBy('check_in', 'desc');
-            break;
-        default:
-            $query = $query->latest(); // di default: data creazione
-    }
-
-    $prenotazioni = $query instanceof \Laravel\Scout\Builder
-        ? $query->get()
-        : $query->get();
-
-    return view('admin.prenotazioni', compact('prenotazioni'));
-}
-
 
     public function updatePrenotazione(Request $request, Booking $prenotazione)
     {
@@ -123,7 +177,7 @@ class AdminController extends Controller
     public function update(Request $request, Booking $prenotazione)
     {
         $request->validate([
-            'room_name'  => 'required|in:Green Room,Pink Room,Gray Room',
+            'room_name'  => 'required|in:Green Room,Pink Room,Grey Room',
             'check_in'   => 'required|date_format:d-m-Y',
             'check_out'  => 'required|date_format:d-m-Y|after:check_in',
             'guests'     => 'required|integer|min:1|max:3',
@@ -173,7 +227,7 @@ class AdminController extends Controller
 
         $prezzi = [
             'Green Room' => ['bassa' => 125, 'media' => 160, 'alta' => 185],
-            'Gray Room'  => ['bassa' => 125, 'media' => 160, 'alta' => 185],
+            'Grey Room'  => ['bassa' => 125, 'media' => 160, 'alta' => 185],
             'Pink Room'  => ['bassa' => 115, 'media' => 150, 'alta' => 175],
         ];
 
@@ -202,8 +256,9 @@ class AdminController extends Controller
             'guests' => $request->guests,
             'price' => round($totale, 2),
         ]);
-        
+
         Mail::to($prenotazione->guest_email)->send(new BookingUpdated($prenotazione));
+
         return redirect()->route('admin.prenotazioni')->with('success', 'Prenotazione aggiornata con successo.');
     }
 }

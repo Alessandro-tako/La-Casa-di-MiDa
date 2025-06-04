@@ -40,6 +40,51 @@
 
     {{-- Livewire Styles --}}
     @livewireStyles
+
+    <script type="application/ld+json">
+        {
+        "@context": "https://schema.org",
+        "@type": "LodgingBusiness",
+        "name": "La Casa di MiDa",
+        "description": "Accogliente affittacamere nel cuore di Roma, a due passi dalla stazione Termini.",
+        "image": "https://www.lacasadimida.it/storage/images/roma-header.png", 
+        "url": "https://www.lacasadimida.it",
+        "telephone": "+39 333 1234567",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Via Carlo Cattaneo 10",
+            "addressLocality": "Roma",
+            "postalCode": "00185",
+            "addressCountry": "IT"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 41.8964,
+            "longitude": 12.5015
+        },
+        "amenityFeature": [
+            {
+            "@type": "LocationFeatureSpecification",
+            "name": "Wi-Fi gratuito",
+            "value": true
+            },
+            {
+            "@type": "LocationFeatureSpecification",
+            "name": "Aria condizionata",
+            "value": true
+            },
+            {
+            "@type": "LocationFeatureSpecification",
+            "name": "Camere familiari",
+            "value": true
+            }
+        ],
+        "checkinTime": "14:00",
+        "checkoutTime": "10:00"
+        }
+    </script>
+
+
 </head>
 
 <body>

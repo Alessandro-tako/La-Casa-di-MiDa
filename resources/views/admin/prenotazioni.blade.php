@@ -18,7 +18,6 @@
             <button class="btn btn-outline-dark" type="submit">Cerca</button>
         </form>
 
-        {{-- Elenco prenotazioni --}}
         @if ($prenotazioni->isEmpty())
             <p class="text-center">Nessuna prenotazione disponibile al momento.</p>
         @else
@@ -58,7 +57,6 @@
                     <tbody>
                         @foreach ($prenotazioni as $prenotazione)
                             @php
-                                $oggi = now();
                                 $checkin = \Carbon\Carbon::parse($prenotazione->check_in);
                                 $checkout = \Carbon\Carbon::parse($prenotazione->check_out);
                                 $status = $prenotazione->status;
@@ -66,12 +64,6 @@
                                     'confermata' => 'success',
                                     'annullata' => 'danger',
                                     default => 'warning',
-                                };
-                                $soggiorno = match (true) {
-                                    $status !== 'confermata' => null,
-                                    $oggi->between($checkin, $checkout->copy()->subDay()) => 'in_corso',
-                                    $oggi->gt($checkout) => 'concluso',
-                                    $oggi->lt($checkin) => 'in_arrivo',
                                 };
                             @endphp
 
@@ -81,27 +73,29 @@
                                     {{ $prenotazione->guest_first_name }} {{ $prenotazione->guest_last_name }}<br>
                                     <small>{{ $prenotazione->guest_email }}</small>
                                 </td>
-                                <td>{{ $prenotazione->room_name }}</td>
+                                <td>{{ $prenotazione->room_name === 'Gray Room' ? 'Grey Room' : $prenotazione->room_name }}
+                                </td>
                                 <td>
                                     <strong>{{ $checkin->format('d/m/Y') }}</strong> →
                                     <strong>{{ $checkout->format('d/m/Y') }}</strong><br>
-                                    @if ($soggiorno === 'in_corso')
+                                    @if ($prenotazione->soggiorno === 'in_corso')
                                         <span class="badge bg-info text-dark mt-1">Soggiorno in corso</span>
-                                    @elseif ($soggiorno === 'concluso')
+                                    @elseif ($prenotazione->soggiorno === 'concluso')
                                         <span class="badge bg-secondary mt-1">Soggiorno concluso</span>
-                                    @elseif ($soggiorno === 'in_arrivo')
+                                    @elseif ($prenotazione->soggiorno === 'in_arrivo')
                                         <span class="badge bg-primary mt-1">In arrivo</span>
                                     @endif
                                 </td>
                                 <td>{{ $prenotazione->guests }}</td>
                                 <td>
-                                    <span class="badge bg-{{ $badgeClass }}">{{ ucfirst($status) }}</span>
+                                    <span class="badge bg-{{ $badgeClass }}" title="Stato: {{ ucfirst($status) }}">
+                                        {{ ucfirst($status) }}
+                                    </span>
                                 </td>
                                 <td class="text-center">
                                     <div class="d-flex flex-wrap justify-content-center gap-1">
-                                        {{-- Azioni principali --}}
                                         @if ($status !== 'annullata')
-                                            @if ($soggiorno === 'concluso')
+                                            @if ($prenotazione->soggiorno === 'concluso')
                                                 <span class="badge bg-secondary">Soggiorno concluso</span>
                                             @else
                                                 @if ($status === 'in_attesa')
@@ -110,23 +104,25 @@
                                                         method="POST">
                                                         @csrf @method('PATCH')
                                                         <input type="hidden" name="action" value="conferma">
-                                                        <button class="btn btn-sm btn-success">Conferma</button>
+                                                        <button class="btn btn-sm btn-success"
+                                                            aria-label="Conferma prenotazione">Conferma</button>
                                                     </form>
                                                 @endif
 
                                                 <a href="{{ route('admin.prenotazioni.edit', $prenotazione) }}"
-                                                    class="btn btn-sm btn-warning">Modifica</a>
+                                                    class="btn btn-sm btn-warning"
+                                                    aria-label="Modifica prenotazione">Modifica</a>
 
                                                 <form action="{{ route('admin.prenotazioni.update', $prenotazione) }}"
                                                     method="POST"
                                                     onsubmit="return confirm('Sei sicuro di voler annullare questa prenotazione?');">
                                                     @csrf @method('PATCH')
                                                     <input type="hidden" name="action" value="annulla">
-                                                    <button class="btn btn-sm btn-danger">Annulla</button>
+                                                    <button class="btn btn-sm btn-danger"
+                                                        aria-label="Annulla prenotazione">Annulla</button>
                                                 </form>
                                             @endif
                                         @else
-                                            {{-- Penale --}}
                                             @if (!$prenotazione->penale_addebitata && $prenotazione->stripe_customer_id && $prenotazione->stripe_payment_method)
                                                 <form action="{{ route('admin.penale.addebita', $prenotazione) }}"
                                                     method="POST"
@@ -135,15 +131,14 @@
                                                     <div class="d-flex flex-column align-items-center">
                                                         <select name="penale_percentuale"
                                                             class="form-select form-select-sm mb-1" required>
-                                                            <option value="" disabled selected>Seleziona penale
-                                                            </option>
+                                                            <option disabled selected>Seleziona penale</option>
                                                             <option value="0">Nessuna penale</option>
                                                             <option value="20">Penale 20% (cancellazione tardiva)
                                                             </option>
                                                             <option value="100">Penale 100% (no-show)</option>
                                                         </select>
-                                                        <button class="btn btn-sm btn-outline-dark">Addebita
-                                                            penale</button>
+                                                        <button class="btn btn-sm btn-outline-dark"
+                                                            aria-label="Addebita penale">Addebita penale</button>
                                                     </div>
                                                 </form>
                                             @elseif (!$prenotazione->stripe_customer_id || !$prenotazione->stripe_payment_method)
@@ -159,6 +154,46 @@
                     </tbody>
                 </table>
             </div>
+
+            {{-- Paginazione --}}
+            @if ($prenotazioni->hasPages())
+                <nav class="mt-5 d-flex justify-content-center" aria-label="Navigazione paginazione prenotazioni">
+                    <ul class="pagination pagination-sm">
+                        {{-- Link pagina precedente --}}
+                        @if ($prenotazioni->onFirstPage())
+                            <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+                        @else
+                            <li class="page-item">
+                                <a class="page-link text-gold" href="{{ $prenotazioni->previousPageUrl() }}"
+                                    rel="prev" aria-label="Pagina precedente">&laquo;</a>
+                            </li>
+                        @endif
+
+                        {{-- Numeri di pagina --}}
+                        @foreach ($prenotazioni->getUrlRange(1, $prenotazioni->lastPage()) as $page => $url)
+                            @if ($page == $prenotazioni->currentPage())
+                                <li class="page-item active" aria-current="page">
+                                    <span class="page-link bg-gold border-gold text-white">{{ $page }}</span>
+                                </li>
+                            @else
+                                <li class="page-item">
+                                    <a class="page-link text-gold" href="{{ $url }}">{{ $page }}</a>
+                                </li>
+                            @endif
+                        @endforeach
+
+                        {{-- Link pagina successiva --}}
+                        @if ($prenotazioni->hasMorePages())
+                            <li class="page-item">
+                                <a class="page-link text-gold" href="{{ $prenotazioni->nextPageUrl() }}" rel="next"
+                                    aria-label="Pagina successiva">&raquo;</a>
+                            </li>
+                        @else
+                            <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+                        @endif
+                    </ul>
+                </nav>
+            @endif
         @endif
     </div>
 </x-layout>

@@ -52,7 +52,7 @@
                     <option value="">Tutte le camere</option>
                     <option value="Pink Room">Pink Room</option>
                     <option value="Green Room">Green Room</option>
-                    <option value="Gray Room">Gray Room</option>
+                    <option value="Grey Room">Grey Room</option>
                 </select>
             </div>
             <div id="calendar" aria-describedby="LegendaCalendario"></div>
@@ -64,7 +64,7 @@
             <div class="d-flex gap-3 align-items-center small">
                 <span><span class="badge" style="background:#e83e8c;">&nbsp;</span> Pink Room</span>
                 <span><span class="badge" style="background:#28a745;">&nbsp;</span> Green Room</span>
-                <span><span class="badge" style="background:#6c757d;">&nbsp;</span> Gray Room</span>
+                <span><span class="badge" style="background:#6c757d;">&nbsp;</span> Grey Room</span>
             </div>
         </section>
 

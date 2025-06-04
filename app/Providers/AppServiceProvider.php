@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Http\Middleware\SetLocale;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -20,7 +21,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Paginator::useBootstrap();
         app('router')->pushMiddlewareToGroup('web', SetLocale::class);
+        
 
     }
 }

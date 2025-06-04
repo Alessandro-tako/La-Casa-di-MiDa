@@ -4,8 +4,7 @@
         <header class="position-relative mb-5">
             <img src="{{ asset('storage/images/roma-header.png') }}" alt="Vista panoramica di Roma al tramonto"
                 class="img-fluid w-100" style="max-height: 500px; object-fit: cover;">
-            <div class="position-absolute top-0 start-0 w-100 h-100"
-                style="background-color: rgba(0, 0, 0, 0.4);"></div>
+            <div class="position-absolute top-0 start-0 w-100 h-100" style="background-color: rgba(0, 0, 0, 0.4);"></div>
             <div class="position-absolute top-50 start-50 translate-middle text-center text-white px-3">
                 <h1 class="display-5 fw-bold text-gold">{{ __('ui.discover_rome_title') }}</h1>
                 <p class="lead">{{ __('ui.discover_rome_subtitle') }}</p>
@@ -22,7 +21,8 @@
 
         {{-- Luoghi di interesse turistico --}}
         @foreach ($luoghi as $index => $luogo)
-            <section class="row align-items-center mb-5 flex-md-row {{ $index % 2 === 0 ? '' : 'flex-md-row-reverse' }}">
+            <section
+                class="row align-items-center mb-5 flex-md-row {{ $index % 2 === 0 ? '' : 'flex-md-row-reverse' }}">
                 <div class="col-md-6 mb-3 mb-md-0">
                     <figure>
                         <img src="{{ asset('storage/images/' . $luogo['image']) }}"
