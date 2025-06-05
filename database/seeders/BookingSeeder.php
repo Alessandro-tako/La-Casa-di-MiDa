@@ -12,12 +12,12 @@ class BookingSeeder extends Seeder
     public function run(): void
     {
         $faker = Faker::create();
-        $rooms = ['Green Room', 'Pink Room', 'Gray Room'];
+        $rooms = ['Green Room', 'Pink Room', 'Grey Room'];
         $countries = ['IT', 'FR', 'DE', 'US', 'GB', 'ES', 'CA'];
 
         $prezzi = [
             'Green Room' => ['bassa' => 125, 'media' => 160, 'alta' => 185],
-            'Gray Room'  => ['bassa' => 125, 'media' => 160, 'alta' => 185],
+            'Grey Room'  => ['bassa' => 125, 'media' => 160, 'alta' => 185],
             'Pink Room'  => ['bassa' => 115, 'media' => 150, 'alta' => 175],
         ];
 
@@ -61,7 +61,7 @@ class BookingSeeder extends Seeder
                 ->where('status', '!=', 'annullata')
                 ->where(function ($query) use ($checkIn, $checkOut) {
                     $query->where('check_in', '<', $checkOut)
-                          ->where('check_out', '>', $checkIn);
+                        ->where('check_out', '>', $checkIn);
                 })
                 ->exists();
 
@@ -107,12 +107,11 @@ class BookingSeeder extends Seeder
                 'price' => round($totale, 2),
                 'status' => 'confermata',
                 'payment_method' => 'pm_test_4242424242424242',
-                'stripe_payment_method' => 'pm_card_visa', // carta test che supporta off_session
-                'stripe_customer_id' => 'cus_test_' . $faker->unique()->bothify('??##??##'), // finto ID per test
+                'stripe_payment_method' => 'pm_card_visa',
+                'stripe_customer_id' => 'cus_test_' . $faker->unique()->bothify('??##??##'),
                 'penale_addebitata' => false,
                 'penale_ricevuta_url' => null,
             ]);
-
 
             $i++;
         }

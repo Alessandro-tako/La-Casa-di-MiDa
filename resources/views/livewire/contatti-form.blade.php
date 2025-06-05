@@ -15,7 +15,7 @@
         <div class="col-md-6">
             <label for="nome" class="form-label">{{ __('ui.name') }}</label>
             <input type="text" class="form-control @error('nome') is-invalid @enderror" id="nome" name="nome"
-                placeholder="{{ __('ui.your_name') }}" wire:model.defer="nome" autocomplete="name" required
+                placeholder="{{ __('ui.name') }}" wire:model.defer="nome" autocomplete="name" required
                 aria-required="true">
             @error('nome')
                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
@@ -37,7 +37,7 @@
         <div class="col-12">
             <label for="messaggio" class="form-label">{{ __('ui.message') }}</label>
             <textarea id="messaggio" name="messaggio" rows="5" class="form-control @error('messaggio') is-invalid @enderror"
-                placeholder="{{ __('ui.write_your_message') }}" wire:model.defer="messaggio" required aria-required="true"></textarea>
+                placeholder="{{ __('ui.message') }}" wire:model.defer="messaggio" required aria-required="true"></textarea>
             @error('messaggio')
                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
             @enderror

@@ -44,21 +44,21 @@
                     <tbody class="text-muted">
                         <tr>
                             <td>{{ __('ui.green_room') }}</td>
-                            <td>€125</td>
-                            <td>€160</td>
-                            <td>€185</td>
+                            <td>125€</td>
+                            <td>160€</td>
+                            <td>185€</td>
                         </tr>
                         <tr>
                             <td>{{ __('ui.grey_room') }}</td>
-                            <td>€125</td>
-                            <td>€160</td>
-                            <td>€185</td>
+                            <td>125€</td>
+                            <td>160€</td>
+                            <td>185€</td>
                         </tr>
                         <tr>
                             <td>{{ __('ui.pink_room') }}</td>
-                            <td>€115</td>
-                            <td>€150</td>
-                            <td>€175</td>
+                            <td>115€</td>
+                            <td>150€</td>
+                            <td>175€</td>
                         </tr>
                     </tbody>
                 </table>

@@ -11,7 +11,7 @@ return [
 
     // Discover Rome
     'discover_eternal_city' => 'Scopri la Città Eterna',
-    'rome_section_subtitle' => "Passeggia tra le meraviglie storiche di Roma a pochi minuti dalla nostra guesthouse.",
+    'rome_section_subtitle' => "Passeggia tra le meraviglie storiche di Roma a pochi minuti dalla nostra struttura.",
     'just_steps_from_center_title' => 'A DUE PASSI DAL CENTRO DI ROMA',
     'just_steps_from_center_subtitle' => 'SCOPRI LE MERAVIGLIE DELLA CITTÀ ETERNA',
 
@@ -20,7 +20,7 @@ return [
     'our_rooms_subtitle' => 'Scegli tra tre ambienti unici, ognuno con stile esclusivo e comfort.',
     'green_room_desc' => 'Eleganza naturale con dettagli raffinati ispirati alla natura.',
     'pink_room_desc' => 'Atmosfera romantica con toni tenui e comfort moderni.',
-    'gray_room_desc' => 'Design moderno e sofisticato, perfetto per un soggiorno rilassante.',
+    'grey_room_desc' => 'Design moderno e sofisticato, perfetto per un soggiorno rilassante.',
     'discover_all_rooms' => 'Scopri tutte le camere',
 
     // Services
@@ -64,7 +64,7 @@ return [
     'high' => 'Alta',
 
     'green_room' => 'Camera Verde',
-    'gray_room' => 'Camera Grigia',
+    'grey_room' => 'Camera Grigia',
     'pink_room' => 'Camera Rosa',
 
     'discounts_supplements' => 'Sconti e Supplementi',
@@ -76,7 +76,7 @@ return [
     // What to do in Rome
     // Header
     'discover_rome_title' => 'Alla Scoperta di Roma',
-    'discover_rome_subtitle' => 'Tutti i luoghi imperdibili a pochi passi dalla nostra guesthouse',
+    'discover_rome_subtitle' => 'Tutti i luoghi imperdibili a pochi passi dalla nostra struttura',
 
     // Intro
     'rome_intro_title' => 'La tua avventura inizia da Via Carlo Cattaneo 10',
@@ -210,8 +210,8 @@ return [
     'green_room_desc' => 'Elegante e ispirata alla natura, la Camera Verde offre una sistemazione flessibile dei letti e un ambiente rilassante, perfetta per famiglie o piccoli gruppi.',
     'pink_room' => 'Camera Rosa',
     'pink_room_desc' => 'Intima e raffinata, la Camera Rosa avvolge gli ospiti in un\'atmosfera romantica e luminosa, ideale per coppie in cerca di relax.',
-    'gray_room' => 'Camera Grigia',
-    'gray_room_desc' => 'Moderna e luminosa, la Camera Grigia unisce design e comfort, con letti flessibili e una parete decorativa che crea un\'atmosfera accogliente.',
+    'grey_room' => 'Camera Grigia',
+    'grey_room_desc' => 'Moderna e luminosa, la Camera Grigia unisce design e comfort, con letti flessibili e una parete decorativa che crea un\'atmosfera accogliente.',
     'learn_more' => 'Scopri di Più',
 
     // Green room
@@ -274,6 +274,7 @@ return [
     'processing' => 'Stiamo elaborando la tua prenotazione, attendi...',
     'beds_notice' => 'Nella Green Room e nella Gray Room, i letti sono configurati di default come matrimoniale king-size. Se preferisci letti separati o hai richieste particolari, ti invitiamo a contattarci tramite il form contatti. Faremo il possibile per trovare la soluzione migliore per il tuo soggiorno.',
     'important_note' => 'Nota importante:',
+    'read_full_terms' => 'Leggi i termini completi',
 
 
     // Navbar

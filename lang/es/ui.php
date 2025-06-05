@@ -21,7 +21,7 @@ return [
     'our_rooms_subtitle' => 'Elige entre tres ambientes únicos, cada uno con estilo exclusivo y confort.',
     'green_room_desc' => 'Elegancia natural con detalles refinados inspirados en la naturaleza.',
     'pink_room_desc' => 'Atmósfera romántica con tonos suaves y confort moderno.',
-    'gray_room_desc' => 'Diseño moderno y sofisticado, perfecto para una estancia relajante.',
+    'grey_room_desc' => 'Diseño moderno y sofisticado, perfecto para una estancia relajante.',
     'discover_all_rooms' => 'Descubre todas las habitaciones',
 
     // Services
@@ -65,7 +65,7 @@ return [
     'high' => 'Alta',
 
     'green_room' => 'Habitación Verde',
-    'gray_room' => 'Habitación Gris',
+    'grey_room' => 'Habitación Gris',
     'pink_room' => 'Habitación Rosa',
 
     'discounts_supplements' => 'Descuentos y Suplementos',
@@ -211,8 +211,8 @@ return [
     'green_room_desc' => 'Elegante e inspirada en la naturaleza, la Habitación Verde ofrece una disposición flexible de las camas y un ambiente relajante, perfecta para familias o pequeños grupos.',
     'pink_room' => 'Habitación Rosa',
     'pink_room_desc' => 'Íntima y refinada, la Habitación Rosa envuelve a los huéspedes en una atmósfera romántica y luminosa, ideal para parejas en busca de relax.',
-    'gray_room' => 'Habitación Gris',
-    'gray_room_desc' => 'Moderna y luminosa, la Habitación Gris une diseño y confort, con camas flexibles y una pared decorativa que crea una atmósfera acogedora.',
+    'grey_room' => 'Habitación Gris',
+    'grey_room_desc' => 'Moderna y luminosa, la Habitación Gris une diseño y confort, con camas flexibles y una pared decorativa que crea una atmósfera acogedora.',
     'learn_more' => 'Descubre Más',
 
     // Green room
@@ -274,6 +274,8 @@ return [
     'processing' => 'Estamos procesando tu reserva, espera...',
     'beds_notice' => 'En la Habitación Verde y la Habitación Gris, las camas están configuradas por defecto como una cama doble tamaño king. Si prefieres camas separadas o tienes solicitudes especiales, por favor contáctanos a través del formulario de contacto. Haremos todo lo posible para encontrar la mejor solución para tu estancia.',
     'important_note' => 'Nota importante:',
+    'read_full_terms' => 'Leer los términos completos',
+
 
 
     // Navbar

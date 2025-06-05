@@ -11,7 +11,7 @@ let disabledDates = [];
 
 const prezzi = {
     'Green Room': { bassa: 125, media: 160, alta: 185 },
-    'Gray Room': { bassa: 125, media: 160, alta: 185 },
+    'Grey Room': { bassa: 125, media: 160, alta: 185 },
     'Pink Room': { bassa: 115, media: 150, alta: 175 }
 };
 

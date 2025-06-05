@@ -96,7 +96,7 @@
                     },
                     eventContent: function(arg) {
                         return {
-                            html: `<div class="fw-semibold text-white">${arg.event.title}</div>`
+                            html: `<div class="fw-semibold text-white room-line"></div>`
                         };
                     }
                 });

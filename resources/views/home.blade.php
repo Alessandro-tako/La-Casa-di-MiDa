@@ -38,8 +38,8 @@
                 </div>
                 <div class="col">
                     <article class="card h-100 shadow border-0">
-                        <img src="{{ asset('storage/images/gray-room/gray4.jpg') }}" class="card-img-top"
-                            alt="Camera Gray Room moderna e accogliente a Roma">
+                        <img src="{{ asset('storage/images/grey-room/grey4.jpg') }}" class="card-img-top"
+                            alt="Camera Grey Room moderna e accogliente a Roma">
                         <div class="card-body">
                             <h3 class="card-title text-gold h5">{{ __('ui.grey_room') }}</h3>
                             <p class="card-text text-muted">{{ __('ui.grey_room_desc') }}</p>

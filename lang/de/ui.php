@@ -20,7 +20,7 @@ return [
     'our_rooms_subtitle' => 'Wählen Sie aus drei einzigartigen Umgebungen, jede mit exklusivem Stil und Komfort.',
     'green_room_desc' => 'Natürliche Eleganz mit raffinierten, von der Natur inspirierten Details.',
     'pink_room_desc' => 'Romantische Atmosphäre mit sanften Tönen und modernem Komfort.',
-    'gray_room_desc' => 'Modernes und raffiniertes Design, perfekt für einen entspannenden Aufenthalt.',
+    'grey_room_desc' => 'Modernes und raffiniertes Design, perfekt für einen entspannenden Aufenthalt.',
     'discover_all_rooms' => 'Alle Zimmer entdecken',
 
     // Services
@@ -64,7 +64,7 @@ return [
     'high' => 'Hoch',
 
     'green_room' => 'Grünes Zimmer',
-    'gray_room' => 'Graues Zimmer',
+    'grey_room' => 'Graues Zimmer',
     'pink_room' => 'Rosa Zimmer',
 
     'discounts_supplements' => 'Rabatte und Zuschläge',
@@ -210,8 +210,8 @@ return [
     'green_room_desc' => 'Elegant und von der Natur inspiriert, bietet das Grüne Zimmer flexible Bettenkonfiguration und eine entspannende Umgebung, perfekt für Familien oder kleine Gruppen.',
     'pink_room' => 'Rosa Zimmer',
     'pink_room_desc' => 'Intim und raffiniert, hüllt das Rosa Zimmer die Gäste in eine romantische und helle Atmosphäre, ideal für Paare, die Entspannung suchen.',
-    'gray_room' => 'Graues Zimmer',
-    'gray_room_desc' => 'Modern und hell, verbindet das Graue Zimmer Design und Komfort, mit flexiblen Betten und einer dekorativen Wand, die eine gemütliche Atmosphäre schafft.',
+    'grey_room' => 'Graues Zimmer',
+    'grey_room_desc' => 'Modern und hell, verbindet das Graue Zimmer Design und Komfort, mit flexiblen Betten und einer dekorativen Wand, die eine gemütliche Atmosphäre schafft.',
     'learn_more' => 'Mehr erfahren',
 
     // Green room
@@ -274,6 +274,8 @@ return [
     'processing' => 'Wir bearbeiten Ihre Buchung, bitte warten...',
     'beds_notice' => 'Im Grünen Zimmer und im Grauen Zimmer sind die Betten standardmäßig als Kingsize-Doppelbett konfiguriert. Wenn Sie separate Betten bevorzugen oder besondere Wünsche haben, kontaktieren Sie uns bitte über das Kontaktformular. Wir werden unser Bestes tun, um die beste Lösung für Ihren Aufenthalt zu finden.',
     'important_note' => 'Wichtiger Hinweis:',
+    'read_full_terms' => 'Vollständige Bedingungen lesen',
+
 
     // Navbar
     'back_to_home' => 'Zurück zur Startseite',

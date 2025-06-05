@@ -99,7 +99,7 @@
 
         {{-- Pulsante WhatsApp Accessibile --}}
         <div class="position-fixed bottom-0 end-0 m-3 z-3" aria-label="Contattaci su WhatsApp">
-            <a href="https://wa.me/393000000000" class="btn btn-success btn-lg rounded-circle shadow" target="_blank"
+            <a href="https://wa.me/393488548971" class="btn btn-success btn-lg rounded-circle shadow" target="_blank"
                 rel="noopener noreferrer" title="Contattaci su WhatsApp">
                 <i class="bi bi-whatsapp" aria-hidden="true"></i>
                 <span class="visually-hidden">Contattaci su WhatsApp</span>

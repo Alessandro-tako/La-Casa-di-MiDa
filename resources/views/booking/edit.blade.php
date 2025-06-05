@@ -48,7 +48,7 @@
                 <select name="guests" id="guests" class="form-select" required>
                     @for ($i = 1; $i <= 3; $i++)
                         <option value="{{ $i }}" {{ $prenotazione->guests == $i ? 'selected' : '' }}>
-                            {{ $i }} ospite{{ $i > 1 ? 'i' : '' }}
+                            {{ $i }} {{ $i == 1 ? 'ospite' : 'ospiti' }}
                         </option>
                     @endfor
                 </select>

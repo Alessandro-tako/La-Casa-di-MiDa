@@ -1,237 +1,291 @@
 <x-layout>
-    @section('title', 'Gestione Prenotazioni - Admin | La Casa di MiDa')
-
     <div class="container py-5">
-        <h1 class="text-gold mb-4 text-center">Gestione Prenotazioni</h1>
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-8">
+                <h2 class="text-gold mb-4 text-center">{{ __('ui.book_your_room') }}</h2>
 
-        {{-- Messaggio successo --}}
-        @if (session('success'))
-            <div class="alert alert-success" role="alert">{{ session('success') }}</div>
-        @endif
+                {{-- Messaggi --}}
+                @if (session('success'))
+                    <div class="alert alert-success">{{ session('success') }}</div>
+                @endif
 
-        {{-- Ricerca --}}
-        <form method="GET" action="{{ route('admin.prenotazioni') }}" class="mb-4 d-flex justify-content-center"
-            role="search">
-            <label for="search" class="visually-hidden">Cerca prenotazione</label>
-            <input type="text" name="search" id="search" class="form-control w-50 me-2"
-                placeholder="Cerca per nome, email, camera..." value="{{ request('search') }}">
-            <button class="btn btn-outline-dark" type="submit">Cerca</button>
-        </form>
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
 
-        @if ($prenotazioni->isEmpty())
-            <p class="text-center">Nessuna prenotazione disponibile al momento.</p>
-        @else
-            <div class="table-responsive">
-                <table class="table table-hover align-middle" aria-describedby="Lista prenotazioni">
-                    <thead class="table-light">
-                        <tr>
-                            <th>
-                                <a
-                                    href="{{ route('admin.prenotazioni', array_merge(request()->only('search'), ['sort' => request('sort') === 'id_asc' ? 'id_desc' : 'id_asc'])) }}">
-                                    #
-                                    @if (request('sort') === 'id_asc')
-                                        ▲
-                                    @elseif (request('sort') === 'id_desc')
-                                        ▼
-                                    @endif
-                                </a>
-                            </th>
-                            <th>Cliente</th>
-                            <th>Camera</th>
-                            <th>
-                                <a
-                                    href="{{ route('admin.prenotazioni', array_merge(request()->only('search'), ['sort' => request('sort') === 'checkin_asc' ? 'checkin_desc' : 'checkin_asc'])) }}">
-                                    Date
-                                    @if (request('sort') === 'checkin_asc')
-                                        ▲
-                                    @elseif (request('sort') === 'checkin_desc')
-                                        ▼
-                                    @endif
-                                </a>
-                            </th>
-                            <th>Ospiti</th>
-                            <th>Stato</th>
-                            <th class="text-center">Azioni</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($prenotazioni as $prenotazione)
-                            @php
-                                $checkin = \Carbon\Carbon::parse($prenotazione->check_in);
-                                $checkout = \Carbon\Carbon::parse($prenotazione->check_out);
-                                $status = $prenotazione->status;
-                                $badgeClass = match ($status) {
-                                    'confermata' => 'success',
-                                    'annullata' => 'danger',
-                                    default => 'warning',
-                                };
-                            @endphp
+                {{-- Form di prenotazione --}}
+                <form action="{{ route('booking.store') }}" method="POST" id="booking-form">
+                    @csrf
 
-                            <tr>
-                                <td>{{ $prenotazione->id }}</td>
-                                <td>
-                                    {{ $prenotazione->guest_first_name }} {{ $prenotazione->guest_last_name }}<br>
-                                    <small>{{ $prenotazione->guest_email }}</small>
-                                </td>
-                                <td>{{ $prenotazione->room_name === 'Gray Room' ? 'Grey Room' : $prenotazione->room_name }}
-                                </td>
-                                <td>
-                                    <strong>{{ $checkin->format('d/m/Y') }}</strong> →
-                                    <strong>{{ $checkout->format('d/m/Y') }}</strong><br>
-                                    @if ($prenotazione->soggiorno === 'in_corso')
-                                        <span class="badge bg-info text-dark mt-1">Soggiorno in corso</span>
-                                    @elseif ($prenotazione->soggiorno === 'concluso')
-                                        <span class="badge bg-secondary mt-1">Soggiorno concluso</span>
-                                    @elseif ($prenotazione->soggiorno === 'in_arrivo')
-                                        <span class="badge bg-primary mt-1">In arrivo</span>
-                                    @endif
-                                </td>
-                                <td>{{ $prenotazione->guests }}</td>
-                                <td>
-                                    <span class="badge bg-{{ $badgeClass }}" title="Stato: {{ ucfirst($status) }}">
-                                        {{ ucfirst($status) }}
-                                    </span>
-                                </td>
-                                <td class="text-center">
-                                    <div class="d-flex flex-wrap justify-content-center gap-1">
-                                        @if ($status !== 'annullata')
-                                            @if ($prenotazione->soggiorno === 'concluso')
-                                                <span class="badge bg-secondary">Soggiorno concluso</span>
-                                            @else
-                                                @if ($status === 'in_attesa')
-                                                    <form
-                                                        action="{{ route('admin.prenotazioni.update', $prenotazione) }}"
-                                                        method="POST">
-                                                        @csrf @method('PATCH')
-                                                        <input type="hidden" name="action" value="conferma">
-                                                        <button class="btn btn-sm btn-success"
-                                                            aria-label="Conferma prenotazione">Conferma</button>
-                                                    </form>
-                                                @endif
+                    {{-- Info anagrafiche --}}
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="guest_first_name" class="form-label">{{ __('ui.first_name') }}</label>
+                            <input type="text" name="guest_first_name" id="guest_first_name" class="form-control"
+                                required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="guest_last_name" class="form-label">{{ __('ui.last_name') }}</label>
+                            <input type="text" name="guest_last_name" id="guest_last_name" class="form-control"
+                                required>
+                        </div>
+                    </div>
 
-                                                <a href="{{ route('admin.prenotazioni.edit', $prenotazione) }}"
-                                                    class="btn btn-sm btn-warning"
-                                                    aria-label="Modifica prenotazione">Modifica</a>
+                    <div class="mb-3">
+                        <label for="guest_email" class="form-label">{{ __('ui.email') }}</label>
+                        <input type="email" name="guest_email" id="guest_email" class="form-control" required>
+                    </div>
 
-                                                <form action="{{ route('admin.prenotazioni.update', $prenotazione) }}"
-                                                    method="POST"
-                                                    onsubmit="return confirm('Sei sicuro di voler annullare questa prenotazione?');">
-                                                    @csrf @method('PATCH')
-                                                    <input type="hidden" name="action" value="annulla">
-                                                    <button class="btn btn-sm btn-danger"
-                                                        aria-label="Annulla prenotazione">Annulla</button>
-                                                </form>
-                                            @endif
-                                        @else
-                                            @if (!$prenotazione->penale_addebitata && $prenotazione->stripe_customer_id && $prenotazione->stripe_payment_method)
-                                                <form action="{{ route('admin.penale.addebita', $prenotazione) }}"
-                                                    method="POST"
-                                                    onsubmit="return confirm('Vuoi davvero addebitare una penale a questa prenotazione annullata?');">
-                                                    @csrf
-                                                    <div class="d-flex flex-column align-items-center">
-                                                        <select name="guest_address_country" id="guest_address_country"
-                                                            class="form-select" required>
-                                                            <option value="">{{ __('ui.select_country') }}
-                                                            </option>
-                                                            <option value="AR">Argentina</option>
-                                                            <option value="AU">Australia</option>
-                                                            <option value="AT">Österreich (Austria)</option>
-                                                            <option value="BE">Belgique / België (Belgio)</option>
-                                                            <option value="BR">Brasil (Brasile)</option>
-                                                            <option value="CA">Canada</option>
-                                                            <option value="CN">中国 (Cina)</option>
-                                                            <option value="CO">Colombia</option>
-                                                            <option value="CZ">Česká republika (Repubblica Ceca)
-                                                            </option>
-                                                            <option value="DE">Deutschland (Germania)</option>
-                                                            <option value="DK">Danmark (Danimarca)</option>
-                                                            <option value="ES">España (Spagna)</option>
-                                                            <option value="FI">Suomi (Finlandia)</option>
-                                                            <option value="FR">France (Francia)</option>
-                                                            <option value="GB">United Kingdom (Regno Unito)</option>
-                                                            <option value="GR">Ελλάδα (Grecia)</option>
-                                                            <option value="HU">Magyarország (Ungheria)</option>
-                                                            <option value="IE">Éire (Irlanda)</option>
-                                                            <option value="IL">ישראל (Israele)</option>
-                                                            <option value="IN">भारत (India)</option>
-                                                            <option value="IT">Italia</option>
-                                                            <option value="JP">日本 (Giappone)</option>
-                                                            <option value="KR">대한민국 (Corea del Sud)</option>
-                                                            <option value="MX">México</option>
-                                                            <option value="NL">Nederland (Paesi Bassi)</option>
-                                                            <option value="NO">Norge (Norvegia)</option>
-                                                            <option value="NZ">New Zealand</option>
-                                                            <option value="PL">Polska (Polonia)</option>
-                                                            <option value="PT">Portugal (Portogallo)</option>
-                                                            <option value="RO">România</option>
-                                                            <option value="RU">Россия (Russia)</option>
-                                                            <option value="SE">Sverige (Svezia)</option>
-                                                            <option value="SG">Singapore</option>
-                                                            <option value="SK">Slovensko (Slovacchia)</option>
-                                                            <option value="TH">ประเทศไทย (Thailandia)</option>
-                                                            <option value="TR">Türkiye (Turchia)</option>
-                                                            <option value="UA">Україна (Ucraina)</option>
-                                                            <option value="US">United States (Stati Uniti)</option>
-                                                            <option value="ZA">South Africa (Sudafrica)</option>
-                                                        </select>
-                                                        <button class="btn btn-sm btn-outline-dark"
-                                                            aria-label="Addebita penale">Addebita penale</button>
-                                                    </div>
-                                                </form>
-                                            @elseif (!$prenotazione->stripe_customer_id || !$prenotazione->stripe_payment_method)
-                                                <span class="badge bg-warning text-dark">Carta non disponibile</span>
-                                            @else
-                                                <span class="badge bg-dark">Penale applicata</span>
-                                            @endif
-                                        @endif
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                    {{-- Indirizzo --}}
+                    <div class="mb-3">
+                        <label for="guest_address_street" class="form-label">{{ __('ui.street') }}</label>
+                        <input type="text" name="guest_address_street" id="guest_address_street" class="form-control"
+                            required>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="guest_address_city" class="form-label">{{ __('ui.city') }}</label>
+                            <input type="text" name="guest_address_city" id="guest_address_city" class="form-control"
+                                required>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="guest_address_zip" class="form-label">{{ __('ui.zip') }}</label>
+                            <input type="text" name="guest_address_zip" id="guest_address_zip" class="form-control"
+                                required>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="guest_address_country" class="form-label">{{ __('ui.country') }}</label>
+                            <select name="guest_address_country" id="guest_address_country" class="form-select"
+                                required>
+                                <option value="">{{ __('ui.select_country') }}
+                                </option>
+                                <option value="AR">Argentina</option>
+                                <option value="AU">Australia</option>
+                                <option value="AT">Österreich (Austria)</option>
+                                <option value="BE">Belgique / België (Belgio)</option>
+                                <option value="BR">Brasil (Brasile)</option>
+                                <option value="CA">Canada</option>
+                                <option value="CN">中国 (Cina)</option>
+                                <option value="CO">Colombia</option>
+                                <option value="CZ">Česká republika (Repubblica Ceca)
+                                </option>
+                                <option value="DE">Deutschland (Germania)</option>
+                                <option value="DK">Danmark (Danimarca)</option>
+                                <option value="ES">España (Spagna)</option>
+                                <option value="FI">Suomi (Finlandia)</option>
+                                <option value="FR">France (Francia)</option>
+                                <option value="GB">United Kingdom (Regno Unito)</option>
+                                <option value="GR">Ελλάδα (Grecia)</option>
+                                <option value="HU">Magyarország (Ungheria)</option>
+                                <option value="IE">Éire (Irlanda)</option>
+                                <option value="IL">ישראל (Israele)</option>
+                                <option value="IN">भारत (India)</option>
+                                <option value="IT">Italia</option>
+                                <option value="JP">日本 (Giappone)</option>
+                                <option value="KR">대한민국 (Corea del Sud)</option>
+                                <option value="MX">México</option>
+                                <option value="NL">Nederland (Paesi Bassi)</option>
+                                <option value="NO">Norge (Norvegia)</option>
+                                <option value="NZ">New Zealand</option>
+                                <option value="PL">Polska (Polonia)</option>
+                                <option value="PT">Portugal (Portogallo)</option>
+                                <option value="RO">România</option>
+                                <option value="RU">Россия (Russia)</option>
+                                <option value="SE">Sverige (Svezia)</option>
+                                <option value="SG">Singapore</option>
+                                <option value="SK">Slovensko (Slovacchia)</option>
+                                <option value="TH">ประเทศไทย (Thailandia)</option>
+                                <option value="TR">Türkiye (Turchia)</option>
+                                <option value="UA">Україна (Ucraina)</option>
+                                <option value="US">United States (Stati Uniti)</option>
+                                <option value="ZA">South Africa (Sudafrica)</option>
+                            </select>
+
+                        </div>
+                    </div>
+
+                    {{-- Camera e ospiti --}}
+                    <div class="mb-3">
+                        <label for="room_name" class="form-label">{{ __('ui.room') }}</label>
+                        <select name="room_name" id="room_name" class="form-select" required>
+                            <option value="Green Room"
+                                {{ old('room_name', $selectedRoom ?? '') == 'Green Room' ? 'selected' : '' }}>
+                                {{ __('ui.green_room') }}</option>
+                            <option value="Pink Room"
+                                {{ old('room_name', $selectedRoom ?? '') == 'Pink Room' ? 'selected' : '' }}>
+                                {{ __('ui.pink_room') }}
+                            </option>
+                            <option value="Grey Room"
+                                {{ in_array(old('room_name', $selectedRoom ?? ''), ['Grey Room', 'Gray Room']) ? 'selected' : '' }}>
+                                {{ __('ui.grey_room') }}
+                            </option>
+
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="guests" class="form-label">{{ __('ui.guests') }}</label>
+                        <select name="guests" id="guests" class="form-select" required>
+                            <option value="">Seleziona</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div>
+
+                    {{-- Date --}}
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="check_in" class="form-label">{{ __('ui.checkin') }}</label>
+                            <input type="text" name="check_in" id="check_in" class="form-control" required
+                                disabled>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="check_out" class="form-label">{{ __('ui.checkout') }}</label>
+                            <input type="text" name="check_out" id="check_out" class="form-control" required
+                                disabled>
+                        </div>
+                    </div>
+
+                    {{-- Dati Carta --}}
+                    <div class="mb-3">
+                        <label for="card_holder_name" class="form-label">{{ __('ui.card_holder') }}</label>
+                        <input type="text" id="card_holder_name" class="form-control"
+                            placeholder="{{ __('ui.card_holder_placeholder') }}">
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="card-element" class="form-label">{{ __('ui.card_data') }}</label>
+                        <div id="card-element" class="form-control p-3 rounded" style="height:auto;"></div>
+                        <div id="card-errors" class="text-danger mt-2"></div>
+                    </div>
+
+                    {{-- Prezzo --}}
+                    <div class="mb-3">
+                        <label class="form-label">{{ __('ui.total_price') }}</label>
+                        <div id="price_display" class="fs-5 fw-semibold">
+                            {{ __('ui.total') }}: <span class="text-gold">—</span>
+                        </div>
+                    </div>
+
+                    {{-- nota per letto standard --}}
+                    <div class="alert alert-warning my-4" role="alert">
+                        <strong>{{ __('ui.important_note') }}</strong><br>
+                        {{ __('ui.beds_notice') }}
+                    </div>
+
+
+                    {{-- Condizioni di prenotazione --}}
+                    <div class="mt-5 p-4 border rounded bg-light mb-3">
+                        <h5 class="text-gold d-flex align-items-center">
+                            {{ __('ui.booking_conditions') }}
+                            <i class="bi bi-info-circle ms-2" title="{{ __('ui.read_full_terms_tooltip') }}"></i>
+                        </h5>
+                        <ul class="text-muted mb-2">
+                            <li>{{ __('ui.pay_on_arrival') }}</li>
+                            <li>{{ __('ui.tourist_tax') }}</li>
+                            <li>{{ __('ui.cancel_5_days') }}</li>
+                            <li>{{ __('ui.no_show') }}</li>
+                            <li>{{ __('ui.checkin_time') }}</li>
+                            <li>{{ __('ui.privacy_note') }}</li>
+                        </ul>
+                        <small>
+                            <a href="{{ route('termini') }}" target="_blank"
+                                class="text-gold text-decoration-underline">
+                                {{ __('ui.read_full_terms') }}
+                            </a>
+                        </small>
+                    </div>
+
+
+                    {{-- Termini --}}
+                    <div class="form-check mb-4">
+                        <input class="form-check-input" type="checkbox" id="accetta_condizioni"
+                            name="accetta_condizioni" value="1" required>
+                        <label class="form-check-label" for="accetta_condizioni">
+                            {{ __('ui.terms') }}
+                            <a href="{{ route('termini') }}" target="_blank"
+                                class="text-gold text-decoration-underline">{{ __('ui.terms_link') }}</a>
+                            {{ __('ui.terms_note') }}
+                        </label>
+                    </div>
+
+                    <input type="hidden" name="payment_method" id="payment_method">
+                    <button type="submit"
+                        class="btn btn-gold w-100 rounded-pill">{{ __('ui.confirm_booking') }}</button>
+                </form>
+
+                {{-- Overlay di caricamento --}}
+                <div id="loading-overlay"
+                    class="d-none position-fixed top-0 start-0 w-100 h-100 bg-white bg-opacity-75 z-3 d-flex justify-content-center align-items-center">
+                    <div class="text-center">
+                        <div class="spinner-border text-gold mb-3" style="width: 3rem; height: 3rem;" role="status">
+                        </div>
+                        <p class="text-muted">{{ __('ui.processing') }}</p>
+                    </div>
+                </div>
+
             </div>
-
-            {{-- Paginazione --}}
-            @if ($prenotazioni->hasPages())
-                <nav class="mt-5 d-flex justify-content-center" aria-label="Navigazione paginazione prenotazioni">
-                    <ul class="pagination pagination-sm">
-                        {{-- Link pagina precedente --}}
-                        @if ($prenotazioni->onFirstPage())
-                            <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
-                        @else
-                            <li class="page-item">
-                                <a class="page-link text-gold" href="{{ $prenotazioni->previousPageUrl() }}"
-                                    rel="prev" aria-label="Pagina precedente">&laquo;</a>
-                            </li>
-                        @endif
-
-                        {{-- Numeri di pagina --}}
-                        @foreach ($prenotazioni->getUrlRange(1, $prenotazioni->lastPage()) as $page => $url)
-                            @if ($page == $prenotazioni->currentPage())
-                                <li class="page-item active" aria-current="page">
-                                    <span class="page-link bg-gold border-gold text-white">{{ $page }}</span>
-                                </li>
-                            @else
-                                <li class="page-item">
-                                    <a class="page-link text-gold"
-                                        href="{{ $url }}">{{ $page }}</a>
-                                </li>
-                            @endif
-                        @endforeach
-
-                        {{-- Link pagina successiva --}}
-                        @if ($prenotazioni->hasMorePages())
-                            <li class="page-item">
-                                <a class="page-link text-gold" href="{{ $prenotazioni->nextPageUrl() }}"
-                                    rel="next" aria-label="Pagina successiva">&raquo;</a>
-                            </li>
-                        @else
-                            <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
-                        @endif
-                    </ul>
-                </nav>
-            @endif
-        @endif
+        </div>
     </div>
+
+    {{-- Script Stripe --}}
+    @vite(['resources/js/booking.js'])
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        const stripe = Stripe("{{ config('services.stripe.key') }}");
+        const elements = stripe.elements();
+        const card = elements.create('card');
+        card.mount('#card-element');
+
+        card.on('change', function(event) {
+            document.getElementById('card-errors').textContent = event.error ? event.error.message : '';
+        });
+
+        const form = document.getElementById('booking-form');
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            document.getElementById('loading-overlay').classList.remove('d-none');
+
+            const cardHolderName = document.getElementById('card_holder_name').value.trim() ||
+                `${document.getElementById('guest_first_name').value} ${document.getElementById('guest_last_name').value}`;
+
+            const {
+                setupIntent,
+                error
+            } = await stripe.confirmCardSetup(
+                '{{ $intent->client_secret }}', {
+                    payment_method: {
+                        card: card,
+                        billing_details: {
+                            name: cardHolderName,
+                            email: document.getElementById('guest_email').value,
+                            address: {
+                                line1: document.getElementById('guest_address_street').value,
+                                city: document.getElementById('guest_address_city').value,
+                                postal_code: document.getElementById('guest_address_zip').value,
+                                country: document.getElementById('guest_address_country').value
+                                    .toUpperCase()
+                            }
+                        }
+                    }
+                }
+            );
+
+            if (error) {
+                document.getElementById('card-errors').textContent = error.message;
+                document.getElementById('loading-overlay').classList.add('d-none');
+            } else {
+                document.getElementById('payment_method').value = setupIntent.payment_method;
+                form.submit();
+            }
+        });
+    </script>
 </x-layout>

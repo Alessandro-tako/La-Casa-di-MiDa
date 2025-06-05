@@ -21,9 +21,23 @@
                 <h1 class="text-gold h3">{{ __('ui.pink_room') }}</h1>
                 <p class="text-muted">{{ __('ui.pink_room_full_desc') }}</p>
                 <ul class="list-unstyled text-muted">
-                    <li><i class="bi bi-person-fill me-2"></i>{{ __('ui.pink_room_guests') }}</li>
-                    <li><i class="bi bi-house-door-fill me-2"></i>{{ __('ui.pink_room_beds') }}</li>
-                    <li><i class="bi bi-wifi me-2"></i>{{ __('ui.pink_room_services') }}</li>
+                    <li><span class="me-2">•</span>{{ __('ui.pink_room_guests') }}</li>
+                    <li><span class="me-2">•</span>{{ __('ui.pink_room_beds') }}</li>
+                    {{-- servizi camera --}}
+                    <h2 class="h5 text-gold mt-4">{{ __('ui.services_available') }}</h2>
+                    <li><span class="me-2">•</span>{{ __('ui.service_wifi') }}</li>
+                    <li><span class="me-2">•</span>{{ __('ui.service_ac') }}</li>
+                    <li><span class="me-2">•</span>{{ __('ui.service_tv') }}</li>
+                    <li><span class="me-2">•</span>{{ __('ui.service_nonsmoking') }}</li>
+                    <li><span class="me-2">•</span>{{ __('ui.service_private_bathroom') }}</li>
+                    <li><span class="me-2">•</span>{{ __('ui.service_toiletries') }}</li>
+                    <li><span class="me-2">•</span>{{ __('ui.service_hairdryer') }}</li>
+                    <li><span class="me-2">•</span>{{ __('ui.service_towels') }}</li>
+                    <li><span class="me-2">•</span>{{ __('ui.service_bedding') }}</li>
+                    <li><span class="me-2">•</span>{{ __('ui.service_safe') }}</li>
+                    <li><span class="me-2">•</span>{{ __('ui.service_outlet') }}</li>
+                    <li><span class="me-2">•</span>{{ __('ui.service_rack') }}</li>
+                    <li><span class="me-2">•</span>{{ __('ui.service_desk') }}</li>
                 </ul>
 
                 <a href="{{ route('booking.create', ['camera' => 'Pink Room']) }}"
@@ -31,6 +45,7 @@
                     {{ __('ui.book_this_room') }}
                 </a>
             </div>
+
 
         </div>
     </section>

@@ -315,6 +315,15 @@ input.form-control::placeholder {
     height: 15px;
 }
 
+/* Per effetto barra rotonda (opzionale) */
+.fc-daygrid-event-dot {
+    display: none !important;
+}
+
+.fc-event {
+    border-radius: 999px !important;
+}
+
 /* Ottimizzazione per mobile */
 @media (max-width: 576px) {
     .fc .fc-daygrid-day-frame {

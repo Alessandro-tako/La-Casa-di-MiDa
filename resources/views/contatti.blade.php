@@ -40,14 +40,14 @@
                         <li class="mb-3">
                             <i class="bi bi-whatsapp me-2 text-gold"></i>
                             <strong>WhatsApp:</strong>
-                            <a href="https://wa.me/393000000000" target="_blank" class="text-decoration-none link-dark"
+                            <a href="https://wa.me/393488548971" target="_blank" class="text-decoration-none link-dark"
                                 rel="noopener noreferrer" itemprop="telephone">
-                                +39 300 000 0000
+                                +39 348 854 8971
                             </a>
                         </li>
                     </ul>
 
-                    <a href="#booking" class="btn btn-gold rounded-pill mt-3">{{ __('ui.book_now') }}</a>
+                    <a href="" class="btn btn-gold rounded-pill mt-3">{{ __('ui.book_now') }}</a>
                 </article>
             </div>
 

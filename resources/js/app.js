@@ -33,7 +33,7 @@ function determinareStagione(date) {
 
 const prezzi = {
     'Green Room': { bassa: 125, media: 160, alta: 185 },
-    'Gray Room': { bassa: 125, media: 160, alta: 185 },
+    'Grey Room': { bassa: 125, media: 160, alta: 185 },
     'Pink Room': { bassa: 115, media: 150, alta: 175 }
 };
 
@@ -85,7 +85,7 @@ function getDayPrice(room, date, guests = 2) {
     return base;
 }
 
-function loadFlatpickr(disabled = []) {
+function loadFlatpickr(disabledCheckin = [], disabledCheckout = []) {
     if (checkInCalendar) checkInCalendar.destroy();
     if (checkOutCalendar) checkOutCalendar.destroy();
 
@@ -95,7 +95,7 @@ function loadFlatpickr(disabled = []) {
     checkInCalendar = flatpickr("#check_in", {
         dateFormat: "d-m-Y",
         minDate: "today",
-        disable: disabled,
+        disable: disabledCheckin,
         onChange: function (selectedDates) {
             calculatePrice();
 
@@ -103,23 +103,23 @@ function loadFlatpickr(disabled = []) {
 
             checkOutCalendar.set("disable", [
                 function (date) {
-                    // Disabilita tutte le date prima del giorno successivo al check-in
                     const nextDay = new Date(checkInDate);
                     nextDay.setDate(nextDay.getDate() + 1);
                     return date < nextDay;
                 },
-                ...disabled.map(d => new Date(d))
+                function (date) {
+                    const formatted = flatpickr.formatDate(date, "Y-m-d");
+                    return disabledCheckout.includes(formatted);
+                }
             ]);
 
             checkOutCalendar.jumpToDate(checkInDate);
             checkOutCalendar.redraw();
         },
-        onDayCreate: function (dObj, dStr, fp, dayElem) {
+        onDayCreate: function (_, __, ___, dayElem) {
             const date = dayElem.dateObj;
             const formatted = flatpickr.formatDate(date, "Y-m-d");
-            const isDisabled = disabled.some(d => flatpickr.formatDate(new Date(d), "Y-m-d") === formatted);
-
-            if (isDisabled) {
+            if (disabledCheckin.includes(formatted)) {
                 dayElem.classList.add("flatpickr-disabled", "bg-dark", "text-white-50");
                 return;
             }
@@ -135,14 +135,16 @@ function loadFlatpickr(disabled = []) {
 
     checkOutCalendar = flatpickr("#check_out", {
         dateFormat: "d-m-Y",
-        minDate: "today", // Iniziale, poi modificata da sopra
-        disable: disabled, // Iniziale, poi modificata da sopra
+        minDate: "today",
+        disable: disabledCheckout,
         onChange: calculatePrice,
-        onDayCreate: function (dObj, dStr, fp, dayElem) {
+        onDayCreate: function (_, __, ___, dayElem) {
             const date = dayElem.dateObj;
             const formatted = flatpickr.formatDate(date, "Y-m-d");
 
-            const isDisabled = disabled.some(d => flatpickr.formatDate(new Date(d), "Y-m-d") === formatted);
+            if (disabledCheckout.includes(formatted)) {
+                dayElem.classList.add("flatpickr-disabled", "bg-dark", "text-white-50");
+            }
 
             const price = getDayPrice(room, date, guests);
             const priceElem = document.createElement("span");
@@ -151,23 +153,16 @@ function loadFlatpickr(disabled = []) {
             priceElem.innerText = `${price.toFixed(0)}€`;
             dayElem.appendChild(priceElem);
 
-            // evidenzia giorno di check-in (solo visivamente)
-            const checkInInput = document.getElementById("check_in");
-            const checkInDate = checkInInput._flatpickr?.selectedDates?.[0];
-            if (checkInDate) {
-                const checkInFormatted = flatpickr.formatDate(checkInDate, "Y-m-d");
-                if (formatted === checkInFormatted) {
-                    dayElem.classList.add("checkin-selected");
-                    dayElem.style.pointerEvents = "none"; // visibile ma non cliccabile
-                }
-            }
-
-            if (isDisabled) {
-                dayElem.classList.add("flatpickr-disabled", "bg-dark", "text-white-50");
+            // Evidenzia il giorno del check-in
+            const checkInDate = document.getElementById("check_in")._flatpickr?.selectedDates?.[0];
+            if (checkInDate && formatted === flatpickr.formatDate(checkInDate, "Y-m-d")) {
+                dayElem.classList.add("checkin-selected");
+                dayElem.style.pointerEvents = "none";
             }
         }
     });
 }
+
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -210,9 +205,10 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(res => res.json())
             .then(data => {
                 disabledDates = data;
-                loadFlatpickr(disabledDates);
+                loadFlatpickr(data.checkin, data.checkout);
                 calculatePrice();
             })
+
             .catch(() => {
                 priceDisplay.innerHTML = `<span class="text-danger">Errore nel caricamento delle date</span>`;
             });

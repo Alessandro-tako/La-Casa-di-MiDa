@@ -21,12 +21,28 @@
             <div class="col-md-5">
                 <h1 class="text-gold h3">{{ __('ui.green_room') }}</h1>
                 <p class="text-muted">{{ __('ui.green_room_full_desc') }}</p>
-                <ul class="list-unstyled text-muted">
-                    <li><i class="bi bi-person-fill me-2"></i>{{ __('ui.green_room_guests') }}</li>
-                    <li><i class="bi bi-house-door-fill me-2"></i>{{ __('ui.green_room_beds') }}</li>
-                    <li><i class="bi bi-wifi me-2"></i>{{ __('ui.green_room_services') }}</li>
-                </ul>
 
+                {{-- Servizi in camera --}}
+
+                <ul class="list-unstyled text-muted">
+                    <li><span class="me-2">•</span>{{ __('ui.grey_room_guests') }}</li>
+                    <li><span class="me-2">•</span>{{ __('ui.grey_room_beds') }}</li>
+                    {{-- servizi camera --}}
+                    <h2 class="h5 text-gold mt-4">{{ __('ui.services_available') }}</h2>
+                    <li><span class="me-2">•</span>{{ __('ui.service_wifi') }}</li>
+                    <li><span class="me-2">•</span>{{ __('ui.service_ac') }}</li>
+                    <li><span class="me-2">•</span>{{ __('ui.service_tv') }}</li>
+                    <li><span class="me-2">•</span>{{ __('ui.service_nonsmoking') }}</li>
+                    <li><span class="me-2">•</span>{{ __('ui.service_private_bathroom') }}</li>
+                    <li><span class="me-2">•</span>{{ __('ui.service_toiletries') }}</li>
+                    <li><span class="me-2">•</span>{{ __('ui.service_hairdryer') }}</li>
+                    <li><span class="me-2">•</span>{{ __('ui.service_towels') }}</li>
+                    <li><span class="me-2">•</span>{{ __('ui.service_bedding') }}</li>
+                    <li><span class="me-2">•</span>{{ __('ui.service_safe') }}</li>
+                    <li><span class="me-2">•</span>{{ __('ui.service_outlet') }}</li>
+                    <li><span class="me-2">•</span>{{ __('ui.service_rack') }}</li>
+                    <li><span class="me-2">•</span>{{ __('ui.service_desk') }}</li>
+                </ul>
                 <a href="{{ route('booking.create', ['camera' => 'Green Room']) }}"
                     class="btn btn-gold rounded-pill mt-3" title="{{ __('ui.book_this_room') }}">
                     {{ __('ui.book_this_room') }}

@@ -59,7 +59,7 @@ class BookingController extends Controller
             ->where('status', '!=', 'annullata')
             ->where(function ($query) use ($data) {
                 $query->where('check_in', '<', $data['check_out'])
-                      ->where('check_out', '>', $data['check_in']);
+                    ->where('check_out', '>', $data['check_in']);
             })
             ->exists();
 
@@ -149,22 +149,36 @@ class BookingController extends Controller
     }
 
     public function getBookedDates($room)
-    {
-        $bookings = Booking::where('room_name', $room)
-            ->where('status', '!=', 'annullata')
-            ->get(['check_in', 'check_out']);
+{
+    $bookings = Booking::where('room_name', $room)
+        ->where('status', '!=', 'annullata')
+        ->get(['check_in', 'check_out']);
 
-        $dates = [];
+    $checkinDisabled = [];
+    $checkoutDisabled = [];
 
-        foreach ($bookings as $booking) {
-            $current = Carbon::parse($booking->check_in);
-            $end = Carbon::parse($booking->check_out);
-            while ($current < $end) {
-                $dates[] = $current->format('Y-m-d');
-                $current->addDay();
+    foreach ($bookings as $booking) {
+        // Tutti i giorni dal check-in al giorno prima del check-out
+        $current = Carbon::parse($booking->check_in);
+        $end = Carbon::parse($booking->check_out);
+
+        while ($current < $end) {
+            $date = $current->format('Y-m-d');
+            $checkinDisabled[] = $date;
+
+            // Per il calendario di checkout, escludi il giorno del check-in
+            if ($current->gt(Carbon::parse($booking->check_in))) {
+                $checkoutDisabled[] = $date;
             }
-        }
 
-        return response()->json($dates);
+            $current->addDay();
+        }
     }
+
+    return response()->json([
+        'checkin' => array_values(array_unique($checkinDisabled)),
+        'checkout' => array_values(array_unique($checkoutDisabled)),
+    ]);
+}
+
 }

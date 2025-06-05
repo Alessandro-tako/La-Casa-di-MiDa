@@ -21,7 +21,7 @@ return [
     'our_rooms_subtitle' => 'Choisissez parmi trois environnements uniques, chacun avec un style exclusif et du confort.',
     'green_room_desc' => 'Élégance naturelle avec des détails raffinés inspirés de la nature.',
     'pink_room_desc' => 'Atmosphère romantique avec des tons doux et un confort moderne.',
-    'gray_room_desc' => 'Design moderne et sophistiqué, parfait pour un séjour relaxant.',
+    'grey_room_desc' => 'Design moderne et sophistiqué, parfait pour un séjour relaxant.',
     'discover_all_rooms' => 'Découvrir toutes les chambres',
 
     // Services
@@ -65,7 +65,7 @@ return [
     'high' => 'Haute',
 
     'green_room' => 'Chambre Verte',
-    'gray_room' => 'Chambre Grise',
+    'grey_room' => 'Chambre Grise',
     'pink_room' => 'Chambre Rose',
 
     'discounts_supplements' => 'Réductions et Suppléments',
@@ -211,8 +211,8 @@ return [
     'green_room_desc' => 'Élégante et inspirée de la nature, la Chambre Verte offre une disposition flexible des lits et un environnement relaxant, parfaite pour les familles ou petits groupes.',
     'pink_room' => 'Chambre Rose',
     'pink_room_desc' => 'Intime et raffinée, la Chambre Rose enveloppe les invités dans une atmosphère romantique et lumineuse, idéale pour les couples en quête de détente.',
-    'gray_room' => 'Chambre Grise',
-    'gray_room_desc' => 'Moderne et lumineuse, la Chambre Grise unit design et confort, avec des lits flexibles et un mur décoratif qui crée une atmosphère accueillante.',
+    'grey_room' => 'Chambre Grise',
+    'grey_room_desc' => 'Moderne et lumineuse, la Chambre Grise unit design et confort, avec des lits flexibles et un mur décoratif qui crée une atmosphère accueillante.',
     'learn_more' => 'En Savoir Plus',
 
     // Green room
@@ -274,6 +274,8 @@ return [
     'processing' => 'Nous traitons votre réservation, veuillez patienter...',
     'beds_notice' => 'Dans la Chambre Verte et la Chambre Grise, les lits sont configurés par défaut comme un lit double king-size. Si vous préférez des lits séparés ou avez des demandes particulières, veuillez nous contacter via le formulaire de contact. Nous ferons de notre mieux pour trouver la meilleure solution pour votre séjour.',
     'important_note' => 'Remarque importante :',
+    'read_full_terms' => 'Lire les conditions complètes',
+
 
     // Navbar
     'back_to_home' => 'Retour à l\'Accueil',

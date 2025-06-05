@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->string('guest_address_city');
             $table->string('guest_address_country');
             $table->string('guest_address_zip');
-            $table->string('room_name'); // Green Room, Pink Room, Gray Room
+            $table->string('room_name'); // Green Room, Pink Room, Grey Room
             $table->date('check_in');
             $table->date('check_out');
             $table->unsignedTinyInteger('guests');
