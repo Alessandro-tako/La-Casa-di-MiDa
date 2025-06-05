@@ -97,14 +97,17 @@
     <main class="py-4" role="main">
         {{ $slot }}
 
-        {{-- Pulsante WhatsApp Accessibile --}}
-        <div class="position-fixed bottom-0 end-0 m-3 z-3" aria-label="Contattaci su WhatsApp">
-            <a href="https://wa.me/393488548971" class="btn btn-success btn-lg rounded-circle shadow" target="_blank"
-                rel="noopener noreferrer" title="Contattaci su WhatsApp">
-                <i class="bi bi-whatsapp" aria-hidden="true"></i>
-                <span class="visually-hidden">Contattaci su WhatsApp</span>
-            </a>
-        </div>
+        @guest
+            {{-- Pulsante WhatsApp Accessibile (solo utenti non loggati) --}}
+            <div class="position-fixed bottom-0 end-0 m-3 z-3" aria-label="Contattaci su WhatsApp">
+                <a href="https://wa.me/393488548971" class="whatsapp-icon" target="_blank" rel="noopener noreferrer"
+                    title="Contattaci su WhatsApp">
+                    <i class="bi bi-whatsapp" aria-hidden="true"></i>
+                    <span class="visually-hidden">Contattaci su WhatsApp</span>
+                </a>
+            </div>
+        @endguest
+
     </main>
 
     {{-- FOOTER --}}

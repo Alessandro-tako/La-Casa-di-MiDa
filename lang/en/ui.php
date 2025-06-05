@@ -36,14 +36,16 @@ return [
     'terms_conditions' => 'Terms and Conditions',
     'general_conditions' => 'General Conditions',
     'general_conditions_list' => [
-        'Payment will be made on-site unless otherwise specified.',
-        'A <strong>credit card guarantee</strong> is required and may be used only in case of late cancellation or no-show.',
-        '<strong>€2 per night per person</strong> will be charged as city tax upon arrival.',
-        'In case of cancellation within 5 days of arrival, <strong>20%</strong> of the total will be charged.',
-        'In case of no-show (no cancellation), <strong>100%</strong> of the amount will be charged.',
+        'No advance payment is required to confirm the reservation.',
+        'You can cancel free of charge up to 10 days before the arrival date.',
+        'If you cancel within 10 days of arrival, <strong>20%</strong> of the total amount will be charged.',
+        'In case of no-show (without cancellation), <strong>100%</strong> of the total amount will be charged.',
+        'A <strong>credit card guarantee</strong> is required and will be used only in the above-mentioned cases.',
+        'A city tax of <strong>€2 per person per night</strong> will be charged upon arrival.',
         'Check-in from 2:00 PM to 10:00 PM, check-out by 10:00 AM.',
         'Personal data will be processed in accordance with privacy regulations.',
     ],
+
 
     // Pricing Policy
     'pricing_policy' => 'Pricing Policy',
@@ -263,17 +265,20 @@ return [
     'terms_link' => 'booking terms and conditions',
     'terms_note' => 'including cancellation policy and credit card usage.',
     'confirm_booking' => 'Confirm Booking',
-    'booking_conditions' => 'Booking Conditions',
-    'pay_on_arrival' => 'Payment will be made at the property unless otherwise specified.',
-    'tourist_tax' => 'A city tax of €2 per person per night will be collected at check-in.',
-    'cancel_5_days' => 'If cancelled within 5 days before arrival, 20% of the total will be charged.',
-    'no_show' => 'In case of no-show, 100% of the total will be charged.',
-    'checkin_time' => 'Check-in from 2:00 PM to 10:00 PM, check-out by 10:00 AM.',
-    'privacy_note' => 'Personal data will be handled in accordance with privacy regulations.',
     'processing' => 'We are processing your booking, please wait...',
-    'beds_notice' => 'In the Green Room and Gray Room, beds are configured by default as a king-size double bed. If you prefer separate beds or have special requests, please contact us through the contact form. We will do our best to find the best solution for your stay.',
+    'beds_notice' => 'In the Green Room and Grey Room, beds are configured by default as a king-size double bed. If you prefer separate beds or have special requests, please contact us through the contact form. We will do our best to find the best solution for your stay.',
     'important_note' => 'Important note:',
     'read_full_terms' => 'Read full terms',
+
+    // Booking Conditions
+    'booking_conditions' => 'Booking Conditions',
+    'pay_on_arrival' => 'No advance payment is required to confirm the reservation.',
+    'tourist_tax' => 'A city tax of €2 per person per night will be collected at check-in.',
+    'cancel_5_days' => 'You can cancel free of charge up to 10 days before arrival. If cancelled within 10 days before arrival, 20% of the total will be charged.',
+    'no_show' => 'In case of no-show (without cancellation), 100% of the total will be charged.',
+    'checkin_time' => 'Check-in from 2:00 PM to 10:00 PM, check-out by 10:00 AM.',
+    'privacy_note' => 'Personal data will be handled in accordance with privacy regulations.',
+
 
 
 

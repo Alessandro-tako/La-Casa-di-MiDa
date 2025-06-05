@@ -37,14 +37,16 @@ return [
     'terms_conditions' => 'Termini e Condizioni',
     'general_conditions' => 'Condizioni Generali',
     'general_conditions_list' => [
-        'Il pagamento verrà effettuato in loco salvo diversa specifica.',
-        'È richiesta una <strong>garanzia con carta di credito</strong> che potrà essere utilizzata solo in caso di cancellazione tardiva o mancato arrivo.',
-        'Verrà applicata la tassa di soggiorno di <strong>€2 a notte per persona</strong> all\'arrivo.',
-        'In caso di cancellazione entro 5 giorni dall\'arrivo, verrà addebitato il <strong>20%</strong> del totale.',
+        'La prenotazione non richiede alcun pagamento anticipato.',
+        'È possibile cancellare gratuitamente fino a 10 giorni prima della data di arrivo.',
+        'In caso di cancellazione nei 10 giorni precedenti l\'arrivo, verrà addebitato il <strong>20%</strong> del totale della prenotazione.',
         'In caso di mancato arrivo (senza cancellazione), verrà addebitato il <strong>100%</strong> dell\'importo.',
+        'È richiesta una <strong>carta di credito a garanzia</strong>, utilizzabile esclusivamente nei casi sopra indicati.',
+        'La tassa di soggiorno di <strong>€2 a notte per persona</strong> sarà applicata al momento dell\'arrivo.',
         'Check-in dalle 14:00 alle 22:00, check-out entro le 10:00.',
-        'I dati personali verranno trattati in conformità alle normative sulla privacy.',
+        'I dati personali verranno trattati in conformità alle normative vigenti sulla privacy.',
     ],
+
 
     // Pricing Policy
     'pricing_policy' => 'Politica dei Prezzi',
@@ -264,18 +266,17 @@ return [
     'terms_link' => 'termini e condizioni di prenotazione',
     'terms_note' => 'inclusa la politica di cancellazione e l\'utilizzo della carta di credito.',
     'confirm_booking' => 'Conferma Prenotazione',
-    'booking_conditions' => 'Condizioni di Prenotazione',
-    'pay_on_arrival' => 'Il pagamento verrà effettuato presso la struttura salvo diversa specifica.',
-    'tourist_tax' => 'Verrà riscossa una tassa di soggiorno di €2 per persona a notte al check-in.',
-    'cancel_5_days' => 'Se cancellata entro 5 giorni prima dell\'arrivo, verrà addebitato il 20% del totale.',
-    'no_show' => 'In caso di mancato arrivo, verrà addebitato il 100% del totale.',
-    'checkin_time' => 'Check-in dalle 14:00 alle 22:00, check-out entro le 10:00.',
-    'privacy_note' => 'I dati personali verranno trattati in conformità alle normative sulla privacy.',
     'processing' => 'Stiamo elaborando la tua prenotazione, attendi...',
-    'beds_notice' => 'Nella Green Room e nella Gray Room, i letti sono configurati di default come matrimoniale king-size. Se preferisci letti separati o hai richieste particolari, ti invitiamo a contattarci tramite il form contatti. Faremo il possibile per trovare la soluzione migliore per il tuo soggiorno.',
+    'beds_notice' => 'Nella Camera Verde e nella Camera Grigia, i letti sono configurati di default come matrimoniale king-size. Se preferisci letti separati o hai richieste particolari, ti invitiamo a contattarci tramite il form contatti. Faremo il possibile per trovare la soluzione migliore per il tuo soggiorno.',
     'important_note' => 'Nota importante:',
     'read_full_terms' => 'Leggi i termini completi',
-
+    'booking_conditions' => 'Condizioni di Prenotazione',
+    'pay_on_arrival' => 'La prenotazione non richiede alcun pagamento anticipato.',
+    'tourist_tax' => 'Verrà riscossa una tassa di soggiorno di €2 per persona a notte al check-in.',
+    'cancel_5_days' => 'È possibile cancellare gratuitamente fino a 10 giorni prima della data di arrivo. In caso di cancellazione entro i 10 giorni precedenti, verrà addebitato il 20% del totale.',
+    'no_show' => 'In caso di mancato arrivo (senza cancellazione), verrà addebitato il 100% dell\'importo.',
+    'checkin_time' => 'Check-in dalle 14:00 alle 22:00, check-out entro le 10:00.',
+    'privacy_note' => 'I dati personali verranno trattati in conformità alle normative sulla privacy.',
 
     // Navbar
     'back_to_home' => 'Torna alla Home',

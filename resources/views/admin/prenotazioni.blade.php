@@ -4,51 +4,38 @@
     <div class="container py-5">
         <h1 class="text-gold mb-4 text-center">Gestione Prenotazioni</h1>
 
-        {{-- Messaggio successo --}}
         @if (session('success'))
             <div class="alert alert-success" role="alert">{{ session('success') }}</div>
         @endif
 
-        {{-- Ricerca --}}
-        <form method="GET" action="{{ route('admin.prenotazioni') }}" class="mb-4 d-flex justify-content-center"
-            role="search">
-            <label for="search" class="visually-hidden">Cerca prenotazione</label>
-            <input type="text" name="search" id="search" class="form-control w-50 me-2"
-                placeholder="Cerca per nome, email, camera..." value="{{ request('search') }}">
-            <button class="btn btn-outline-dark" type="submit">Cerca</button>
+        <form method="GET" action="{{ route('admin.prenotazioni') }}" class="mb-4" role="search">
+            <div class="row g-2 justify-content-center">
+                <div class="col-12 col-md-8 col-lg-6">
+                    <label for="search" class="visually-hidden">Cerca prenotazione</label>
+                    <div class="input-group">
+                        <input type="text" name="search" id="search" class="form-control"
+                            placeholder="Cerca per nome, email, camera..." value="{{ request('search') }}">
+                        <button class="btn btn-gold" type="submit">
+                            <i class="fas fa-search me-1"></i>
+                            <span class="d-md-inline">Cerca</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </form>
 
         @if ($prenotazioni->isEmpty())
             <p class="text-center">Nessuna prenotazione disponibile al momento.</p>
         @else
-            <div class="table-responsive">
+            <!-- Vista Desktop/Tablet -->
+            <div class="table-responsive d-none d-lg-block">
                 <table class="table table-hover align-middle" aria-describedby="Lista prenotazioni">
                     <thead class="table-light">
                         <tr>
-                            <th>
-                                <a
-                                    href="{{ route('admin.prenotazioni', array_merge(request()->only('search'), ['sort' => request('sort') === 'id_asc' ? 'id_desc' : 'id_asc'])) }}">
-                                    #
-                                    @if (request('sort') === 'id_asc')
-                                        ▲
-                                    @elseif (request('sort') === 'id_desc')
-                                        ▼
-                                    @endif
-                                </a>
-                            </th>
+                            <th>#</th>
                             <th>Cliente</th>
                             <th>Camera</th>
-                            <th>
-                                <a
-                                    href="{{ route('admin.prenotazioni', array_merge(request()->only('search'), ['sort' => request('sort') === 'checkin_asc' ? 'checkin_desc' : 'checkin_asc'])) }}">
-                                    Date
-                                    @if (request('sort') === 'checkin_asc')
-                                        ▲
-                                    @elseif (request('sort') === 'checkin_desc')
-                                        ▼
-                                    @endif
-                                </a>
-                            </th>
+                            <th>Date</th>
                             <th>Ospiti</th>
                             <th>Stato</th>
                             <th class="text-center">Azioni</th>
@@ -93,73 +80,261 @@
                                     </span>
                                 </td>
                                 <td class="text-center">
-                                    <div class="d-flex flex-wrap justify-content-center gap-1">
-                                        @if ($status !== 'annullata')
-                                            @if ($prenotazione->soggiorno === 'concluso')
-                                                <span class="badge bg-secondary">Soggiorno concluso</span>
-                                            @else
-                                                @if ($status === 'in_attesa')
-                                                    <form
-                                                        action="{{ route('admin.prenotazioni.update', $prenotazione) }}"
-                                                        method="POST">
-                                                        @csrf @method('PATCH')
-                                                        <input type="hidden" name="action" value="conferma">
-                                                        <button class="btn btn-sm btn-success"
-                                                            aria-label="Conferma prenotazione">Conferma</button>
-                                                    </form>
-                                                @endif
-
-                                                <a href="{{ route('admin.prenotazioni.edit', $prenotazione) }}"
-                                                    class="btn btn-sm btn-warning"
-                                                    aria-label="Modifica prenotazione">Modifica</a>
-
-                                                <form action="{{ route('admin.prenotazioni.update', $prenotazione) }}"
-                                                    method="POST"
-                                                    onsubmit="return confirm('Sei sicuro di voler annullare questa prenotazione?');">
-                                                    @csrf @method('PATCH')
-                                                    <input type="hidden" name="action" value="annulla">
-                                                    <button class="btn btn-sm btn-danger"
-                                                        aria-label="Annulla prenotazione">Annulla</button>
-                                                </form>
-                                            @endif
+                                    @if ($status !== 'annullata')
+                                        @if ($prenotazione->soggiorno === 'concluso')
+                                            <span class="badge bg-secondary">Soggiorno concluso</span>
                                         @else
-                                            @if (!$prenotazione->penale_addebitata && $prenotazione->stripe_customer_id && $prenotazione->stripe_payment_method)
-                                                <form action="{{ route('admin.penale.addebita', $prenotazione) }}"
-                                                    method="POST"
-                                                    onsubmit="return confirm('Vuoi davvero addebitare una penale a questa prenotazione annullata?');">
-                                                    @csrf
-                                                    <div class="d-flex flex-column align-items-center">
-                                                        <select name="penale_percentuale"
-                                                            class="form-select form-select-sm mb-1" required>
-                                                            <option disabled selected>Seleziona penale</option>
-                                                            <option value="0">Nessuna penale</option>
-                                                            <option value="20">Penale 20% (cancellazione tardiva)
-                                                            </option>
-                                                            <option value="100">Penale 100% (no-show)</option>
-                                                        </select>
-                                                        <button class="btn btn-sm btn-outline-dark"
-                                                            aria-label="Addebita penale">Addebita penale</button>
-                                                    </div>
-                                                </form>
-                                            @elseif (!$prenotazione->stripe_customer_id || !$prenotazione->stripe_payment_method)
-                                                <span class="badge bg-warning text-dark">Carta non disponibile</span>
-                                            @else
-                                                <span class="badge bg-dark">Penale applicata</span>
-                                            @endif
+                                            <div class="dropdown">
+                                                <button class="btn btn-sm btn-gold dropdown-toggle" type="button"
+                                                    data-bs-toggle="dropdown" aria-expanded="false"
+                                                    aria-label="Azioni per prenotazione {{ $prenotazione->id }}">
+                                                    Azioni
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    @if ($status === 'in_attesa')
+                                                        <li>
+                                                            <form
+                                                                action="{{ route('admin.prenotazioni.update', $prenotazione) }}"
+                                                                method="POST" class="d-inline">
+                                                                @csrf @method('PATCH')
+                                                                <input type="hidden" name="action" value="conferma">
+                                                                <button class="dropdown-item text-success"
+                                                                    type="submit">
+                                                                    <i class="fas fa-check me-2"></i>Conferma
+                                                                </button>
+                                                            </form>
+                                                        </li>
+                                                        <li>
+                                                            <hr class="dropdown-divider">
+                                                        </li>
+                                                    @endif
+                                                    <li>
+                                                        <a class="dropdown-item text-warning"
+                                                            href="{{ route('admin.prenotazioni.edit', $prenotazione) }}">
+                                                            <i class="fas fa-edit me-2"></i>Modifica
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <hr class="dropdown-divider">
+                                                    </li>
+                                                    <li>
+                                                        <form
+                                                            action="{{ route('admin.prenotazioni.update', $prenotazione) }}"
+                                                            method="POST" class="d-inline"
+                                                            onsubmit="return confirm('Sei sicuro di voler annullare questa prenotazione?');">
+                                                            @csrf @method('PATCH')
+                                                            <input type="hidden" name="action" value="annulla">
+                                                            <button class="dropdown-item text-danger" type="submit">
+                                                                <i class="fas fa-times me-2"></i>Annulla
+                                                            </button>
+                                                        </form>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         @endif
-                                    </div>
+                                    @else
+                                        @if (!$prenotazione->penale_addebitata && $prenotazione->stripe_customer_id && $prenotazione->stripe_payment_method)
+                                            <div class="dropdown">
+                                                <button class="btn btn-sm btn-outline-dark dropdown-toggle"
+                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                                                    aria-label="Gestisci penale per prenotazione {{ $prenotazione->id }}">
+                                                    Penale
+                                                </button>
+                                                <div class="dropdown-menu p-3" style="min-width: 250px;">
+                                                    <form action="{{ route('admin.penale.addebita', $prenotazione) }}"
+                                                        method="POST"
+                                                        onsubmit="return confirm('Vuoi davvero addebitare una penale a questa prenotazione annullata?');">
+                                                        @csrf
+                                                        <div class="mb-3">
+                                                            <label for="penale_{{ $prenotazione->id }}"
+                                                                class="form-label fw-bold">
+                                                                Seleziona penale:
+                                                            </label>
+                                                            <select name="penale_percentuale"
+                                                                id="penale_{{ $prenotazione->id }}"
+                                                                class="form-select form-select-sm" required>
+                                                                <option disabled selected>Seleziona penale</option>
+                                                                <option value="0">Nessuna penale</option>
+                                                                <option value="20">Penale 20% (cancellazione
+                                                                    tardiva)</option>
+                                                                <option value="100">Penale 100% (no-show)</option>
+                                                            </select>
+                                                        </div>
+                                                        <button class="btn btn-sm btn-outline-danger w-100"
+                                                            type="submit">
+                                                            <i class="fas fa-credit-card me-2"></i>Addebita penale
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        @elseif (!$prenotazione->stripe_customer_id || !$prenotazione->stripe_payment_method)
+                                            <span class="badge bg-warning text-dark">Carta non disponibile</span>
+                                        @else
+                                            <span class="badge bg-dark">Penale applicata</span>
+                                        @endif
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>
+            {{-- Vista Mobile (Cards) --}}
+            <div class="d-lg-none">
+                @foreach ($prenotazioni as $prenotazione)
+                    @php
+                        $checkin = \Carbon\Carbon::parse($prenotazione->check_in);
+                        $checkout = \Carbon\Carbon::parse($prenotazione->check_out);
+                        $status = $prenotazione->status;
+                        $badgeClass = match ($status) {
+                            'confermata' => 'success',
+                            'annullata' => 'danger',
+                            default => 'warning',
+                        };
+                    @endphp
+
+                    <div class="card mb-3 shadow-sm">
+                        <div class="card-header d-flex justify-content-between align-items-center bg-light">
+                            <h6 class="mb-0 fw-bold text-gold">Prenotazione #{{ $prenotazione->id }}</h6>
+                            <span class="badge bg-{{ $badgeClass }}">{{ ucfirst($status) }}</span>
+                        </div>
+                        <div class="card-body">
+                            {{-- Cliente --}}
+                            <div class="mb-2">
+                                <strong class="text-muted d-block small">CLIENTE</strong>
+                                {{ $prenotazione->guest_first_name }} {{ $prenotazione->guest_last_name }}<br>
+                                <small class="text-muted">{{ $prenotazione->guest_email }}</small>
+                            </div>
+
+                            {{-- Camera & Ospiti --}}
+                            <div class="mb-2">
+                                <strong class="text-muted d-block small">CAMERA</strong>
+                                {{ $prenotazione->room_name === 'Gray Room' ? 'Grey Room' : $prenotazione->room_name }}
+                                <br>
+                                <strong class="text-muted d-block small mt-2">OSPITI</strong>
+                                {{ $prenotazione->guests }}
+                            </div>
+
+                            {{-- Date --}}
+                            <div class="mb-2">
+                                <strong class="text-muted d-block small">PERIODO</strong>
+                                <span><strong>{{ $checkin->format('d/m/Y') }}</strong> →
+                                    <strong>{{ $checkout->format('d/m/Y') }}</strong></span><br>
+                                @if ($prenotazione->soggiorno === 'in_corso')
+                                    <span class="badge bg-info text-dark mt-1">Soggiorno in corso</span>
+                                @elseif ($prenotazione->soggiorno === 'concluso')
+                                    <span class="badge bg-secondary mt-1">Soggiorno concluso</span>
+                                @elseif ($prenotazione->soggiorno === 'in_arrivo')
+                                    <span class="badge bg-primary mt-1">In arrivo</span>
+                                @endif
+                            </div>
+
+                            {{-- Azioni --}}
+                            <div class="mt-3">
+                                @if ($status !== 'annullata')
+                                    @if ($prenotazione->soggiorno === 'concluso')
+                                        <span class="badge bg-secondary">Soggiorno concluso</span>
+                                    @else
+                                        <div class="dropdown">
+                                            <button class="btn btn-sm btn-gold dropdown-toggle w-100" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                                Azioni
+                                            </button>
+                                            <ul class="dropdown-menu w-100">
+                                                @if ($status === 'in_attesa')
+                                                    <li>
+                                                        <form
+                                                            action="{{ route('admin.prenotazioni.update', $prenotazione) }}"
+                                                            method="POST" class="d-inline">
+                                                            @csrf @method('PATCH')
+                                                            <input type="hidden" name="action" value="conferma">
+                                                            <button class="dropdown-item text-success" type="submit">
+                                                                <i class="fas fa-check me-2"></i>Conferma
+                                                            </button>
+                                                        </form>
+                                                    </li>
+                                                    <li>
+                                                        <hr class="dropdown-divider">
+                                                    </li>
+                                                @endif
+                                                <li>
+                                                    <a class="dropdown-item text-warning"
+                                                        href="{{ route('admin.prenotazioni.edit', $prenotazione) }}">
+                                                        <i class="fas fa-edit me-2"></i>Modifica
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <hr class="dropdown-divider">
+                                                </li>
+                                                <li>
+                                                    <form
+                                                        action="{{ route('admin.prenotazioni.update', $prenotazione) }}"
+                                                        method="POST" class="d-inline"
+                                                        onsubmit="return confirm('Sei sicuro di voler annullare questa prenotazione?');">
+                                                        @csrf @method('PATCH')
+                                                        <input type="hidden" name="action" value="annulla">
+                                                        <button class="dropdown-item text-danger" type="submit">
+                                                            <i class="fas fa-times me-2"></i>Annulla
+                                                        </button>
+                                                    </form>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    @endif
+                                @else
+                                    @if (!$prenotazione->penale_addebitata && $prenotazione->stripe_customer_id && $prenotazione->stripe_payment_method)
+                                        <div class="dropdown mt-3">
+                                            <button class="btn btn-sm btn-outline-dark dropdown-toggle w-100"
+                                                type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#penale-{{ $prenotazione->id }}"
+                                                aria-expanded="false">
+                                                Penale
+                                            </button>
+                                        </div>
+                                        <div class="collapse mt-2" id="penale-{{ $prenotazione->id }}">
+                                            <div class="card card-body bg-light">
+                                                <form action="{{ route('admin.penale.addebita', $prenotazione) }}"
+                                                    method="POST"
+                                                    onsubmit="return confirm('Vuoi davvero addebitare una penale a questa prenotazione annullata?');">
+                                                    @csrf
+                                                    <div class="mb-2">
+                                                        <label for="penale_mobile_{{ $prenotazione->id }}"
+                                                            class="form-label fw-bold small">
+                                                            Seleziona penale:
+                                                        </label>
+                                                        <select name="penale_percentuale"
+                                                            id="penale_mobile_{{ $prenotazione->id }}"
+                                                            class="form-select form-select-sm" required>
+                                                            <option disabled selected>Seleziona penale</option>
+                                                            <option value="0">Nessuna penale</option>
+                                                            <option value="20">Penale 20% (cancellazione tardiva)
+                                                            </option>
+                                                            <option value="100">Penale 100% (no-show)</option>
+                                                        </select>
+                                                    </div>
+                                                    <button class="btn btn-sm btn-outline-danger w-100"
+                                                        type="submit">
+                                                        <i class="fas fa-credit-card me-2"></i>Addebita penale
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    @elseif (!$prenotazione->stripe_customer_id || !$prenotazione->stripe_payment_method)
+                                        <span class="badge bg-warning text-dark mt-2">Carta non disponibile</span>
+                                    @else
+                                        <span class="badge bg-dark mt-2">Penale applicata</span>
+                                    @endif
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
 
             {{-- Paginazione --}}
             @if ($prenotazioni->hasPages())
                 <nav class="mt-5 d-flex justify-content-center" aria-label="Navigazione paginazione prenotazioni">
                     <ul class="pagination pagination-sm">
-                        {{-- Link pagina precedente --}}
                         @if ($prenotazioni->onFirstPage())
                             <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
                         @else
@@ -169,25 +344,21 @@
                             </li>
                         @endif
 
-                        {{-- Numeri di pagina --}}
                         @foreach ($prenotazioni->getUrlRange(1, $prenotazioni->lastPage()) as $page => $url)
                             @if ($page == $prenotazioni->currentPage())
                                 <li class="page-item active" aria-current="page">
                                     <span class="page-link bg-gold border-gold text-white">{{ $page }}</span>
                                 </li>
                             @else
-                                <li class="page-item">
-                                    <a class="page-link text-gold" href="{{ $url }}">{{ $page }}</a>
-                                </li>
+                                <li class="page-item"><a class="page-link text-gold"
+                                        href="{{ $url }}">{{ $page }}</a></li>
                             @endif
                         @endforeach
 
-                        {{-- Link pagina successiva --}}
                         @if ($prenotazioni->hasMorePages())
-                            <li class="page-item">
-                                <a class="page-link text-gold" href="{{ $prenotazioni->nextPageUrl() }}" rel="next"
-                                    aria-label="Pagina successiva">&raquo;</a>
-                            </li>
+                            <li class="page-item"><a class="page-link text-gold"
+                                    href="{{ $prenotazioni->nextPageUrl() }}" rel="next"
+                                    aria-label="Pagina successiva">&raquo;</a></li>
                         @else
                             <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
                         @endif

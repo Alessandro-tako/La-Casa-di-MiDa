@@ -37,14 +37,16 @@ return [
     'terms_conditions' => 'Geschäftsbedingungen',
     'general_conditions' => 'Allgemeine Bedingungen',
     'general_conditions_list' => [
-        'Die Zahlung erfolgt vor Ort, sofern nicht anders angegeben.',
-        'Eine <strong>Kreditkartengarantie</strong> ist erforderlich und kann nur bei später Stornierung oder Nichterscheinen verwendet werden.',
-        'Bei der Ankunft wird eine <strong>Kurtaxe von 2€ pro Nacht und Person</strong> erhoben.',
-        'Bei Stornierung innerhalb von 5 Tagen vor Anreise werden <strong>20%</strong> der Gesamtsumme berechnet.',
-        'Bei Nichterscheinen (ohne Stornierung) werden <strong>100%</strong> des Betrags berechnet.',
+        'Für die Reservierung ist keine Vorauszahlung erforderlich.',
+        'Eine kostenlose Stornierung ist bis 10 Tage vor dem Anreisedatum möglich.',
+        'Bei einer Stornierung innerhalb von 10 Tagen vor der Anreise werden <strong>20 %</strong> des Gesamtbetrags berechnet.',
+        'Bei Nichterscheinen (ohne Stornierung) werden <strong>100 %</strong> des Gesamtbetrags berechnet.',
+        'Eine <strong>Kreditkarte als Garantie</strong> ist erforderlich und wird nur in den oben genannten Fällen belastet.',
+        'Die Tourismusabgabe von <strong>2 € pro Person und Nacht</strong> ist bei Ankunft zu entrichten.',
         'Check-in von 14:00 bis 22:00 Uhr, Check-out bis 10:00 Uhr.',
-        'Personendaten werden gemäß den Datenschutzbestimmungen verarbeitet.',
+        'Personenbezogene Daten werden gemäß den geltenden Datenschutzbestimmungen verarbeitet.',
     ],
+
 
     // Pricing Policy
     'pricing_policy' => 'Preispolitik',
@@ -264,17 +266,19 @@ return [
     'terms_link' => 'Buchungsbedingungen',
     'terms_note' => 'einschließlich Stornierungsrichtlinie und Kreditkartennutzung.',
     'confirm_booking' => 'Buchung bestätigen',
-    'booking_conditions' => 'Buchungsbedingungen',
-    'pay_on_arrival' => 'Die Zahlung erfolgt in der Unterkunft, sofern nicht anders angegeben.',
-    'tourist_tax' => 'Eine Kurtaxe von 2€ pro Person und Nacht wird beim Check-in erhoben.',
-    'cancel_5_days' => 'Bei Stornierung innerhalb von 5 Tagen vor Anreise werden 20% der Gesamtsumme berechnet.',
-    'no_show' => 'Bei Nichterscheinen werden 100% der Gesamtsumme berechnet.',
-    'checkin_time' => 'Check-in von 14:00 bis 22:00 Uhr, Check-out bis 10:00 Uhr.',
-    'privacy_note' => 'Personendaten werden gemäß den Datenschutzbestimmungen behandelt.',
     'processing' => 'Wir bearbeiten Ihre Buchung, bitte warten...',
-    'beds_notice' => 'Im Grünen Zimmer und im Grauen Zimmer sind die Betten standardmäßig als Kingsize-Doppelbett konfiguriert. Wenn Sie separate Betten bevorzugen oder besondere Wünsche haben, kontaktieren Sie uns bitte über das Kontaktformular. Wir werden unser Bestes tun, um die beste Lösung für Ihren Aufenthalt zu finden.',
+    'beds_notice' => 'Im Grünen Zimmer und im Grauen Zimmer sind die Betten standardmäßig als Kingsize-Doppelbett konfiguriert. Wenn Sie getrennte Betten bevorzugen oder besondere Wünsche haben, kontaktieren Sie uns bitte über das Kontaktformular. Wir tun unser Bestes, um die passende Lösung für Ihren Aufenthalt zu finden.',
     'important_note' => 'Wichtiger Hinweis:',
     'read_full_terms' => 'Vollständige Bedingungen lesen',
+
+    // Booking Conditions
+    'booking_conditions' => 'Buchungsbedingungen',
+    'pay_on_arrival' => 'Für die Buchung ist keine Vorauszahlung erforderlich.',
+    'tourist_tax' => 'Eine Kurtaxe von 2 € pro Person und Nacht wird beim Check-in erhoben.',
+    'cancel_5_days' => 'Kostenlose Stornierung bis zu 10 Tage vor Anreise möglich. Bei Stornierung innerhalb der 10 Tage vor Ankunft werden 20 % des Gesamtbetrags berechnet.',
+    'no_show' => 'Bei Nichterscheinen (ohne Stornierung) werden 100 % des Gesamtbetrags berechnet.',
+    'checkin_time' => 'Check-in von 14:00 bis 22:00 Uhr, Check-out bis 10:00 Uhr.',
+    'privacy_note' => 'Personendaten werden gemäß den Datenschutzbestimmungen behandelt.',
 
 
     // Navbar

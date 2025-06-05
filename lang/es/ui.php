@@ -38,14 +38,16 @@ return [
     'terms_conditions' => 'Términos y Condiciones',
     'general_conditions' => 'Condiciones Generales',
     'general_conditions_list' => [
-        'El pago se efectuará en el establecimiento salvo especificación diferente.',
-        'Se requiere una <strong>garantía con tarjeta de crédito</strong> que podrá ser utilizada solo en caso de cancelación tardía o no presentación.',
-        'Se aplicará la tasa turística de <strong>€2 por noche por persona</strong> a la llegada.',
-        'En caso de cancelación dentro de 5 días antes de la llegada, se cobrará el <strong>20%</strong> del total.',
-        'En caso de no presentación (sin cancelación), se cobrará el <strong>100%</strong> del importe.',
+        'No se requiere pago por adelantado para confirmar la reserva.',
+        'Puede cancelar sin cargos hasta 10 días antes de la fecha de llegada.',
+        'En caso de cancelación dentro de los 10 días anteriores a la llegada, se cobrará el <strong>20%</strong> del importe total.',
+        'En caso de no presentarse (sin cancelación), se cobrará el <strong>100%</strong> del importe total.',
+        'Se requiere una <strong>tarjeta de crédito como garantía</strong>, que solo se utilizará en los casos mencionados anteriormente.',
+        'Se cobrará un impuesto turístico de <strong>2 € por persona y noche</strong> al momento de la llegada.',
         'Check-in de 14:00 a 22:00, check-out antes de las 10:00.',
-        'Los datos personales serán tratados conforme a las normativas de privacidad.',
+        'Los datos personales se tratarán de acuerdo con la normativa vigente sobre privacidad.',
     ],
+
 
     // Pricing Policy
     'pricing_policy' => 'Política de Precios',
@@ -264,19 +266,19 @@ return [
     'terms_link' => 'términos y condiciones de reserva',
     'terms_note' => 'incluyendo la política de cancelación y el uso de la tarjeta de crédito.',
     'confirm_booking' => 'Confirmar Reserva',
-    'booking_conditions' => 'Condiciones de Reserva',
-    'pay_on_arrival' => 'El pago se efectuará en el establecimiento salvo especificación diferente.',
-    'tourist_tax' => 'Se cobrará una tasa turística de €2 por persona por noche en el check-in.',
-    'cancel_5_days' => 'Si se cancela dentro de 5 días antes de la llegada, se cobrará el 20% del total.',
-    'no_show' => 'En caso de no presentación, se cobrará el 100% del total.',
-    'checkin_time' => 'Check-in de 14:00 a 22:00, check-out antes de las 10:00.',
-    'privacy_note' => 'Los datos personales serán tratados conforme a las normativas de privacidad.',
     'processing' => 'Estamos procesando tu reserva, espera...',
     'beds_notice' => 'En la Habitación Verde y la Habitación Gris, las camas están configuradas por defecto como una cama doble tamaño king. Si prefieres camas separadas o tienes solicitudes especiales, por favor contáctanos a través del formulario de contacto. Haremos todo lo posible para encontrar la mejor solución para tu estancia.',
     'important_note' => 'Nota importante:',
     'read_full_terms' => 'Leer los términos completos',
 
-
+    // Booking Conditions
+    'booking_conditions' => 'Condiciones de Reserva',
+    'pay_on_arrival' => 'No se requiere pago por adelantado para confirmar la reserva.',
+    'tourist_tax' => 'Se cobrará una tasa turística de 2 € por persona por noche en el check-in.',
+    'cancel_5_days' => 'La cancelación es gratuita hasta 10 días antes de la llegada. Si se cancela dentro de los 10 días, se cobrará el 20% del total.',
+    'no_show' => 'En caso de no presentación (sin cancelación), se cobrará el 100% del importe total.',
+    'checkin_time' => 'Check-in de 14:00 a 22:00, check-out antes de las 10:00.',
+    'privacy_note' => 'Los datos personales serán tratados conforme a las normativas de privacidad.',
 
     // Navbar
     'back_to_home' => 'Volver al Inicio',

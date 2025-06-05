@@ -349,3 +349,26 @@ input.form-control::placeholder {
     border-color: #bfa046 !important;
     color: #fff !important;
 }
+
+/* icona whatsapp */
+
+.whatsapp-icon {
+    font-size: 40px;
+    /* Imposta la dimensione dell'icona */
+    color: #25D366;
+    /* Colore di WhatsApp */
+    text-decoration: none;
+    /* Rimuovi la sottolineatura del link */
+    display: inline-block;
+    /* Permette di fare clic facilmente sull'icona */
+    transition: transform 0.3s;
+    /* Aggiunge un effetto di transizione al clic */
+    position: fixed;
+    bottom: 50px;
+    left: 50px;
+}
+
+.whatsapp-icon:hover {
+    transform: scale(1.1);
+    /* Effetto hover per ingrandire l'icona quando si passa sopra */
+}
