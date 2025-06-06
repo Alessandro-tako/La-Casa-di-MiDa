@@ -201,17 +201,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
         priceDisplay.innerHTML = `<span class="text-muted">Caricamento disponibilità...</span>`;
 
-        fetch(`/api/booked-dates/${room}`)
-            .then(res => res.json())
-            .then(data => {
-                disabledDates = data;
-                loadFlatpickr(data.checkin, data.checkout);
+        Promise.all([
+            fetch(`/api/booked-dates/${room}`).then(res => res.json()),
+            fetch(`/api/external-booked-dates/${room}`).then(res => res.json())
+        ])
+            .then(([internalDates, externalDates]) => {
+                const checkin = [...new Set([...internalDates.checkin, ...externalDates.checkin])];
+                const checkout = [...new Set([...internalDates.checkout, ...externalDates.checkout])];
+                disabledDates = { checkin, checkout };
+                loadFlatpickr(checkin, checkout);
                 calculatePrice();
             })
-
-            .catch(() => {
+            .catch((e) => {
+                console.error("Errore nel caricamento:", e);
                 priceDisplay.innerHTML = `<span class="text-danger">Errore nel caricamento delle date</span>`;
             });
+
     });
 
     checkInInput.addEventListener("change", calculatePrice);

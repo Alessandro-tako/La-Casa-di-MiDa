@@ -31,6 +31,12 @@ class Booking extends Model
         'status',
     ];
 
+    protected $casts = [
+        'check_in' => 'date',
+        'check_out' => 'date',
+    ];
+
+
     public function toSearchableArray()
     {
         return [

@@ -237,7 +237,7 @@
     </div>
 
     {{-- Script Stripe --}}
-    @vite(['resources/js/booking.js'])
+    {{-- @vite(['resources/js/booking.js']) --}}
     <script src="https://js.stripe.com/v3/"></script>
     <script>
         const stripe = Stripe("{{ config('services.stripe.key') }}");

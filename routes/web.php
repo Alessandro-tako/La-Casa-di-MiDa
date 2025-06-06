@@ -37,6 +37,8 @@ Route::post('/prenota', [BookingController::class, 'store'])->name('booking.stor
 
 // API per ottenere le date già prenotate
 Route::get('/api/booked-dates/{room}', [BookingController::class, 'getBookedDates']);
+Route::get('/api/external-booked-dates/{room}', [App\Http\Controllers\Api\ExternalBookingApiController::class, 'getExternalBookedDates']);
+
 
 // rotte delle lingue 
 
