@@ -1,6 +1,6 @@
 <x-layout>
     <!-- Hero -->
-    <header class="text-center py-5 bg-white">
+    <header class="text-center py-5 bg-white" data-aos="fade-down">
         <div class="container">
             <h1 class="display-4 text-gold">{{ __('ui.in_the_heart_of_rome') }}</h1>
             <p class="lead text-muted px-3">{{ __('ui.hero_subtitle') }}</p>
@@ -11,12 +11,12 @@
     </header>
 
     <!-- Sezione Camere -->
-    <section class="py-5 bg-white" aria-labelledby="roomsSection">
+    <section class="py-5 bg-white" aria-labelledby="roomsSection" data-aos="fade-up">
         <div class="container text-center">
             <h2 id="roomsSection" class="text-gold mb-4">{{ __('ui.our_rooms') }}</h2>
             <p class="text-muted mb-5">{{ __('ui.our_rooms_subtitle') }}</p>
             <div class="row row-cols-1 row-cols-md-3 g-4">
-                <div class="col">
+                <div class="col" data-aos="zoom-in">
                     <article class="card h-100 shadow border-0">
                         <img src="{{ asset('storage/images/green-room/green1.jpg') }}" class="card-img-top"
                             alt="Camera Green Room con arredi naturali a Roma">
@@ -26,7 +26,7 @@
                         </div>
                     </article>
                 </div>
-                <div class="col">
+                <div class="col" data-aos="zoom-in" data-aos-delay="100">
                     <article class="card h-100 shadow border-0">
                         <img src="{{ asset('storage/images/pink-room/pink1.jpg') }}" class="card-img-top"
                             alt="Camera Pink Room romantica e luminosa a Roma">
@@ -36,7 +36,7 @@
                         </div>
                     </article>
                 </div>
-                <div class="col">
+                <div class="col" data-aos="zoom-in" data-aos-delay="200">
                     <article class="card h-100 shadow border-0">
                         <img src="{{ asset('storage/images/grey-room/grey4.jpg') }}" class="card-img-top"
                             alt="Camera Grey Room moderna e accogliente a Roma">
@@ -54,13 +54,13 @@
     </section>
 
     <!-- Servizi -->
-    <section class="bg-light py-5 text-center" aria-labelledby="servicesSection">
+    <section class="bg-light py-5 text-center" aria-labelledby="servicesSection" data-aos="fade-up">
         <div class="container">
             <h2 id="servicesSection" class="text-gold mb-3">{{ __('ui.comfort_home_title') }}</h2>
             <p class="text-muted mb-5">{{ __('ui.comfort_home_desc') }}</p>
             <div class="row row-cols-2 row-cols-md-3 g-4">
                 @foreach ([['wifi-icon.png', 'wifi'], ['assistenza-icon.png', 'assistance'], ['caffe-icon.png', 'coffee'], ['pulizia-icon.png', 'cleaning'], ['trasferimenti-icon.png', 'transfers'], ['vasca-doccia-icon.png', 'private_bathroom']] as [$icon, $label])
-                    <div class="col">
+                    <div class="col" data-aos="flip-left">
                         <img src="{{ asset("storage/icons/$icon") }}" alt="{{ __('ui.' . $label) }}" width="64"
                             height="64" loading="lazy">
                         <p class="mt-2">{{ __('ui.' . $label) }}</p>
@@ -71,11 +71,11 @@
     </section>
 
     <!-- Cosa fare a Roma -->
-    <section class="container my-5" aria-labelledby="discoverRomeSection">
+    <section class="container my-5" aria-labelledby="discoverRomeSection" data-aos="fade-up">
         <div class="row justify-content-center text-center">
             <h2 id="discoverRomeSection" class="text-gold">{{ __('ui.discover_eternal_city') }}</h2>
             <p class="text-muted">{{ __('ui.rome_section_subtitle') }}</p>
-            <div class="col-md-10 col-lg-8 position-relative">
+            <div class="col-md-10 col-lg-8 position-relative" data-aos="zoom-in">
                 <a href="{{ route('cosaFare') }}" class="d-block text-decoration-none position-relative"
                     title="{{ __('ui.just_steps_from_center_title') }}">
                     <img src="{{ asset('storage/images/cosa-fare-roma.png') }}" alt="Roma storica vista panoramica"
@@ -94,4 +94,5 @@
             </div>
         </div>
     </section>
+
 </x-layout>

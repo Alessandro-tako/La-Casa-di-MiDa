@@ -28,6 +28,22 @@
     {{-- Canonical URL --}}
     <link rel="canonical" href="{{ url()->current() }}">
 
+    {{-- AOS (Animate On Scroll) --}}
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 1200, // più lento
+                easing: 'ease-in-out', // curva dolce
+                once: true, // anima una sola volta
+                offset: 80 // inizia quando l'elemento è più visibile
+            });
+        });
+    </script>
+
+
+
     {{-- Favicon --}}
     <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
 

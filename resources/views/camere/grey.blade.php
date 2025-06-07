@@ -3,7 +3,7 @@
         <div class="row align-items-start">
 
             {{-- Galleria immagini --}}
-            <div class="col-md-7 text-center">
+            <div class="col-md-7 text-center" data-aos="fade-right">
                 <figure class="mb-4">
                     <img id="mainImage" src="{{ asset('storage/images/grey-room/grey1.jpg') }}"
                         class="main-image rounded shadow img-fluid" alt="Panoramica della Grey Room">
@@ -18,12 +18,13 @@
             </div>
 
             {{-- Descrizione camera --}}
-            <div class="col-md-5">
+            <div class="col-md-5" data-aos="fade-left" data-aos-delay="150">
                 <h1 class="text-gold h3">{{ __('ui.grey_room') }}</h1>
                 <p class="text-muted">{{ __('ui.grey_room_full_desc') }}</p>
                 <ul class="list-unstyled text-muted">
                     <li><span class="me-2">•</span>{{ __('ui.grey_room_guests') }}</li>
                     <li><span class="me-2">•</span>{{ __('ui.grey_room_beds') }}</li>
+
                     {{-- servizi camera --}}
                     <h2 class="h5 text-gold mt-4">{{ __('ui.services_available') }}</h2>
                     <li><span class="me-2">•</span>{{ __('ui.service_wifi') }}</li>
@@ -47,8 +48,6 @@
                     {{ __('ui.book_this_room') }}
                 </a>
             </div>
-
-
         </div>
     </section>
 
@@ -62,6 +61,7 @@
                 thumbnails.forEach(thumb => {
                     thumb.addEventListener('click', () => {
                         mainImage.src = thumb.src;
+                        mainImage.alt = thumb.alt.replace('Miniatura', 'Vista');
                         thumbnails.forEach(t => t.classList.remove('active-thumb'));
                         thumb.classList.add('active-thumb');
                     });

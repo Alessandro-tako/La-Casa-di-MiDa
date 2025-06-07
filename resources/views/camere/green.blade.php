@@ -3,7 +3,7 @@
         <div class="row align-items-start">
 
             {{-- Galleria Immagini --}}
-            <div class="col-md-7 text-center">
+            <div class="col-md-7 text-center" data-aos="fade-right">
                 <figure class="mb-4">
                     <img id="mainImage" src="{{ asset('storage/images/green-room/green1.jpg') }}"
                         class="main-image rounded shadow img-fluid" alt="Vista principale della Green Room">
@@ -18,15 +18,15 @@
             </div>
 
             {{-- Descrizione camera --}}
-            <div class="col-md-5">
+            <div class="col-md-5" data-aos="fade-left" data-aos-delay="150">
                 <h1 class="text-gold h3">{{ __('ui.green_room') }}</h1>
                 <p class="text-muted">{{ __('ui.green_room_full_desc') }}</p>
 
                 {{-- Servizi in camera --}}
-
                 <ul class="list-unstyled text-muted">
                     <li><span class="me-2">•</span>{{ __('ui.grey_room_guests') }}</li>
                     <li><span class="me-2">•</span>{{ __('ui.grey_room_beds') }}</li>
+
                     {{-- servizi camera --}}
                     <h2 class="h5 text-gold mt-4">{{ __('ui.services_available') }}</h2>
                     <li><span class="me-2">•</span>{{ __('ui.service_wifi') }}</li>
@@ -48,7 +48,6 @@
                     {{ __('ui.book_this_room') }}
                 </a>
             </div>
-
         </div>
     </section>
 
