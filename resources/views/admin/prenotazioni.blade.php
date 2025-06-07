@@ -32,15 +32,53 @@
                 <table class="table table-hover align-middle" aria-describedby="Lista prenotazioni">
                     <thead class="table-light">
                         <tr>
-                            <th>#</th>
+                            {{-- Colonna ID con ordinamento --}}
+                            <th>
+                                @php
+                                    $sort = request('sort');
+                                    $dir = $sort === 'id_asc' ? 'id_desc' : 'id_asc';
+                                    $icon =
+                                        $sort === 'id_asc'
+                                            ? 'bi-caret-up-fill'
+                                            : ($sort === 'id_desc'
+                                                ? 'bi-caret-down-fill'
+                                                : null);
+                                @endphp
+                                <a href="{{ route('admin.prenotazioni', array_merge(request()->all(), ['sort' => $dir])) }}"
+                                    class="text-dark text-decoration-none">
+                                    #
+                                    @if ($icon)
+                                        <i class="bi {{ $icon }}"></i>
+                                    @endif
+                                </a>
+                            </th>
                             <th>Cliente</th>
                             <th>Camera</th>
-                            <th>Date</th>
+                            {{-- Colonna Date con ordinamento --}}
+                            <th>
+                                @php
+                                    $dir = $sort === 'checkin_asc' ? 'checkin_desc' : 'checkin_asc';
+                                    $icon =
+                                        $sort === 'checkin_asc'
+                                            ? 'bi-caret-up-fill'
+                                            : ($sort === 'checkin_desc'
+                                                ? 'bi-caret-down-fill'
+                                                : null);
+                                @endphp
+                                <a href="{{ route('admin.prenotazioni', array_merge(request()->all(), ['sort' => $dir])) }}"
+                                    class="text-dark text-decoration-none">
+                                    Date
+                                    @if ($icon)
+                                        <i class="bi {{ $icon }}"></i>
+                                    @endif
+                                </a>
+                            </th>
                             <th>Ospiti</th>
                             <th>Stato</th>
-                            <th class="text-center">Azioni</th>
+                            <th>Azioni</th>
                         </tr>
                     </thead>
+
                     <tbody>
                         @foreach ($prenotazioni as $prenotazione)
                             @php
@@ -181,6 +219,34 @@
             </div>
             {{-- Vista Mobile (Cards) --}}
             <div class="d-lg-none">
+                <div class="d-lg-none mb-3 text-center">
+                    <form method="GET" action="{{ route('admin.prenotazioni') }}">
+                        <select name="sort" class="form-select w-auto d-inline" onchange="this.form.submit()">
+                            <option value="">Ordina per...</option>
+                            <option value="id_asc" {{ request('sort') === 'id_asc' ? 'selected' : '' }}>ID crescente
+                            </option>
+                            <option value="id_desc" {{ request('sort') === 'id_desc' ? 'selected' : '' }}>ID
+                                decrescente</option>
+                            <option value="checkin_asc" {{ request('sort') === 'checkin_asc' ? 'selected' : '' }}>Data
+                                arrivo ↑</option>
+                            <option value="checkin_desc" {{ request('sort') === 'checkin_desc' ? 'selected' : '' }}>
+                                Data arrivo ↓</option>
+                            <option value="room_asc" {{ request('sort') === 'room_asc' ? 'selected' : '' }}>Camera A-Z
+                            </option>
+                            <option value="room_desc" {{ request('sort') === 'room_desc' ? 'selected' : '' }}>Camera
+                                Z-A</option>
+                            <option value="guests_asc" {{ request('sort') === 'guests_asc' ? 'selected' : '' }}>Ospiti
+                                ↑</option>
+                            <option value="guests_desc" {{ request('sort') === 'guests_desc' ? 'selected' : '' }}>
+                                Ospiti ↓</option>
+                            <option value="status_asc" {{ request('sort') === 'status_asc' ? 'selected' : '' }}>Stato
+                                A-Z</option>
+                            <option value="status_desc" {{ request('sort') === 'status_desc' ? 'selected' : '' }}>
+                                Stato Z-A</option>
+                        </select>
+                    </form>
+                </div>
+
                 @foreach ($prenotazioni as $prenotazione)
                     @php
                         $checkin = \Carbon\Carbon::parse($prenotazione->check_in);

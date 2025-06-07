@@ -93,20 +93,39 @@ class AdminController extends Controller
 
         switch ($request->input('sort')) {
             case 'id_asc':
-                $query = $query->orderBy('id', 'asc');
+                $query->orderBy('id', 'asc');
                 break;
             case 'id_desc':
-                $query = $query->orderBy('id', 'desc');
+                $query->orderBy('id', 'desc');
                 break;
             case 'checkin_asc':
-                $query = $query->orderBy('check_in', 'asc');
+                $query->orderBy('check_in', 'asc');
                 break;
             case 'checkin_desc':
-                $query = $query->orderBy('check_in', 'desc');
+                $query->orderBy('check_in', 'desc');
+                break;
+            case 'room_asc':
+                $query->orderBy('room_name', 'asc');
+                break;
+            case 'room_desc':
+                $query->orderBy('room_name', 'desc');
+                break;
+            case 'guests_asc':
+                $query->orderBy('guests', 'asc');
+                break;
+            case 'guests_desc':
+                $query->orderBy('guests', 'desc');
+                break;
+            case 'status_asc':
+                $query->orderBy('status', 'asc');
+                break;
+            case 'status_desc':
+                $query->orderBy('status', 'desc');
                 break;
             default:
-                $query = $query->latest();
+                $query->latest();
         }
+
 
         $prenotazioni = $query->paginate(10);
 
@@ -141,6 +160,7 @@ class AdminController extends Controller
             $prenotazione->status = 'confermata';
             $prenotazione->save();
 
+            app()->setLocale($prenotazione->locale);
             Mail::to($prenotazione->guest_email)->send(new BookingConfirmed($prenotazione));
 
             return redirect()->back()->with('success', 'Prenotazione confermata con successo.');
@@ -150,6 +170,7 @@ class AdminController extends Controller
             $prenotazione->status = 'annullata';
             $prenotazione->save();
 
+            app()->setLocale($prenotazione->locale);
             Mail::to($prenotazione->guest_email)->send(new BookingCancelled($prenotazione));
 
             return redirect()->back()->with('success', 'Prenotazione annullata.');
@@ -257,6 +278,7 @@ class AdminController extends Controller
             'price' => round($totale, 2),
         ]);
 
+        app()->setLocale($prenotazione->locale);
         Mail::to($prenotazione->guest_email)->send(new BookingUpdated($prenotazione));
 
         return redirect()->route('admin.prenotazioni')->with('success', 'Prenotazione aggiornata con successo.');

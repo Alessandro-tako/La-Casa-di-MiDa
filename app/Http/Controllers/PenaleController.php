@@ -56,9 +56,15 @@ class PenaleController extends Controller
                 'penale_ricevuta_url' => $intent->charges->data[0]->receipt_url ?? null,
             ]);
 
-            Mail::to($prenotazione->guest_email)->send(
-                new PenaleApplicata($prenotazione, $percentuale, $importo / 100)
-            );
+            try {
+                app()->setLocale($prenotazione->locale);
+                Mail::to($prenotazione->guest_email)->send(
+                    new PenaleApplicata($prenotazione, $percentuale, $importo / 100)
+                );
+            } catch (\Throwable $mailError) {
+                Log::warning('Mail penale non inviata: ' . $mailError->getMessage());
+            }
+
 
             Log::info('Penale addebitata correttamente', [
                 'prenotazione_id' => $prenotazione->id,

@@ -45,8 +45,10 @@ class BookingController extends Controller
             'guests'                 => 'required|integer|min:1|max:3',
             'accetta_condizioni'     => 'accepted',
             'payment_method'         => 'required|string',
+
         ]);
 
+        $data['locale'] = app()->getLocale();
         $data['check_in'] = Carbon::createFromFormat('d-m-Y', $data['check_in'])->format('Y-m-d');
         $data['check_out'] = Carbon::createFromFormat('d-m-Y', $data['check_out'])->format('Y-m-d');
 
@@ -138,6 +140,8 @@ class BookingController extends Controller
         $data['status'] = 'in_attesa';
 
         $booking = Booking::create($data);
+
+        app()->setLocale($booking->locale);
 
         // Email cliente
         Mail::to($booking->guest_email)->send(new BookingConfirmationMail($booking));

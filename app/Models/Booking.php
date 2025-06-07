@@ -29,6 +29,7 @@ class Booking extends Model
         'stripe_payment_method',
         'stripe_customer_id',
         'status',
+        'locale',
     ];
 
     protected $casts = [

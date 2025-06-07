@@ -6,6 +6,7 @@ use App\Models\Booking;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\App;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 
@@ -18,12 +19,15 @@ class BookingConfirmed extends Mailable
     public function __construct(Booking $booking)
     {
         $this->booking = $booking;
+
+        // Imposta la lingua della mail in base alla prenotazione
+        App::setLocale($booking->locale ?? 'it');
     }
 
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Prenotazione Confermata - La Casa di MiDa',
+            subject: __('ui.subject_confirmed') // Tradotto dinamicamente
         );
     }
 
