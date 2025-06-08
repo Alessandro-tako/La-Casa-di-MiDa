@@ -191,7 +191,7 @@
                         <ul class="text-muted mb-2">
                             <li>{{ __('ui.pay_on_arrival') }}</li>
                             <li>{{ __('ui.tourist_tax') }}</li>
-                            <li>{{ __('ui.cancel_5_days') }}</li>
+                            <li>{{ __('ui.cancel_7_days') }}</li>
                             <li>{{ __('ui.no_show') }}</li>
                             <li>{{ __('ui.checkin_time') }}</li>
                             <li>{{ __('ui.privacy_note') }}</li>
@@ -210,7 +210,7 @@
                         <input class="form-check-input" type="checkbox" id="accetta_condizioni"
                             name="accetta_condizioni" value="1" required>
                         <label class="form-check-label" for="accetta_condizioni">
-                            {{ __('ui.terms') }}
+                            {{ __('ui.terms_accepted') }}
                             <a href="{{ route('termini') }}" target="_blank"
                                 class="text-gold text-decoration-underline">{{ __('ui.terms_link') }}</a>
                             {{ __('ui.terms_note') }}

@@ -26,6 +26,7 @@ class Booking extends Model
         'payment_method',
         'penale_addebitata',
         'penale_ricevuta_url',
+        'penale_pdf_path',
         'stripe_payment_method',
         'stripe_customer_id',
         'status',

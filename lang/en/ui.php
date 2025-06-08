@@ -37,8 +37,8 @@ return [
     'general_conditions' => 'General Conditions',
     'general_conditions_list' => [
         'No advance payment is required to confirm the reservation.',
-        'You can cancel free of charge up to 10 days before the arrival date.',
-        'If you cancel within 10 days of arrival, <strong>20%</strong> of the total amount will be charged.',
+        'You can cancel free of charge up to 7 days before the arrival date.',
+        'If you cancel within 7 days of arrival, <strong>50%</strong> of the total amount will be charged.',
         'In case of no-show (without cancellation), <strong>100%</strong> of the total amount will be charged.',
         'A <strong>credit card guarantee</strong> is required and will be used only in the above-mentioned cases.',
         'A city tax of <strong>€2 per person per night</strong> will be charged upon arrival.',
@@ -261,7 +261,7 @@ return [
     'card_note' => 'Your card will not be charged now. In case of no-show or late cancellation, penalties will apply.',
     'total_price' => 'Total Price',
     'total' => 'Total',
-    'terms' => 'I have read and accept the',
+    'terms_accepted' => 'I have read and accept the',
     'terms_link' => 'booking terms and conditions',
     'terms_note' => 'including cancellation policy and credit card usage.',
     'confirm_booking' => 'Confirm Booking',
@@ -274,7 +274,7 @@ return [
     'booking_conditions' => 'Booking Conditions',
     'pay_on_arrival' => 'No advance payment is required to confirm the reservation.',
     'tourist_tax' => 'A city tax of €2 per person per night will be collected at check-in.',
-    'cancel_5_days' => 'You can cancel free of charge up to 10 days before arrival. If cancelled within 10 days before arrival, 20% of the total will be charged.',
+    'cancel_7_days' => 'Cancellation is free up to 7 days before the arrival date. For cancellations made within the 7 days prior to arrival, 50% of the total amount will be charged.',
     'no_show' => 'In case of no-show (without cancellation), 100% of the total will be charged.',
     'checkin_time' => 'Check-in from 2:00 PM to 10:00 PM, check-out by 10:00 AM.',
     'privacy_note' => 'Personal data will be handled in accordance with privacy regulations.',
@@ -407,6 +407,21 @@ return [
     'mail_penalty_receipt' => 'You can view the payment receipt by clicking here:',
     'mail_penalty_view_receipt' => 'View receipt',
     'mail_more_info' => 'For further information or clarification, we are at your disposal:',
+
+    // PDF penale
+    'mail_subject_penalty' => 'Penalty Receipt',
+    'cliente' => 'Guest',
+    'email' => 'Email',
+    'camera' => 'Room',
+    'periodo' => 'Period',
+    'penale_applicata' => 'Penalty Applied',
+    'importo_addebitato' => 'Amount Charged',
+    'pdf_penalty_receipt_title' => 'Penalty receipt for late cancellation - La Casa di MiDa',
+    'pdf_penalty_intro' => 'According to the terms accepted at the time of booking, the following penalty has been applied:',
+    'pdf_footer' => 'Thank you for choosing La Casa di MiDa. For more information, please contact info@lacasadimida.it.',
+    'pdf_issued_on' => 'Issued on:',
+    'pdf_address' => 'Via Carlo Cattaneo 10, 00185 Rome (Italy)',
+
 
 
 ];

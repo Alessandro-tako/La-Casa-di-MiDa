@@ -37,14 +37,14 @@ return [
     'terms_conditions' => 'Termini e Condizioni',
     'general_conditions' => 'Condizioni Generali',
     'general_conditions_list' => [
-        'La prenotazione non richiede alcun pagamento anticipato.',
-        'È possibile cancellare gratuitamente fino a 10 giorni prima della data di arrivo.',
-        'In caso di cancellazione nei 10 giorni precedenti l\'arrivo, verrà addebitato il <strong>20%</strong> del totale della prenotazione.',
-        'In caso di mancato arrivo (senza cancellazione), verrà addebitato il <strong>100%</strong> dell\'importo.',
-        'È richiesta una <strong>carta di credito a garanzia</strong>, utilizzabile esclusivamente nei casi sopra indicati.',
-        'La tassa di soggiorno di <strong>€2 a notte per persona</strong> sarà applicata al momento dell\'arrivo.',
-        'Check-in dalle 14:00 alle 22:00, check-out entro le 10:00.',
-        'I dati personali verranno trattati in conformità alle normative vigenti sulla privacy.',
+    'La prenotazione non richiede alcun pagamento anticipato.',
+    'È possibile cancellare gratuitamente fino a 7 giorni prima della data di arrivo.',
+    'In caso di cancellazione nei 7 giorni precedenti l\'arrivo, verrà addebitato il <strong>50%</strong> del totale della prenotazione.',
+    'In caso di mancato arrivo (senza cancellazione), verrà addebitato il <strong>100%</strong> dell\'importo.',
+    'È richiesta una <strong>carta di credito a garanzia</strong>, utilizzabile esclusivamente nei casi sopra indicati.',
+    'La tassa di soggiorno di <strong>€2 a notte per persona</strong> sarà applicata al momento dell\'arrivo.',
+    'Check-in dalle 14:00 alle 22:00, check-out entro le 10:00.',
+    'I dati personali verranno trattati in conformità alle normative vigenti sulla privacy.',
     ],
 
 
@@ -262,7 +262,7 @@ return [
     'card_note' => 'La tua carta non verrà addebitata ora. In caso di mancato arrivo o cancellazione tardiva, si applicheranno le penali.',
     'total_price' => 'Prezzo Totale',
     'total' => 'Totale',
-    'terms' => 'Ho letto e accetto i',
+    'terms_accepted' => 'Ho letto e accetto i',
     'terms_link' => 'termini e condizioni di prenotazione',
     'terms_note' => 'inclusa la politica di cancellazione e l\'utilizzo della carta di credito.',
     'confirm_booking' => 'Conferma Prenotazione',
@@ -270,10 +270,12 @@ return [
     'beds_notice' => 'Nella Camera Verde e nella Camera Grigia, i letti sono configurati di default come matrimoniale king-size. Se preferisci letti separati o hai richieste particolari, ti invitiamo a contattarci tramite il form contatti. Faremo il possibile per trovare la soluzione migliore per il tuo soggiorno.',
     'important_note' => 'Nota importante:',
     'read_full_terms' => 'Leggi i termini completi',
+
+    // Booking condition
     'booking_conditions' => 'Condizioni di Prenotazione',
     'pay_on_arrival' => 'La prenotazione non richiede alcun pagamento anticipato.',
     'tourist_tax' => 'Verrà riscossa una tassa di soggiorno di €2 per persona a notte al check-in.',
-    'cancel_5_days' => 'È possibile cancellare gratuitamente fino a 10 giorni prima della data di arrivo. In caso di cancellazione entro i 10 giorni precedenti, verrà addebitato il 20% del totale.',
+    'cancel_7_days' => 'La cancellazione è gratuita fino a 7 giorni prima della data di arrivo. Per cancellazioni effettuate nei 7 giorni precedenti l’arrivo, verrà addebitato il 50% dell’importo totale.',
     'no_show' => 'In caso di mancato arrivo (senza cancellazione), verrà addebitato il 100% dell\'importo.',
     'checkin_time' => 'Check-in dalle 14:00 alle 22:00, check-out entro le 10:00.',
     'privacy_note' => 'I dati personali verranno trattati in conformità alle normative sulla privacy.',
@@ -402,5 +404,19 @@ return [
     'mail_penalty_receipt' => "Puoi visualizzare la ricevuta del pagamento cliccando qui:",
     'mail_penalty_view_receipt' => "Visualizza ricevuta",
     'mail_more_info' => 'Per ulteriori informazioni o chiarimenti, siamo a disposizione:',
+
+    // PDF penale
+    'mail_subject_penalty' => 'Ricevuta Penale',
+    'cliente' => 'Cliente',
+    'email' => 'Email',
+    'camera' => 'Camera',
+    'periodo' => 'Periodo',
+    'penale_applicata' => 'Penale applicata',
+    'importo_addebitato' => 'Importo addebitato',
+    'pdf_penalty_receipt_title' => 'Ricevuta penale per cancellazione tardiva - La Casa di MiDa',
+    'pdf_penalty_intro' => 'Secondo i termini accettati al momento della prenotazione, è stata applicata la seguente penale:',
+    'pdf_footer' => 'Grazie per aver scelto La Casa di MiDa. Per ulteriori informazioni, contattaci all’indirizzo info@lacasadimida.it.',
+    'pdf_issued_on' => 'Data di emissione:',
+    'pdf_address' => 'Via Carlo Cattaneo 10, 00185 Roma (Italia)',
 
 ];

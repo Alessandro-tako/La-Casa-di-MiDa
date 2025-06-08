@@ -38,14 +38,14 @@ return [
     'terms_conditions' => 'Conditions Générales',
     'general_conditions' => 'Conditions Générales',
     'general_conditions_list' => [
-        'Aucun paiement anticipé n’est requis pour confirmer la réservation.',
-        'L’annulation est gratuite jusqu’à 10 jours avant la date d’arrivée.',
-        'En cas d’annulation dans les 10 jours précédant l’arrivée, <strong>20 %</strong> du montant total seront facturés.',
-        'En cas de non-présentation (sans annulation), <strong>100 %</strong> du montant total seront facturés.',
-        'Une <strong>carte de crédit en garantie</strong> est requise et ne sera utilisée que dans les cas mentionnés ci-dessus.',
-        'Une taxe de séjour de <strong>2 € par personne et par nuit</strong> sera perçue à l’arrivée.',
-        'Arrivée entre 14h00 et 22h00, départ avant 10h00.',
-        'Les données personnelles seront traitées conformément à la réglementation en vigueur sur la confidentialité.',
+    'Aucun paiement anticipé n’est requis pour confirmer la réservation.',
+    'L’annulation est gratuite jusqu’à 7 jours avant la date d’arrivée.',
+    'En cas d’annulation dans les 7 jours précédant l’arrivée, <strong>50%</strong> du montant total seront facturés.',
+    'En cas de non-présentation (sans annulation), <strong>100%</strong> du montant total seront facturés.',
+    'Une <strong>carte de crédit en garantie</strong> est requise et ne sera utilisée que dans les cas mentionnés ci-dessus.',
+    'Une taxe de séjour de <strong>2€ par personne et par nuit</strong> sera perçue à l’arrivée.',
+    'Arrivée entre 14h00 et 22h00, départ avant 10h00.',
+    'Les données personnelles seront traitées conformément à la réglementation en vigueur sur la confidentialité.',
     ],
 
 
@@ -262,7 +262,7 @@ return [
     'card_note' => 'Votre carte ne sera pas débitée maintenant. En cas de non-présentation ou d\'annulation tardive, des pénalités s\'appliqueront.',
     'total_price' => 'Prix Total',
     'total' => 'Total',
-    'terms' => 'J\'ai lu et j\'accepte les',
+    'terms_accepted' => 'J\'ai lu et j\'accepte les',
     'terms_link' => 'conditions générales de réservation',
     'terms_note' => 'y compris la politique d\'annulation et l\'utilisation de la carte de crédit.',
     'confirm_booking' => 'Confirmer la Réservation',
@@ -275,8 +275,8 @@ return [
     'booking_conditions' => 'Conditions de Réservation',
     'pay_on_arrival' => 'Aucun paiement anticipé n’est requis pour confirmer la réservation.',
     'tourist_tax' => 'Une taxe de séjour de 2 € par personne et par nuit sera perçue lors du check-in.',
-    'cancel_5_days' => 'L’annulation est gratuite jusqu’à 10 jours avant la date d’arrivée. En cas d’annulation dans les 10 jours, 20 % du total seront facturés.',
-    'no_show' => 'En cas de non-présentation (sans annulation), 100 % du montant total seront facturés.',
+    'cancel_7_days' => 'L’annulation est gratuite jusqu’à 7 jours avant la date d’arrivée. Pour les annulations effectuées dans les 7 jours précédant l’arrivée, 50% du montant total seront facturés.',
+    'no_show' => 'En cas de non-présentation (sans annulation), 100% du montant total seront facturés.',
     'checkin_time' => 'Enregistrement de 14h00 à 22h00, départ avant 10h00.',
     'privacy_note' => 'Les données personnelles seront traitées conformément aux réglementations sur la vie privée.',
 
@@ -405,6 +405,20 @@ return [
     'mail_penalty_receipt' => 'Vous pouvez consulter le reçu du paiement en cliquant ici :',
     'mail_penalty_view_receipt' => 'Voir le reçu',
     'mail_more_info' => 'Pour toute information ou clarification supplémentaire, nous sommes à votre disposition :',
+
+    // PDF penale
+    'mail_subject_penalty' => 'Reçu de pénalité',
+    'cliente' => 'Client',
+    'email' => 'E-mail',
+    'camera' => 'Chambre',
+    'periodo' => 'Période',
+    'penale_applicata' => 'Pénalité appliquée',
+    'importo_addebitato' => 'Montant facturé',
+    'pdf_penalty_receipt_title' => 'Reçu de pénalité pour annulation tardive - La Casa di MiDa',
+    'pdf_penalty_intro' => 'Conformément aux conditions acceptées lors de la réservation, la pénalité suivante a été appliquée :',
+    'pdf_footer' => 'Merci d’avoir choisi La Casa di MiDa. Pour plus d’informations, veuillez contacter info@lacasadimida.it.',
+    'pdf_issued_on' => 'Date d’émission :',
+    'pdf_address' => 'Via Carlo Cattaneo 10, 00185 Rome (Italie)',
 
 
 

@@ -38,9 +38,9 @@ return [
     'general_conditions' => 'Allgemeine Bedingungen',
     'general_conditions_list' => [
         'Für die Reservierung ist keine Vorauszahlung erforderlich.',
-        'Eine kostenlose Stornierung ist bis 10 Tage vor dem Anreisedatum möglich.',
-        'Bei einer Stornierung innerhalb von 10 Tagen vor der Anreise werden <strong>20 %</strong> des Gesamtbetrags berechnet.',
-        'Bei Nichterscheinen (ohne Stornierung) werden <strong>100 %</strong> des Gesamtbetrags berechnet.',
+        'Eine kostenlose Stornierung ist bis 7 Tage vor dem Anreisedatum möglich.',
+        'Bei einer Stornierung innerhalb von 7 Tagen vor der Anreise werden <strong>50%</strong> des Gesamtbetrags berechnet.',
+        'Bei Nichterscheinen (ohne Stornierung) werden <strong>100%</strong> des Gesamtbetrags berechnet.',
         'Eine <strong>Kreditkarte als Garantie</strong> ist erforderlich und wird nur in den oben genannten Fällen belastet.',
         'Die Tourismusabgabe von <strong>2 € pro Person und Nacht</strong> ist bei Ankunft zu entrichten.',
         'Check-in von 14:00 bis 22:00 Uhr, Check-out bis 10:00 Uhr.',
@@ -262,7 +262,7 @@ return [
     'card_note' => 'Ihre Karte wird jetzt nicht belastet. Bei Nichterscheinen oder später Stornierung fallen Gebühren an.',
     'total_price' => 'Gesamtpreis',
     'total' => 'Gesamt',
-    'terms' => 'Ich habe gelesen und akzeptiere die',
+    'terms_accepted' => 'Ich habe gelesen und akzeptiere die',
     'terms_link' => 'Buchungsbedingungen',
     'terms_note' => 'einschließlich Stornierungsrichtlinie und Kreditkartennutzung.',
     'confirm_booking' => 'Buchung bestätigen',
@@ -275,8 +275,8 @@ return [
     'booking_conditions' => 'Buchungsbedingungen',
     'pay_on_arrival' => 'Für die Buchung ist keine Vorauszahlung erforderlich.',
     'tourist_tax' => 'Eine Kurtaxe von 2 € pro Person und Nacht wird beim Check-in erhoben.',
-    'cancel_5_days' => 'Kostenlose Stornierung bis zu 10 Tage vor Anreise möglich. Bei Stornierung innerhalb der 10 Tage vor Ankunft werden 20 % des Gesamtbetrags berechnet.',
-    'no_show' => 'Bei Nichterscheinen (ohne Stornierung) werden 100 % des Gesamtbetrags berechnet.',
+    'cancel_7_days' => 'Eine Stornierung ist bis zu 7 Tage vor dem Anreisedatum kostenlos. Bei Stornierungen innerhalb der 7 Tage vor der Anreise werden 50% des Gesamtbetrags berechnet.',
+    'no_show' => 'Bei Nichterscheinen (ohne Stornierung) werden 100% des Gesamtbetrags berechnet.',
     'checkin_time' => 'Check-in von 14:00 bis 22:00 Uhr, Check-out bis 10:00 Uhr.',
     'privacy_note' => 'Personendaten werden gemäß den Datenschutzbestimmungen behandelt.',
 
@@ -406,6 +406,19 @@ return [
     'mail_penalty_view_receipt' => 'Quittung anzeigen',
     'mail_more_info' => 'Für weitere Informationen oder Rückfragen stehen wir Ihnen gerne zur Verfügung:',
 
+    // PDF penale
+    'mail_subject_penalty' => 'Strafgebührenbeleg',
+    'cliente' => 'Gast',
+    'email' => 'E-Mail',
+    'camera' => 'Zimmer',
+    'periodo' => 'Zeitraum',
+    'penale_applicata' => 'Angewandte Strafgebühr',
+    'importo_addebitato' => 'Berechneter Betrag',
+    'pdf_penalty_receipt_title' => 'Strafgebührenquittung für verspätete Stornierung – La Casa di MiDa',
+    'pdf_penalty_intro' => 'Gemäß den bei der Buchung akzeptierten Bedingungen wurde folgende Strafgebühr erhoben:',
+    'pdf_footer' => 'Vielen Dank, dass Sie sich für La Casa di MiDa entschieden haben. Für weitere Informationen kontaktieren Sie bitte info@lacasadimida.it.',
+    'pdf_issued_on' => 'Ausstellungsdatum:',
+    'pdf_address' => 'Via Carlo Cattaneo 10, 00185 Rom (Italien)',
 
 
 

@@ -28,7 +28,9 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::patch('/prenotazioni/{prenotazione}', [AdminController::class, 'updatePrenotazione'])->name('prenotazioni.update');
     Route::get('/prenotazioni/{prenotazione}/modifica', [AdminController::class, 'edit'])->name('prenotazioni.edit');
     Route::put('/prenotazioni/{prenotazione}', [AdminController::class, 'update'])->name('prenotazioni.updateDate');
-    Route::post('/prenotazioni/{prenotazione}/penale', [PenaleController::class, 'addebita'])->name('penale.addebita');     
+    Route::post('/prenotazioni/{prenotazione}/penale', [PenaleController::class, 'addebita'])->name('penale.addebita');    
+    Route::get('/prenotazioni/{prenotazione}/penale-scarica', [App\Http\Controllers\PenaleController::class, 'scaricaPDF'])
+    ->name('penale.scarica');
 });
 
 // Rotte per la prenotazione da parte degli utenti

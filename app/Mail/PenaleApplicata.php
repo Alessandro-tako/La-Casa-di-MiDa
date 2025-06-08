@@ -9,6 +9,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\App;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PenaleApplicata extends Mailable
 {
@@ -49,6 +50,17 @@ class PenaleApplicata extends Mailable
 
     public function attachments(): array
     {
-        return [];
+        $pdf = Pdf::loadView('pdf.penale', [
+            'booking' => $this->booking,
+            'percentuale' => $this->percentuale,
+            'importo' => $this->amount,
+        ]);
+
+        return [
+            \Illuminate\Mail\Mailables\Attachment::fromData(
+                fn () => $pdf->output(),
+                'ricevuta_penale.pdf'
+            )->withMime('application/pdf'),
+        ];
     }
 }

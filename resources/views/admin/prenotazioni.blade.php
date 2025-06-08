@@ -193,7 +193,7 @@
                                                                 class="form-select form-select-sm" required>
                                                                 <option disabled selected>Seleziona penale</option>
                                                                 <option value="0">Nessuna penale</option>
-                                                                <option value="20">Penale 20% (cancellazione
+                                                                <option value="50">Penale 50% (cancellazione
                                                                     tardiva)</option>
                                                                 <option value="100">Penale 100% (no-show)</option>
                                                             </select>
@@ -208,7 +208,31 @@
                                         @elseif (!$prenotazione->stripe_customer_id || !$prenotazione->stripe_payment_method)
                                             <span class="badge bg-warning text-dark">Carta non disponibile</span>
                                         @else
-                                            <span class="badge bg-dark">Penale applicata</span>
+                                            <div class="dropdown d-inline-block">
+                                                <button class="badge bg-dark border-0 dropdown-toggle" type="button"
+                                                    data-bs-toggle="dropdown" aria-expanded="false"
+                                                    style="cursor: pointer;">
+                                                    <i class="bi bi-check-circle me-1"></i> Penale applicata
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    @if ($prenotazione->penale_pdf_path)
+                                                        <li>
+                                                            <a class="dropdown-item d-flex align-items-center"
+                                                                href="{{ route('admin.penale.scarica', $prenotazione) }}"
+                                                                target="_blank">
+                                                                <i
+                                                                    class="bi bi-file-earmark-pdf-fill me-2 text-danger"></i>
+                                                                Scarica ricevuta PDF
+                                                            </a>
+                                                        </li>
+                                                    @else
+                                                        <li>
+                                                            <span class="dropdown-item text-muted">PDF non
+                                                                disponibile</span>
+                                                        </li>
+                                                    @endif
+                                                </ul>
+                                            </div>
                                         @endif
                                     @endif
                                 </td>
@@ -373,7 +397,7 @@
                                                             class="form-select form-select-sm" required>
                                                             <option disabled selected>Seleziona penale</option>
                                                             <option value="0">Nessuna penale</option>
-                                                            <option value="20">Penale 20% (cancellazione tardiva)
+                                                            <option value="50">Penale 50% (cancellazione tardiva)
                                                             </option>
                                                             <option value="100">Penale 100% (no-show)</option>
                                                         </select>
@@ -388,7 +412,15 @@
                                     @elseif (!$prenotazione->stripe_customer_id || !$prenotazione->stripe_payment_method)
                                         <span class="badge bg-warning text-dark mt-2">Carta non disponibile</span>
                                     @else
-                                        <span class="badge bg-dark mt-2">Penale applicata</span>
+                                        <span class="badge bg-dark mt-2">
+                                            <i class="bi bi-check-circle me-1"></i> Penale applicata
+                                        </span>
+                                        @if ($prenotazione->penale_pdf_path)
+                                            <a href="{{ route('admin.penale.scarica', $prenotazione) }}"
+                                                class="btn btn-sm btn-outline-secondary mt-2" target="_blank">
+                                                <i class="bi bi-file-earmark-pdf me-1"></i> Ricevuta
+                                            </a>
+                                        @endif
                                     @endif
                                 @endif
                             </div>
