@@ -146,7 +146,7 @@ return [
     'train' => '<em>Roma Termini</em> station (7-minute walk)',
     'buses' => 'Lines 105, 150F, 360, 590, 70, 714 – stops: Carlo Alberto, Gioberti, S. Maria Maggiore',
     'tram' => 'Lines 5 and 14 – stops nearby',
-    'plan_with_moovit' => 'You can plan your route using the :moovit app or by visiting the official ATAC Roma website.',
+    'plan_with_moovit' => 'You can plan your route using the :moovit app or by visiting the official :atac website.',
     'write_us' => 'Write Us a Message',
     'form_subtitle' => 'Fill out the form to send us a request or question directly. We will get back to you as soon as possible!',
 

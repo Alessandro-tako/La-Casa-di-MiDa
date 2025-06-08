@@ -147,7 +147,7 @@ return [
     'train' => 'Stazione <em>Roma Termini</em> (7 minuti a piedi)',
     'buses' => 'Linee 105, 150F, 360, 590, 70, 714 – fermate: Carlo Alberto, Gioberti, S. Maria Maggiore',
     'tram' => 'Linee 5 e 14 – fermate nelle vicinanze',
-    'plan_with_moovit' => 'Puoi pianificare il tuo percorso utilizzando l\'app :moovit o visitando il sito ufficiale di ATAC Roma.',
+    'plan_with_moovit' => 'Puoi pianificare il tuo percorso utilizzando l\'app :moovit o visitando il sito ufficiale di :atac.',
     'write_us' => 'Scrivici un Messaggio',
     'form_subtitle' => 'Compila il modulo per inviarci direttamente una richiesta o una domanda. Ti risponderemo il prima possibile!',
 

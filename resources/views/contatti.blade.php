@@ -83,8 +83,11 @@
                     {!! __('ui.plan_with_moovit', [
                         'moovit' =>
                             '<a href="https://moovitapp.com/index/it/mezzi_pubblici-Via_Carlo_Cattaneo-Roma_e_Lazio-street_10640354-61" target="_blank" class="text-gold text-decoration-underline" rel="noopener noreferrer">Moovit</a>',
+                        'atac' =>
+                            '<a href="https://www.atac.roma.it/" target="_blank" class="text-gold text-decoration-underline" rel="noopener noreferrer">ATAC Roma</a>',
                     ]) !!}
                 </p>
+
             </div>
         </div>
     </section>

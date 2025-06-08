@@ -15,6 +15,11 @@ class BookingSeeder extends Seeder
         $rooms = ['Green Room', 'Pink Room', 'Grey Room'];
         $countries = ['IT', 'FR', 'DE', 'US', 'GB', 'ES', 'CA'];
 
+        $localesMap = [
+            'IT' => 'it', 'FR' => 'fr', 'DE' => 'de', 'US' => 'en',
+            'GB' => 'en', 'ES' => 'es', 'CA' => 'en'
+        ];
+
         $prezzi = [
             'Green Room' => ['bassa' => 125, 'media' => 160, 'alta' => 185],
             'Grey Room'  => ['bassa' => 125, 'media' => 160, 'alta' => 185],
@@ -65,14 +70,11 @@ class BookingSeeder extends Seeder
                 })
                 ->exists();
 
-            if ($overlap) {
-                continue;
-            }
+            if ($overlap) continue;
 
             // Calcolo prezzo
             $totale = 0;
             $date = $checkIn->copy();
-
             while ($date < $checkOut) {
                 $stagione = determinareStagione($date);
                 $base = $prezzi[$room][$stagione];
@@ -80,25 +82,24 @@ class BookingSeeder extends Seeder
                 if ($room === 'Pink Room' && $guests === 1) {
                     $base *= 0.90;
                 } elseif ($room !== 'Pink Room') {
-                    if ($guests === 1) {
-                        $base *= 0.90;
-                    } elseif ($guests === 3) {
-                        $base += 50;
-                    }
+                    if ($guests === 1) $base *= 0.90;
+                    elseif ($guests === 3) $base += 50;
                 }
 
                 $totale += $base;
                 $date->addDay();
             }
 
-            // Inserimento prenotazione
+            $country = $faker->randomElement($countries);
+            $locale = $localesMap[$country] ?? 'en';
+
             Booking::create([
                 'guest_first_name' => $faker->firstName,
                 'guest_last_name' => $faker->lastName,
                 'guest_email' => $faker->safeEmail,
                 'guest_address_street' => $faker->streetAddress,
                 'guest_address_city' => $faker->city,
-                'guest_address_country' => $faker->randomElement($countries),
+                'guest_address_country' => $country,
                 'guest_address_zip' => $faker->postcode,
                 'room_name' => $room,
                 'check_in' => $checkIn->toDateString(),
@@ -111,6 +112,14 @@ class BookingSeeder extends Seeder
                 'stripe_customer_id' => 'cus_test_' . $faker->unique()->bothify('??##??##'),
                 'penale_addebitata' => false,
                 'penale_ricevuta_url' => null,
+                'penale_pdf_path' => null,
+
+                // nuovi campi
+                'terms_accepted' => true,
+                'terms_accepted_at' => $checkIn->copy()->subDays(rand(1, 3)),
+                'ip_address' => $faker->ipv4,
+                'user_agent' => $faker->userAgent,
+                'locale' => $locale,
             ]);
 
             $i++;

@@ -47,7 +47,10 @@ class BookingController extends Controller
             'payment_method'         => 'required|string',
 
         ]);
-
+        $data['terms_accepted'] = true;
+        $data['terms_accepted_at'] = now();
+        $data['ip_address'] = $request->ip();
+        $data['user_agent'] = $request->userAgent();
         $data['locale'] = app()->getLocale();
         $data['check_in'] = Carbon::createFromFormat('d-m-Y', $data['check_in'])->format('Y-m-d');
         $data['check_out'] = Carbon::createFromFormat('d-m-Y', $data['check_out'])->format('Y-m-d');

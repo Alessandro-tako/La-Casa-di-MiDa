@@ -73,15 +73,17 @@
             </div>
 
             {{-- Link legali e lingua --}}
+            {{-- Link legali e lingua --}}
             <div class="text-center mt-3">
-                <a href="https://www.iubenda.com/privacy-policy/12345678"
-                    class="iubenda-black iubenda-noiframe iubenda-embed me-2"
-                    title="Privacy Policy">{{ __('ui.privacy_policy') }}</a>
+                <a href="{{ route('privacy') }}" class="text-light me-2" title="Privacy Policy">
+                    {{ __('ui.privacy_policy') }}
+                </a>
                 |
-                <a href="https://www.iubenda.com/privacy-policy/12345678/cookie-policy"
-                    class="iubenda-black iubenda-noiframe iubenda-embed ms-2"
-                    title="Cookie Policy">{{ __('ui.cookie_policy') }}</a>
+                <a href="{{ route('cookie') }}" class="text-light ms-2" title="Cookie Policy">
+                    {{ __('ui.cookie_policy') }}
+                </a>
             </div>
+
 
             {{-- Selettore lingua minimal --}}
             <div class="text-center mt-3">

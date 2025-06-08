@@ -31,6 +31,10 @@ class Booking extends Model
         'stripe_customer_id',
         'status',
         'locale',
+        'terms_accepted',
+        'terms_accepted_at',
+        'ip_address',
+        'user_agent',
     ];
 
     protected $casts = [

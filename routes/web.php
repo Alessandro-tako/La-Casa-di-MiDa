@@ -41,6 +41,9 @@ Route::post('/prenota', [BookingController::class, 'store'])->name('booking.stor
 Route::get('/api/booked-dates/{room}', [BookingController::class, 'getBookedDates']);
 Route::get('/api/external-booked-dates/{room}', [App\Http\Controllers\Api\ExternalBookingApiController::class, 'getExternalBookedDates']);
 
+// rotte Policy
+Route::view('/privacy-policy', 'legal.privacy')->name('privacy');
+Route::view('/cookie-policy', 'legal.cookie')->name('cookie');
 
 // rotte delle lingue 
 

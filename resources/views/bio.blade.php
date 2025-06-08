@@ -45,6 +45,13 @@
             </div>
         </section>
 
+        <div class="text-center my-4" data-aos="fade-up" data-aos-delay="250">
+            <a href="{{ route('camere.index') }}" class="btn btn-gold btn-lg rounded-pill">
+                {{ __('ui.discover_all_rooms') }}
+            </a>
+        </div>
+
+
         {{-- Quartiere --}}
         <article class="mb-5" aria-labelledby="quartiere-title" data-aos="fade-up" data-aos-delay="300">
             <h2 id="quartiere-title" class="h4 text-gold">{{ __('ui.the_neighborhood') }}</h2>
@@ -135,6 +142,12 @@
                 <div>{{ __('ui.service_languages') }}</div>
             </div>
         </article>
+        <div class="text-center mt-5" data-aos="fade-up" data-aos-delay="600">
+            <a href="{{ route('prenota') }}" class="btn btn-gold btn-lg rounded-pill">
+                {{ __('ui.book_now') }}
+            </a>
+        </div>
+
     </section>
 
     {{-- Script per galleria interattiva --}}

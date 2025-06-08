@@ -148,7 +148,7 @@ return [
     'train' => 'Gare <em>Rome Termini</em> (7 minutes à pied)',
     'buses' => 'Lignes 105, 150F, 360, 590, 70, 714 – arrêts : Carlo Alberto, Gioberti, S. Maria Maggiore',
     'tram' => 'Lignes 5 et 14 – arrêts à proximité',
-    'plan_with_moovit' => 'Vous pouvez planifier votre parcours en utilisant l\'app :moovit ou en visitant le site officiel d\'ATAC Roma.',
+    'plan_with_moovit' => 'Vous pouvez planifier votre parcours en utilisant l\'app :moovit ou en visitant le site officiel d\':atac.',
     'write_us' => 'Écrivez-nous un Message',
     'form_subtitle' => 'Remplissez le formulaire pour nous envoyer directement une demande ou une question. Nous vous répondrons dès que possible !',
 

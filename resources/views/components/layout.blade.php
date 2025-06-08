@@ -57,6 +57,18 @@
     {{-- Livewire Styles --}}
     @livewireStyles
 
+    {{-- CookieYes Script (prima, se ce l'hai) --}}
+    <script id="cookieyes" type="text/javascript" src="https://cdn-cookieyes.com/client_data/27da66e755f4e1e90a8f726c/script.js"></script>
+
+    {{-- Google Analytics 4 - GDPR Compliant --}}
+    <script type="text/plain" data-cookieyes="analytics" async src="https://www.googletagmanager.com/gtag/js?id=G-FDENTY89BW"></script>
+    <script type="text/plain" data-cookieyes="analytics">
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FDENTY89BW');
+    </script>
+
     <script type="application/ld+json">
         {
         "@context": "https://schema.org",

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+    <url>
+    <loc>http://localhost</loc>
+            </url>
+    <url>
+    <loc>http://localhost/camere</loc>
+            </url>
+    <url>
+    <loc>http://localhost/camere/pink-room</loc>
+            </url>
+    <url>
+    <loc>http://localhost/camere/green-room</loc>
+            </url>
+    <url>
+    <loc>http://localhost/camere/grey-room</loc>
+            </url>
+    <url>
+    <loc>http://localhost/prenotazione</loc>
+            </url>
+    <url>
+    <loc>http://localhost/cosa-fare-a-roma</loc>
+            </url>
+    <url>
+    <loc>http://localhost/struttura</loc>
+            </url>
+    <url>
+    <loc>http://localhost/contatti</loc>
+            </url>
+    <url>
+    <loc>http://localhost/termini-e-condizioni</loc>
+            </url>
+</urlset>
