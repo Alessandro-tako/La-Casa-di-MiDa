@@ -45,16 +45,57 @@
 
         {{-- CALENDARIO PRENOTAZIONI --}}
         <section class="my-5" aria-labelledby="calendario-title">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <h2 id="calendario-title" class="text-gold">Calendario Prenotazioni</h2>
-                <label for="filtro-camera" class="visually-hidden">Filtra per camera</label>
-                <select id="filtro-camera" class="form-select w-auto" aria-label="Filtra per camera">
-                    <option value="">Tutte le camere</option>
-                    <option value="Pink Room">Pink Room</option>
-                    <option value="Green Room">Green Room</option>
-                    <option value="Grey Room">Grey Room</option>
-                </select>
+            <div class="row align-items-center mb-4 gy-2">
+                {{-- Titolo --}}
+                <div class="col-12 col-md-4">
+                    <h2 id="calendario-title" class="text-gold mb-0">Calendario Prenotazioni</h2>
+                </div>
+
+                {{-- Select filtraggio --}}
+                <div class="col-12 col-md-4">
+                    <label for="filtro-camera" class="visually-hidden">Filtra per camera</label>
+                    <div class="d-flex justify-content-md-center">
+                        <select id="filtro-camera" class="form-select form-select-sm w-100 w-md-auto"
+                            aria-label="Filtra per camera">
+                            <option value="">Tutte le camere</option>
+                            <option value="Pink Room">Pink Room</option>
+                            <option value="Green Room">Green Room</option>
+                            <option value="Grey Room">Grey Room</option>
+                        </select>
+                    </div>
+                </div>
+
+                {{-- Dropdown link ICS --}}
+                <div class="col-12 col-md-4">
+                    <div class="d-flex justify-content-md-end">
+                        <div class="dropdown">
+                            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button"
+                                id="icsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-link-45deg me-1"></i> Link .ICS
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end shadow-sm p-3" style="min-width: 300px;"
+                                aria-labelledby="icsDropdown">
+                                @foreach (['Pink Room', 'Green Room', 'Grey Room'] as $room)
+                                    <li class="mb-2">
+                                        <label class="form-label small fw-semibold">{{ $room }}</label>
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" class="form-control" readonly
+                                                value="{{ url('/ics-export/' . urlencode($room)) }}"
+                                                id="link-{{ Str::slug($room) }}">
+                                            <button class="btn btn-outline-secondary" type="button"
+                                                onclick="navigator.clipboard.writeText(document.getElementById('link-{{ Str::slug($room) }}').value)">
+                                                <i class="bi bi-clipboard"></i>
+                                            </button>
+                                        </div>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+
             <div id="calendar" aria-describedby="LegendaCalendario"></div>
         </section>
 

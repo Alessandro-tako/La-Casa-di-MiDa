@@ -6,6 +6,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PenaleController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\IcsExportController;
 
 // Pagine pubbliche
 Route::get('/', [PageController::class, 'home'])->name('home');
@@ -45,8 +46,11 @@ Route::get('/api/external-booked-dates/{room}', [App\Http\Controllers\Api\Extern
 Route::view('/privacy-policy', 'legal.privacy')->name('privacy');
 Route::view('/cookie-policy', 'legal.cookie')->name('cookie');
 
-// rotte delle lingue 
+// rotta per file .ics per sincro calendario
 
+Route::get('/ics-export/{room}', [IcsExportController::class, 'export']);
+
+// rotte delle lingue 
 Route::post('/locale', function (Request $request) {
     $locale = $request->input('locale');
 
