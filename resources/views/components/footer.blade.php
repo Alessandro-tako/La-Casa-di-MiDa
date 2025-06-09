@@ -73,15 +73,20 @@
             </div>
 
             {{-- Link legali e lingua --}}
-            {{-- Link legali e lingua --}}
             <div class="text-center mt-3">
-                <a href="{{ route('privacy') }}" class="text-light me-2" title="Privacy Policy">
-                    {{ __('ui.privacy_policy') }}
-                </a>
-                |
-                <a href="{{ route('cookie') }}" class="text-light ms-2" title="Cookie Policy">
-                    {{ __('ui.cookie_policy') }}
-                </a>
+                <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-2 small">
+                    <a href="{{ route('privacy') }}" class="text-light" title="Privacy Policy">
+                        {{ __('ui.privacy_policy') }}
+                    </a>
+                    <span class="d-none d-md-inline">|</span>
+                    <a href="{{ route('cookie') }}" class="text-light" title="Cookie Policy">
+                        {{ __('ui.cookie_policy') }}
+                    </a>
+                    <span class="d-none d-md-inline">|</span>
+                    <a href="#" id="open-cookie-settings" class="text-light" title="Modifica preferenze cookie">
+                        {{ __('ui.change_cookie_settings') }}
+                    </a>
+                </div>
             </div>
 
 

@@ -227,3 +227,98 @@ document.addEventListener("DOMContentLoaded", function () {
         roomSelect.dispatchEvent(new Event('change'));
     }
 });
+
+
+// cookie banner
+document.addEventListener('DOMContentLoaded', function () {
+    const cookieTranslations = {
+        it: {
+            message: "Questo sito usa cookie per migliorare l’esperienza.",
+            accept: "Accetta",
+            reject: "Rifiuta",
+            policy: "Leggi la Cookie Policy",
+            modify: "Modifica preferenze cookie"
+        },
+        en: {
+            message: "This website uses cookies to improve your experience.",
+            accept: "Accept",
+            reject: "Reject",
+            policy: "Read the Cookie Policy",
+            modify: "Change cookie preferences"
+        },
+        fr: {
+            message: "Ce site utilise des cookies pour améliorer votre expérience.",
+            accept: "Accepter",
+            reject: "Refuser",
+            policy: "Lire la politique de cookies",
+            modify: "Modifier les préférences de cookies"
+        },
+        es: {
+            message: "Este sitio utiliza cookies para mejorar la experiencia.",
+            accept: "Aceptar",
+            reject: "Rechazar",
+            policy: "Leer la política de cookies",
+            modify: "Cambiar preferencias de cookies"
+        },
+        de: {
+            message: "Diese Website verwendet Cookies, um Ihr Erlebnis zu verbessern.",
+            accept: "Akzeptieren",
+            reject: "Ablehnen",
+            policy: "Cookie-Richtlinie lesen",
+            modify: "Cookie-Einstellungen ändern"
+        }
+    };
+
+    const userLang = document.documentElement.lang.slice(0, 2);
+    const t = cookieTranslations[userLang] || cookieTranslations.it;
+
+    const banner = document.getElementById('cookie-banner');
+    const text = document.getElementById('cookie-text');
+    const acceptBtn = document.getElementById('accept-cookies');
+    const rejectBtn = document.getElementById('reject-cookies');
+    const policyLink = document.getElementById('cookie-policy-link');
+    const modifyLink = document.getElementById('open-cookie-settings');
+
+    if (text) text.innerHTML = `${t.message} <a href="/cookie-policy" id="cookie-policy-link" class="link-warning text-decoration-underline ms-1" target="_blank" rel="noopener noreferrer">${t.policy}</a>`;
+    if (policyLink) policyLink.innerText = t.policy;
+    if (acceptBtn) acceptBtn.innerText = t.accept;
+    if (rejectBtn) rejectBtn.innerText = t.reject;
+    if (modifyLink) modifyLink.innerText = t.modify;
+
+    if (!localStorage.getItem('cookies_choice')) {
+        banner?.classList.remove('d-none');
+    } else if (localStorage.getItem('cookies_choice') === 'accepted') {
+        activateGoogleAnalytics();
+    }
+
+    acceptBtn?.addEventListener('click', function () {
+        localStorage.setItem('cookies_choice', 'accepted');
+        banner?.classList.add('d-none');
+        activateGoogleAnalytics();
+    });
+
+    rejectBtn?.addEventListener('click', function () {
+        localStorage.setItem('cookies_choice', 'rejected');
+        banner?.classList.add('d-none');
+    });
+
+    modifyLink?.addEventListener('click', function (e) {
+        e.preventDefault();
+        localStorage.removeItem('cookies_choice');
+        location.reload();
+    });
+
+    function activateGoogleAnalytics() {
+        const scriptGA = document.createElement('script');
+        scriptGA.async = true;
+        scriptGA.src = "https://www.googletagmanager.com/gtag/js?id=G-FDENTY89BW";
+        document.head.appendChild(scriptGA);
+
+        scriptGA.onload = function () {
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+            gtag('config', 'G-FDENTY89BW');
+        }
+    }
+});

@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     {{-- SEO Base --}}
-    <title>@yield('title', 'La Casa di MiDa - Affittacamere a Roma Termini')</title>
+    <title>@yield('title', 'La Casa di MiDa - Affittacamere nel cuore di Roma')</title>
     <meta name="description" content="@yield('description', 'Scopri La Casa di MiDa, affittacamere nel cuore di Roma. Camere eleganti a due passi da Termini e dal Colosseo.')">
-    <meta name="keywords" content="@yield('keywords', 'affittacamere Roma, camere a Roma Termini, B&B Colosseo, alloggi Roma centro')">
+    <meta name="keywords" content="@yield('keywords', 'affittacamere Roma, camere nel cuore di Roma, B&B Colosseo, alloggi Roma centro')">
     <meta name="author" content="La Casa di MiDa">
     <meta name="robots" content="index, follow">
 
@@ -57,18 +57,6 @@
     {{-- Livewire Styles --}}
     @livewireStyles
 
-    {{-- CookieYes Script (prima, se ce l'hai) --}}
-    <script id="cookieyes" type="text/javascript" src="https://cdn-cookieyes.com/client_data/27da66e755f4e1e90a8f726c/script.js"></script>
-
-    {{-- Google Analytics 4 - GDPR Compliant --}}
-    <script type="text/plain" data-cookieyes="analytics" async src="https://www.googletagmanager.com/gtag/js?id=G-FDENTY89BW"></script>
-    <script type="text/plain" data-cookieyes="analytics">
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-FDENTY89BW');
-    </script>
-
     <script type="application/ld+json">
         {
         "@context": "https://schema.org",
@@ -77,7 +65,7 @@
         "description": "Accogliente affittacamere nel cuore di Roma, a due passi dalla stazione Termini.",
         "image": "https://www.lacasadimida.it/storage/images/roma-header.png", 
         "url": "https://www.lacasadimida.it",
-        "telephone": "+39 333 1234567",
+        "telephone": "+39 3488548971",
         "address": {
             "@type": "PostalAddress",
             "streetAddress": "Via Carlo Cattaneo 10",
@@ -114,6 +102,24 @@
 
 
 </head>
+
+{{-- cookie banner --}}
+<div id="cookie-banner" class="cookie-banner d-none">
+    <div class="cookie-container">
+        <p id="cookie-text" class="cookie-message">
+            Questo sito utilizza cookie per migliorare l’esperienza.
+            <a href="/cookie-policy" id="cookie-policy-link" class="cookie-link" target="_blank"
+                rel="noopener noreferrer">
+                Leggi la Cookie Policy
+            </a>
+        </p>
+        <div class="cookie-buttons">
+            <button id="accept-cookies" class="cookie-btn accept">Accetta</button>
+            <button id="reject-cookies" class="cookie-btn reject">Rifiuta</button>
+        </div>
+    </div>
+</div>
+
 
 <body>
     {{-- HEADER --}}
