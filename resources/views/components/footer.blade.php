@@ -24,7 +24,12 @@
                     </li>
                     <li>
                         <i class="bi bi-phone-fill me-2" aria-hidden="true"></i>
-                        <a href="tel:+390612345678" class="link-light text-decoration-none">+39 06 12345678</a>
+                        <a href="tel:+393488548971" class="link-light text-decoration-none">+39 3488548971</a>
+                    </li>
+                    <li class="mb-2">
+                        <i class="bi bi-whatsapp me-2" aria-hidden="true"></i>
+                        <a href="https://wa.me/393488548971" target="_blank" rel="noopener"
+                            class="link-light text-decoration-none" title="Contattaci su WhatsApp">+39 3488548971</a>
                     </li>
                 </ul>
             </div>

@@ -23,7 +23,15 @@
         @foreach ($luoghi as $index => $luogo)
             <section class="row align-items-center mb-5 flex-md-row {{ $index % 2 === 0 ? '' : 'flex-md-row-reverse' }}"
                 data-aos="{{ $index % 2 === 0 ? 'fade-right' : 'fade-left' }}" data-aos-delay="{{ 100 * $index }}">
-                <div class="col-md-6 mb-3 mb-md-0">
+
+                {{-- Testo prima su mobile, secondo su desktop --}}
+                <div class="col-md-6 order-1 order-md-2">
+                    <h3 class="h5 text-gold">{{ __('ui.places.' . $luogo['key'] . '.title') }}</h3>
+                    <p class="text-muted">{!! __('ui.places.' . $luogo['key'] . '.text') !!}</p>
+                </div>
+
+                {{-- Immagine dopo su mobile, prima su desktop --}}
+                <div class="col-md-6 order-2 order-md-1 mb-3 mb-md-0">
                     <figure>
                         <img src="{{ asset('storage/images/' . $luogo['image']) }}"
                             alt="{{ __('ui.places.' . $luogo['key'] . '.title') }} - luogo turistico a Roma"
@@ -34,10 +42,6 @@
                     </figure>
                 </div>
 
-                <div class="col-md-6">
-                    <h3 class="h5 text-gold">{{ __('ui.places.' . $luogo['key'] . '.title') }}</h3>
-                    <p class="text-muted">{!! __('ui.places.' . $luogo['key'] . '.text') !!}</p>
-                </div>
             </section>
         @endforeach
 

@@ -31,8 +31,7 @@
                         <li class="mb-3">
                             <i class="bi bi-phone-fill me-2 text-gold"></i>
                             <strong>{{ __('ui.phone') }}:</strong>
-                            <a href="tel:+390612345678" class="text-decoration-none link-dark" itemprop="telephone">+39
-                                06 12345678</a>
+                            <a href="tel:+393488548971" class="text-decoration-none link-dark" itemprop="telephone">+39 348 854 8971</a>
                         </li>
                         <li class="mb-3">
                             <i class="bi bi-whatsapp me-2 text-gold"></i>

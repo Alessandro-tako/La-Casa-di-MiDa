@@ -168,6 +168,20 @@ input.form-control::placeholder {
     color: var(--color-muted);
 }
 
+/* media per la foto in fondo alla home  */
+@media (max-width: 576px) {
+    .translate-middle h3,
+    .translate-middle p {
+        font-size: 1rem; /* Riduci la dimensione su schermi piccoli */
+        word-wrap: break-word; /* Spezza parole lunghe */
+        white-space: normal; /* Permette l'andare a capo */
+    }
+
+    .translate-middle {
+        width: 90%; /* Fa sì che il contenuto stia dentro */
+    }
+}
+
 /* Select con Choices.js */
 /* Contenitore interno */
 .choices__inner {
@@ -385,6 +399,7 @@ input.form-control::placeholder {
     z-index: 9999;
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
     font-family: 'Open Sans', sans-serif;
+    border-top: 2px solid var(--color-gold);
 }
 
 .cookie-container {
