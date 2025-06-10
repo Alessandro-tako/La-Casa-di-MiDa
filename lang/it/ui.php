@@ -42,8 +42,8 @@ return [
     'In caso di cancellazione nei 7 giorni precedenti l\'arrivo, verrà addebitato il <strong>50%</strong> del totale della prenotazione.',
     'In caso di mancato arrivo (senza cancellazione), verrà addebitato il <strong>100%</strong> dell\'importo.',
     'È richiesta una <strong>carta di credito a garanzia</strong>, utilizzabile esclusivamente nei casi sopra indicati.',
-    'La tassa di soggiorno di <strong>€2 a notte per persona</strong> sarà applicata al momento dell\'arrivo.',
-    'Check-in dalle 14:00 alle 22:00, check-out entro le 10:00.',
+    'La tassa di soggiorno di <strong>5€ a notte per persona</strong> sarà applicata al momento dell\'arrivo.',
+    'Check-in dalle 14:00 alle 20:00, check-out entro le 10:00.',
     'I dati personali verranno trattati in conformità alle normative vigenti sulla privacy.',
     ],
 
@@ -274,10 +274,10 @@ return [
     // Booking condition
     'booking_conditions' => 'Condizioni di Prenotazione',
     'pay_on_arrival' => 'La prenotazione non richiede alcun pagamento anticipato.',
-    'tourist_tax' => 'Verrà riscossa una tassa di soggiorno di €2 per persona a notte al check-in.',
+    'tourist_tax' => 'Verrà riscossa una tassa di soggiorno di €5 per persona a notte al check-in.',
     'cancel_7_days' => 'La cancellazione è gratuita fino a 7 giorni prima della data di arrivo. Per cancellazioni effettuate nei 7 giorni precedenti l’arrivo, verrà addebitato il 50% dell’importo totale.',
     'no_show' => 'In caso di mancato arrivo (senza cancellazione), verrà addebitato il 100% dell\'importo.',
-    'checkin_time' => 'Check-in dalle 14:00 alle 22:00, check-out entro le 10:00.',
+    'checkin_time' => 'Check-in dalle 14:00 alle 20:00, check-out entro le 10:00.',
     'privacy_note' => 'I dati personali verranno trattati in conformità alle normative sulla privacy.',
 
     // Navbar

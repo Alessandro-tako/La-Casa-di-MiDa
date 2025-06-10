@@ -43,8 +43,8 @@ return [
     'En caso de cancelación dentro de los 7 días anteriores a la llegada, se cobrará el <strong>50%</strong> del importe total.',
     'En caso de no presentarse (sin cancelación), se cobrará el <strong>100%</strong> del importe total.',
     'Se requiere una <strong>tarjeta de crédito como garantía</strong>, que solo se utilizará en los casos mencionados anteriormente.',
-    'Se cobrará un impuesto turístico de <strong>2 € por persona y noche</strong> al momento de la llegada.',
-    'Check-in de 14:00 a 22:00, check-out antes de las 10:00.',
+    'Se cobrará un impuesto turístico de <strong>5€ por persona y noche</strong> al momento de la llegada.',
+    'Check-in de 14:00 a 20:00, check-out antes de las 10:00.',
     'Los datos personales se tratarán de acuerdo con la normativa vigente sobre privacidad.',
     ],
 
@@ -274,10 +274,10 @@ return [
     // Booking Conditions
     'booking_conditions' => 'Condiciones de Reserva',
     'pay_on_arrival' => 'No se requiere pago por adelantado para confirmar la reserva.',
-    'tourist_tax' => 'Se cobrará una tasa turística de 2 € por persona por noche en el check-in.',
+    'tourist_tax' => 'Se cobrará una tasa turística de 5€ por persona por noche en el check-in.',
     'cancel_7_days' => 'La cancelación es gratuita hasta 7 días antes de la fecha de llegada. Para cancelaciones realizadas dentro de los 7 días previos a la llegada, se cobrará el 50% del importe total.',
     'no_show' => 'En caso de no presentación (sin cancelación), se cobrará el 100% del importe total.',
-    'checkin_time' => 'Check-in de 14:00 a 22:00, check-out antes de las 10:00.',
+    'checkin_time' => 'Check-in de 14:00 a 20:00, check-out antes de las 10:00.',
     'privacy_note' => 'Los datos personales serán tratados conforme a las normativas de privacidad.',
 
     // Navbar

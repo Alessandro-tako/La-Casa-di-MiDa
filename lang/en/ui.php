@@ -41,8 +41,8 @@ return [
         'If you cancel within 7 days of arrival, <strong>50%</strong> of the total amount will be charged.',
         'In case of no-show (without cancellation), <strong>100%</strong> of the total amount will be charged.',
         'A <strong>credit card guarantee</strong> is required and will be used only in the above-mentioned cases.',
-        'A city tax of <strong>€2 per person per night</strong> will be charged upon arrival.',
-        'Check-in from 2:00 PM to 10:00 PM, check-out by 10:00 AM.',
+        'A city tax of <strong>5€ per person per night</strong> will be charged upon arrival.',
+        'Check-in from 2:00 PM to 8:00 PM, check-out by 10:00 AM.',
         'Personal data will be processed in accordance with privacy regulations.',
     ],
 
@@ -273,10 +273,10 @@ return [
     // Booking Conditions
     'booking_conditions' => 'Booking Conditions',
     'pay_on_arrival' => 'No advance payment is required to confirm the reservation.',
-    'tourist_tax' => 'A city tax of €2 per person per night will be collected at check-in.',
+    'tourist_tax' => 'A city tax of 5€ per person per night will be collected at check-in.',
     'cancel_7_days' => 'Cancellation is free up to 7 days before the arrival date. For cancellations made within the 7 days prior to arrival, 50% of the total amount will be charged.',
     'no_show' => 'In case of no-show (without cancellation), 100% of the total will be charged.',
-    'checkin_time' => 'Check-in from 2:00 PM to 10:00 PM, check-out by 10:00 AM.',
+    'checkin_time' => 'Check-in from 2:00 PM to 8:00 PM, check-out by 10:00 AM.',
     'privacy_note' => 'Personal data will be handled in accordance with privacy regulations.',
 
 

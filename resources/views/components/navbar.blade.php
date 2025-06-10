@@ -74,9 +74,11 @@
                 {{-- Dropdown utente autenticato --}}
                 @auth
                     <li class="nav-item dropdown ms-3">
-                        <a class="nav-link dropdown-toggle fw-semibold text-dark" href="#" role="button"
+                        {{-- se la campanella non va accanto al nome togliere d-flex justify-content-between align-items-center --}}
+                        <a class="nav-link dropdown-toggle fw-semibold text-dark d-flex justify-content-between align-items-center" href="#" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-person-circle me-1"></i> {{ Auth::user()->name }}
+                            @livewire('admin.notifiche-prenotazioni')
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li>
@@ -88,7 +90,7 @@
                                 <a class="dropdown-item d-flex justify-content-between align-items-center"
                                     href="{{ route('admin.prenotazioni') }}">
                                     Gestione Prenotazioni
-                                    @livewire('admin.notifiche-prenotazioni')
+                                    {{-- @livewire('admin.notifiche-prenotazioni') --}}
                                 </a>
                             </li>
                             <li>

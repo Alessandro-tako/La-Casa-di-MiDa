@@ -43,8 +43,8 @@ return [
     'En cas d’annulation dans les 7 jours précédant l’arrivée, <strong>50%</strong> du montant total seront facturés.',
     'En cas de non-présentation (sans annulation), <strong>100%</strong> du montant total seront facturés.',
     'Une <strong>carte de crédit en garantie</strong> est requise et ne sera utilisée que dans les cas mentionnés ci-dessus.',
-    'Une taxe de séjour de <strong>2€ par personne et par nuit</strong> sera perçue à l’arrivée.',
-    'Arrivée entre 14h00 et 22h00, départ avant 10h00.',
+    'Une taxe de séjour de <strong>5€ par personne et par nuit</strong> sera perçue à l’arrivée.',
+    'Arrivée entre 14h00 et 20h00, départ avant 10h00.',
     'Les données personnelles seront traitées conformément à la réglementation en vigueur sur la confidentialité.',
     ],
 
@@ -274,10 +274,10 @@ return [
     // Booking Conditions
     'booking_conditions' => 'Conditions de Réservation',
     'pay_on_arrival' => 'Aucun paiement anticipé n’est requis pour confirmer la réservation.',
-    'tourist_tax' => 'Une taxe de séjour de 2 € par personne et par nuit sera perçue lors du check-in.',
+    'tourist_tax' => 'Une taxe de séjour de 5€ par personne et par nuit sera perçue lors du check-in.',
     'cancel_7_days' => 'L’annulation est gratuite jusqu’à 7 jours avant la date d’arrivée. Pour les annulations effectuées dans les 7 jours précédant l’arrivée, 50% du montant total seront facturés.',
     'no_show' => 'En cas de non-présentation (sans annulation), 100% du montant total seront facturés.',
-    'checkin_time' => 'Enregistrement de 14h00 à 22h00, départ avant 10h00.',
+    'checkin_time' => 'Enregistrement de 14h00 à 20h00, départ avant 10h00.',
     'privacy_note' => 'Les données personnelles seront traitées conformément aux réglementations sur la vie privée.',
 
 

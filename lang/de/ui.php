@@ -42,8 +42,8 @@ return [
         'Bei einer Stornierung innerhalb von 7 Tagen vor der Anreise werden <strong>50%</strong> des Gesamtbetrags berechnet.',
         'Bei Nichterscheinen (ohne Stornierung) werden <strong>100%</strong> des Gesamtbetrags berechnet.',
         'Eine <strong>Kreditkarte als Garantie</strong> ist erforderlich und wird nur in den oben genannten Fällen belastet.',
-        'Die Tourismusabgabe von <strong>2 € pro Person und Nacht</strong> ist bei Ankunft zu entrichten.',
-        'Check-in von 14:00 bis 22:00 Uhr, Check-out bis 10:00 Uhr.',
+        'Die Tourismusabgabe von <strong>5€ pro Person und Nacht</strong> ist bei Ankunft zu entrichten.',
+        'Check-in von 14:00 bis 20:00 Uhr, Check-out bis 10:00 Uhr.',
         'Personenbezogene Daten werden gemäß den geltenden Datenschutzbestimmungen verarbeitet.',
     ],
 
@@ -274,10 +274,10 @@ return [
     // Booking Conditions
     'booking_conditions' => 'Buchungsbedingungen',
     'pay_on_arrival' => 'Für die Buchung ist keine Vorauszahlung erforderlich.',
-    'tourist_tax' => 'Eine Kurtaxe von 2 € pro Person und Nacht wird beim Check-in erhoben.',
+    'tourist_tax' => 'Eine Kurtaxe von 5€ pro Person und Nacht wird beim Check-in erhoben.',
     'cancel_7_days' => 'Eine Stornierung ist bis zu 7 Tage vor dem Anreisedatum kostenlos. Bei Stornierungen innerhalb der 7 Tage vor der Anreise werden 50% des Gesamtbetrags berechnet.',
     'no_show' => 'Bei Nichterscheinen (ohne Stornierung) werden 100% des Gesamtbetrags berechnet.',
-    'checkin_time' => 'Check-in von 14:00 bis 22:00 Uhr, Check-out bis 10:00 Uhr.',
+    'checkin_time' => 'Check-in von 14:00 bis 20:00 Uhr, Check-out bis 10:00 Uhr.',
     'privacy_note' => 'Personendaten werden gemäß den Datenschutzbestimmungen behandelt.',
 
 
