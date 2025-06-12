@@ -126,6 +126,19 @@ class AdminController extends Controller
                 $query->latest();
         }
 
+        // mostriamo soltanto le prenotazioni arretrate di due mesi e tutte le future
+            if (!$request->boolean('show_all')) {
+                $oggi = now();
+                $dueMesiFa = $oggi->copy()->subMonths(2)->startOfDay();
+
+                $query->where(function ($q) use ($oggi, $dueMesiFa) {
+                    $q->where('check_out', '>=', $oggi->toDateString()) // prenotazioni future o in corso
+                    ->orWhere(function ($sub) use ($dueMesiFa, $oggi) {
+                        $sub->whereBetween('check_out', [$dueMesiFa->toDateString(), $oggi->toDateString()]);
+                    });
+                });
+            }
+
 
         $prenotazioni = $query->paginate(10);
 

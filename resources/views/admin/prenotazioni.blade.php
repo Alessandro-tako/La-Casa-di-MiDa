@@ -8,6 +8,7 @@
             <div class="alert alert-success" role="alert">{{ session('success') }}</div>
         @endif
 
+        {{-- barra di ricerca --}}
         <form method="GET" action="{{ route('admin.prenotazioni') }}" class="mb-4" role="search">
             <div class="row g-2 justify-content-center">
                 <div class="col-12 col-md-8 col-lg-6">
@@ -23,6 +24,23 @@
                 </div>
             </div>
         </form>
+        {{-- per mostrare l'archivio completo e non solo le vecchie di 2 mesi  --}}
+        @if (!request()->boolean('show_all'))
+            <div class="text-center mb-4">
+                <a href="{{ route('admin.prenotazioni', array_merge(request()->all(), ['show_all' => 1])) }}"
+                    class="btn btn-outline-secondary btn-sm">
+                    <i class="bi bi-archive me-1"></i> Mostra archivio completo
+                </a>
+            </div>
+        @else
+            <div class="text-center mb-4">
+                <a href="{{ route('admin.prenotazioni', array_merge(request()->except('show_all'))) }}"
+                    class="btn btn-outline-primary btn-sm">
+                    <i class="bi bi-clock-history me-1"></i> Torna alla vista limitata
+                </a>
+            </div>
+        @endif
+
 
         @if ($prenotazioni->isEmpty())
             <p class="text-center">Nessuna prenotazione disponibile al momento.</p>
