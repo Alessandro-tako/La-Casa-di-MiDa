@@ -127,6 +127,15 @@ return [
             'path' => storage_path('logs/laravel.log'),
         ],
 
+        'anonymizations' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/anonymizations.log'),
+            'level' => 'info',
+        ],
+
     ],
+
+
+
 
 ];

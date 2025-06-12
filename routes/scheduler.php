@@ -2,8 +2,8 @@
 
 use Illuminate\Console\Scheduling\Schedule;
 
-return function (Schedule $schedule) {
-    // Booking.com - Pink Room
+        return function (Schedule $schedule) {
+        // Booking.com - Pink Room
         $schedule->command('import:ics "https://ical.booking.com/v1/export?t=95489229-17eb-47a9-be44-850ddae187ba" "Pink Room" "booking.com"')
                 ->everyMinute();
 
@@ -27,4 +27,6 @@ return function (Schedule $schedule) {
         $schedule->command('import:ics "https://www.airbnb.it/calendar/ical/1380425056149611178.ics?s=315f7688b14adbeb9b0a2996ce336c73" "Grey Room" "airbnb"')
                 ->everyMinute();
 
+        // Comando personalizzato per anonimizzazione
+        $schedule->command('bookings:anonymize')->daily();
         };

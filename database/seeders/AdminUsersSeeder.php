@@ -14,13 +14,13 @@ class AdminUsersSeeder extends Seeder
         $users = [
             [
                 'name' => 'Damiano',
-                'email' => 'admin1@lacasadimida.it',
-                'password' => Hash::make('DamianoMiDa'), // Cambialo in produzione
+                'email' => 'damiano@lacasadimida.it',
+                'password' => Hash::make('25DamianoMiDa'), // Cambialo in produzione
             ],
             [
                 'name' => 'Michela',
-                'email' => 'admin2@lacasadimida.it',
-                'password' => Hash::make('MichelaMiDa'), // Cambialo in produzione
+                'email' => 'michela@lacasadimida.it',
+                'password' => Hash::make('25MichelaMiDa'), // Cambialo in produzione
             ],
         ];
 
