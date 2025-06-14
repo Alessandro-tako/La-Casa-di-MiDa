@@ -30,8 +30,8 @@
                     </button>
                 </div>
             </div>
-            <div class="col-md-6" data-aos="fade-left" data-aos-delay="200">
-                <h2 class="text-gold h3">{{ __('ui.green_room') }}</h2>
+            <div class="col-md-6 text-center" data-aos="fade-left" data-aos-delay="200">
+                <h2 class="text-gold h3 mt-4">{{ __('ui.green_room') }}</h2>
                 <p class="text-muted">{{ __('ui.green_room_desc') }}</p>
                 <a href="{{ route('camere.green') }}" class="btn btn-gold mt-3 rounded-pill"
                     title="{{ __('ui.green_room') }}">
@@ -64,8 +64,8 @@
                     </button>
                 </div>
             </div>
-            <div class="col-md-6" data-aos="fade-right" data-aos-delay="300">
-                <h2 class="text-gold h3">{{ __('ui.pink_room') }}</h2>
+            <div class="col-md-6 text-center" data-aos="fade-right" data-aos-delay="300">
+                <h2 class="text-gold h3 mt-4">{{ __('ui.pink_room') }}</h2>
                 <p class="text-muted">{{ __('ui.pink_room_desc') }}</p>
                 <a href="{{ route('camere.pink') }}" class="btn btn-gold mt-3 rounded-pill"
                     title="{{ __('ui.pink_room') }}">
@@ -98,8 +98,8 @@
                     </button>
                 </div>
             </div>
-            <div class="col-md-6" data-aos="fade-left" data-aos-delay="400">
-                <h2 class="text-gold h3">{{ __('ui.grey_room') }}</h2>
+            <div class="col-md-6 text-center" data-aos="fade-left" data-aos-delay="400">
+                <h2 class="text-gold h3 mt-4">{{ __('ui.grey_room') }}</h2>
                 <p class="text-muted">{{ __('ui.grey_room_desc') }}</p>
                 <a href="{{ route('camere.grey') }}" class="btn btn-gold mt-3 rounded-pill"
                     title="{{ __('ui.grey_room') }}">

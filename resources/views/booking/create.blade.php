@@ -25,7 +25,7 @@
 
                     {{-- Info anagrafiche --}}
                     <div class="row mb-3">
-                        <div class="col-md-6">
+                        <div class="col-md-6 mb-3">
                             <label for="guest_first_name" class="form-label">{{ __('ui.first_name') }}</label>
                             <input type="text" name="guest_first_name" id="guest_first_name" class="form-control"
                                 required>
@@ -50,12 +50,12 @@
                     </div>
 
                     <div class="row mb-3">
-                        <div class="col-md-6">
+                        <div class="col-md-6 mb-3">
                             <label for="guest_address_city" class="form-label">{{ __('ui.city') }}</label>
                             <input type="text" name="guest_address_city" id="guest_address_city" class="form-control"
                                 required>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-3 mb-3">
                             <label for="guest_address_zip" class="form-label">{{ __('ui.zip') }}</label>
                             <input type="text" name="guest_address_zip" id="guest_address_zip" class="form-control"
                                 required>
@@ -142,7 +142,7 @@
 
                     {{-- Date --}}
                     <div class="row mb-3">
-                        <div class="col-md-6">
+                        <div class="col-md-6 mb-3">
                             <label for="check_in" class="form-label">{{ __('ui.checkin') }}</label>
                             <input type="text" name="check_in" id="check_in" class="form-control" required
                                 disabled>
