@@ -28,7 +28,7 @@ return [
     'comfort_home_desc' => 'Dienstleistungen, die Ihnen einen sorgenfreien Aufenthalt bieten',
     'wifi' => 'Kostenloses WLAN',
     'assistance' => 'Persönliche Betreuung',
-    'coffee' => 'Kaffee im Gemeinschaftsbereich',
+    'coffee' => 'Kaffee und Tee stehen den Gästen im Gemeinschaftsbereich zur Verfügung',
     'cleaning' => 'Tägliche Reinigung',
     'transfers' => 'Transfer auf Anfrage',
     'private_bathroom' => 'Privates Bad in jedem Zimmer',

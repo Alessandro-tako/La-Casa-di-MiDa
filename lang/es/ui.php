@@ -29,7 +29,7 @@ return [
     'comfort_home_desc' => 'Servicios pensados para ofrecerte una estancia sin preocupaciones',
     'wifi' => 'Wi-Fi Gratuito',
     'assistance' => 'Asistencia personalizada',
-    'coffee' => 'Café en el área común',
+    'coffee' => 'Café y té a disposición de los huéspedes en la zona común',
     'cleaning' => 'Limpieza diaria',
     'transfers' => 'Transfer bajo petición',
     'private_bathroom' => 'Baño privado en cada habitación',

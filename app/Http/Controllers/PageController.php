@@ -103,11 +103,6 @@ class PageController extends Controller
         return view('contatti');
     }
 
-    public function prenota()
-    {
-        return view('prenota');
-    }
-
     public function bio(){
         
         return view('bio');

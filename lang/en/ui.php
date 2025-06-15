@@ -27,7 +27,7 @@ return [
     'comfort_home_desc' => 'Services designed to offer you a worry-free stay',
     'wifi' => 'Free Wi-Fi',
     'assistance' => 'Personalized assistance',
-    'coffee' => 'Coffee in common area',
+    'coffee' => 'Coffee and tea available to guests in the common area',
     'cleaning' => 'Daily cleaning',
     'transfers' => 'Transfers on request',
     'private_bathroom' => 'Private bathroom in every room',
