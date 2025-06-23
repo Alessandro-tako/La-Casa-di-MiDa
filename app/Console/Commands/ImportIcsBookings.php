@@ -3,10 +3,9 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use ICal\ICal; // Questo è il namespace corretto con la nuova libreria
-use App\Models\ExternalBooking;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Http;
+use Carbon\Carbon;
+use App\Models\ExternalBooking;
 
 class ImportIcsBookings extends Command
 {
@@ -24,8 +23,11 @@ class ImportIcsBookings extends Command
                 'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
             ])->get($url)->body();
 
+            // Log iniziale (debug limitato)
+            \Log::info("📥 ICS ricevuto per {$room} ({$source})", [
+                'excerpt' => substr($icsContent, 0, 300)
+            ]);
 
-            // Split events
             preg_match_all('/BEGIN:VEVENT(.*?)END:VEVENT/s', $icsContent, $matches);
 
             $imported = 0;
@@ -57,12 +59,13 @@ class ImportIcsBookings extends Command
 
                 $imported++;
             }
-            dd(substr($icsContent, 0, 500)); // Mostra i primi 500 caratteri del contenuto
 
-            $this->info("Importazione completata: $imported prenotazioni aggiunte.");
-        } catch (\Exception $e) {
-            $this->error("Errore durante l'importazione: " . $e->getMessage());
+            \Log::info("✅ Importazione completata per {$room} ({$source}): {$imported} prenotazioni.");
+            return 0;
+
+        } catch (\Throwable $e) {
+            \Log::error("❌ Errore importazione ICS per {$room} ({$source}): " . $e->getMessage());
+            return 1;
         }
     }
-
 }

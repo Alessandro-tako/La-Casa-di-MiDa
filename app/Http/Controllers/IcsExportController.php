@@ -8,33 +8,39 @@ use Illuminate\Http\Request;
 
 class IcsExportController extends Controller
 {
-
     public function export($room)
     {
-        $prenotazioni = Booking::where('room_name', $room)
+        $bookings = Booking::where('room_name', $room)
             ->where('status', 'confermata')
             ->orderBy('check_in')
             ->get();
 
-        $content = "BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//La Casa di MiDa//IT\r\n";
+        $calendar = "BEGIN:VCALENDAR\r\n";
+        $calendar .= "VERSION:2.0\r\n";
+        $calendar .= "PRODID:-//La Casa di MiDa//IT\r\n";
 
-        foreach ($prenotazioni as $booking) {
-            $checkIn = \Carbon\Carbon::parse($booking->check_in)->format('Ymd');
-            $checkOut = \Carbon\Carbon::parse($booking->check_out)->format('Ymd');
+        foreach ($bookings as $booking) {
+            $checkIn = Carbon::parse($booking->check_in)->format('Ymd');
+            $checkOut = Carbon::parse($booking->check_out)->format('Ymd');
+            $timestamp = Carbon::now()->format('Ymd\THis\Z');
+            $uid = uniqid();
 
-            $content .= "BEGIN:VEVENT\r\n";
-            $content .= "DTSTART;VALUE=DATE:$checkIn\r\n";
-            $content .= "DTEND;VALUE=DATE:$checkOut\r\n";
-            $content .= "SUMMARY:Occupato - " . $booking->room_name . "\r\n";
-            $content .= "DESCRIPTION:Prenotazione per " . $booking->guest_first_name . " " . $booking->guest_last_name . "\r\n";
-            $content .= "END:VEVENT\r\n";
+            $description = addslashes("Prenotazione per {$booking->guest_first_name} {$booking->guest_last_name}");
+
+            $calendar .= "BEGIN:VEVENT\r\n";
+            $calendar .= "UID:$uid@lacasadimida.it\r\n";
+            $calendar .= "DTSTAMP:$timestamp\r\n";
+            $calendar .= "DTSTART;VALUE=DATE:$checkIn\r\n";
+            $calendar .= "DTEND;VALUE=DATE:$checkOut\r\n";
+            $calendar .= "SUMMARY:Occupato - {$booking->room_name}\r\n";
+            $calendar .= "DESCRIPTION:$description\r\n";
+            $calendar .= "END:VEVENT\r\n";
         }
 
-        $content .= "END:VCALENDAR\r\n";
+        $calendar .= "END:VCALENDAR\r\n";
 
-        return response($content)
+        return response($calendar)
             ->header('Content-Type', 'text/calendar')
-            ->header('Content-Disposition', 'inline; filename=calendar.ics');
+            ->header('Content-Disposition', "inline; filename={$room}_calendar.ics");
     }
-
 }

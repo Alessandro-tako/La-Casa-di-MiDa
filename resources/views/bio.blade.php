@@ -143,7 +143,7 @@
             </div>
         </article>
         <div class="text-center mt-5" data-aos="fade-up" data-aos-delay="600">
-            <a href="{{ route('prenota') }}" class="btn btn-gold btn-lg rounded-pill">
+            <a href="{{ route('booking.create') }}" class="btn btn-gold btn-lg rounded-pill">
                 {{ __('ui.book_now') }}
             </a>
         </div>

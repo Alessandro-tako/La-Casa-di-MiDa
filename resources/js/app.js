@@ -206,8 +206,16 @@ document.addEventListener("DOMContentLoaded", function () {
             fetch(`/api/external-booked-dates/${room}`).then(res => res.json())
         ])
             .then(([internalDates, externalDates]) => {
-                const checkin = [...new Set([...internalDates.checkin, ...externalDates.checkin])];
-                const checkout = [...new Set([...internalDates.checkout, ...externalDates.checkout])];
+                const checkin = [...new Set([
+                    ...(internalDates?.checkin ?? []),
+                    ...(externalDates?.checkin ?? [])
+                ])];
+
+                const checkout = [...new Set([
+                    ...(internalDates?.checkout ?? []),
+                    ...(externalDates?.checkout ?? [])
+                ])];
+
                 disabledDates = { checkin, checkout };
                 loadFlatpickr(checkin, checkout);
                 calculatePrice();
