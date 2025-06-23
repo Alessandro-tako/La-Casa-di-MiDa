@@ -260,9 +260,9 @@ class AdminController extends Controller
         }
 
         $prezzi = [
-            'Green Room' => ['bassa' => 125, 'media' => 160, 'alta' => 185],
-            'Grey Room'  => ['bassa' => 125, 'media' => 160, 'alta' => 185],
-            'Pink Room'  => ['bassa' => 115, 'media' => 150, 'alta' => 175],
+            'Green Room' => ['bassa' => 120, 'media' => 145, 'alta' => 170],
+            'Grey Room'  => ['bassa' => 120, 'media' => 145, 'alta' => 170],
+            'Pink Room'  => ['bassa' => 110, 'media' => 135, 'alta' => 160],
         ];
 
         $totale = 0;
